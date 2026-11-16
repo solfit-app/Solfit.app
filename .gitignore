@@ -1,0 +1,24 @@
+# Datos privados (empresa, personas) — nunca al repo
+docs/privado/
+
+# Variables y claves
+.env
+.env.*
+!.env.example
+
+# Dependencias y builds
+node_modules/
+dist/
+build/
+.vite/
+
+# Capacitor (plataformas nativas generadas)
+android/app/build/
+ios/App/Pods/
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+*.log
