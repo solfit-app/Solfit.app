@@ -6,7 +6,7 @@
   var PAGINA = location.pathname.split('/').pop() || 'index';
   var CLAVE = 'solfit_tweaks:' + PAGINA;
   var CLAVE_POS = 'solfit_tweaks_pos';
-  var CLAVE_AJUSTE = 'solfit_tweaks_ajuste';
+  var CLAVE_AJUSTE = 'solfit_modo_app_v2';
   var esApp = /app/i.test(PAGINA);
 
   function leer(k, def) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch (e) { return def; } }
