@@ -27,12 +27,17 @@
 
   // Modo app: en el celular quita el marco del iPhone y llena la pantalla
   // (ancho de diseño 390 px escalado al ancho real; el alto se adapta).
+  // Espacio que el diseño reserva para la barra de estado del iPhone: en Android
+  // ya existe la barra real, así que se recorta (px de diseño).
+  var RECORTE = 40;
   var CSS_APP = [
     'html.modo-app,html.modo-app body{background:var(--sf-abajo,var(--bg))!important;overflow:hidden;height:100%;overscroll-behavior:none}',
     'html.modo-app [data-om-starter="ios-frame"]{border-radius:0!important;box-shadow:none!important}',
     'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(1),',
     'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(2),',
-    'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(4){display:none!important}'
+    'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(4){display:none!important}',
+    'html.modo-app [data-sf-cont]{margin-top:-' + RECORTE + 'px!important}',
+    'html.modo-app [data-sf-cont] nav{padding-bottom:6px!important}'
   ].join('');
   function ajustar() {
     if (!esApp) return;
@@ -52,7 +57,7 @@
       var z = window.innerWidth / 390, alto = Math.round((window.innerHeight - insetAbajo()) / z) + 'px';
       host.style.padding = '0'; host.style.display = 'block'; host.style.minHeight = '0'; host.style.zoom = String(z);
       frame.style.height = alto;
-      if (contenido) contenido.style.height = alto;
+      if (contenido) contenido.style.height = (parseInt(alto, 10) + RECORTE) + 'px';
     } else {
       raiz.classList.remove('modo-app');
       host.style.padding = ''; host.style.display = ''; host.style.minHeight = ''; host.style.zoom = '';
