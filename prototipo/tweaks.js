@@ -38,6 +38,9 @@
     return [
       'html.modo-app,html.modo-app body{background:var(--sf-abajo,#fff)!important;overflow:hidden;height:100%;overscroll-behavior:none}',
       'html.modo-app [data-om-starter="ios-frame"]{border-radius:0!important;box-shadow:none!important}',
+      // Como app nativa: sin el destello azul al tocar ni selección de texto al mantener apretado.
+      'html.modo-app,html.modo-app *{-webkit-tap-highlight-color:transparent!important;-webkit-touch-callout:none!important;-webkit-user-select:none!important;user-select:none!important}',
+      'html.modo-app input,html.modo-app textarea,html.modo-app [contenteditable="true"]{-webkit-user-select:text!important;user-select:text!important;-webkit-touch-callout:default!important}',
       'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(1),',
       'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(2),',
       'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(4){display:none!important}',
