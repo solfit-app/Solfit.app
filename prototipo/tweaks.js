@@ -45,9 +45,7 @@
       'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(2),',
       'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(4){display:none!important}',
       'html.modo-app [data-sf-cont]{margin-top:-' + RECORTE + 'px!important}',
-      'html.modo-app [data-sf-cont] nav{padding-bottom:var(--sf-pie,6px)!important}',
-      // El desenfoque animado (filter: blur) es lo más pesado para la GPU del celular.
-      'html.modo-app [style*="filter: blur"],html.modo-app [style*="filter:blur"]{filter:none!important}'
+      'html.modo-app [data-sf-cont] nav{padding-bottom:var(--sf-pie,6px)!important}'
     ].join('');
   }
   function ajustar() {
