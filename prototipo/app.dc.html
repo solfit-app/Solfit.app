@@ -865,7 +865,7 @@ class Component extends DCLogic {
         const ru = this.rut(n);
         if (pi != null && ru.ej.every((_, i) => { const p = s.prog[n + '-' + i]; return p && p.length && p.every((x) => x.ok); })) { d.fondo = 'var(--txt)'; d.color = 'var(--bg)'; d.txt = 'fitness_center'; d.fuente = "500 18px/1 'Material Symbols Rounded'"; }
         else if (pi != null && n === HOY) { d.fondo = 'var(--k0)'; d.color = 'var(--k2)'; if (!arr) d.anim = 'solfitPulso 1.6s ease-in-out infinite'; }
-        else if (pi != null) { d.borde = '2px solid var(--k0)'; d.color = 'var(--txt)'; }
+        else if (pi != null) { d.fondo = 'var(--k0)'; d.color = 'var(--k2)'; d.borde = '0'; }
         else if (PM && n === HOY) { d.borde = '2px solid var(--txt)'; d.color = 'var(--txt)'; }
         else if (PM && !individual && n > HOY) { if (c === 1 || c === 4) { d.borde = '1.5px dashed var(--mut)'; d.color = 'var(--txt)'; d.aria += ', día de clase grupal'; } else d.color = 'var(--line2)'; }
         else if (!PM && n === s.dia) { d.fondo = 'var(--k0)'; d.color = 'var(--k2)'; }
