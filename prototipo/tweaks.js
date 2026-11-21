@@ -28,7 +28,7 @@
   // Modo app: en el celular quita el marco del iPhone y llena la pantalla
   // (ancho de diseño 390 px escalado al ancho real; el alto se adapta).
   var CSS_APP = [
-    'html.modo-app,html.modo-app body{background:var(--bg)!important;overflow:hidden;height:100%;overscroll-behavior:none}',
+    'html.modo-app,html.modo-app body{background:var(--sf-abajo,var(--bg))!important;overflow:hidden;height:100%;overscroll-behavior:none}',
     'html.modo-app [data-om-starter="ios-frame"]{border-radius:0!important;box-shadow:none!important}',
     'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(1),',
     'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(2),',
@@ -49,7 +49,7 @@
         var s = document.createElement('style'); s.id = 'sf-css-app'; s.textContent = CSS_APP; document.head.appendChild(s);
       }
       raiz.classList.add('modo-app');
-      var z = window.innerWidth / 390, alto = Math.round(window.innerHeight / z) + 'px';
+      var z = window.innerWidth / 390, alto = Math.round((window.innerHeight - insetAbajo()) / z) + 'px';
       host.style.padding = '0'; host.style.display = 'block'; host.style.minHeight = '0'; host.style.zoom = String(z);
       frame.style.height = alto;
       if (contenido) contenido.style.height = alto;
@@ -60,6 +60,45 @@
       if (contenido) contenido.style.height = '844px';
     }
   }
+
+  // Barras del sistema (arriba y abajo) con los colores de la app:
+  // mide el color de lo que está pegado al borde superior e inferior.
+  var sonda;
+  function insetAbajo() {
+    if (!sonda) {
+      sonda = document.createElement('div');
+      sonda.style.cssText = 'position:fixed;left:0;bottom:0;width:0;height:0;visibility:hidden;pointer-events:none;padding-bottom:env(safe-area-inset-bottom,0px)';
+      document.body.appendChild(sonda);
+    }
+    return parseFloat(getComputedStyle(sonda).paddingBottom) || 0;
+  }
+  function colorEn(x, y) {
+    var el = document.elementFromPoint(x, y);
+    while (el && el !== document.documentElement) {
+      if (el.id !== 'tw-btn' && el.id !== 'tw-pan') {
+        var c = getComputedStyle(el).backgroundColor;
+        var m = c && c.match(/rgba?\(([^)]+)\)/);
+        if (m) {
+          var p = m[1].split(',').map(parseFloat);
+          if (p.length < 4 || p[3] > 0.6) return 'rgb(' + Math.round(p[0]) + ',' + Math.round(p[1]) + ',' + Math.round(p[2]) + ')';
+        }
+      }
+      el = el.parentElement;
+    }
+    return null;
+  }
+  var ultArriba = '', ultAbajo = '';
+  function colorearBarras() {
+    if (!document.body) return;
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) { meta = document.createElement('meta'); meta.name = 'theme-color'; document.head.appendChild(meta); }
+    var x = 12;
+    var arriba = colorEn(x, 2) || getComputedStyle(document.body).getPropertyValue('--bg').trim();
+    var abajo = colorEn(x, window.innerHeight - insetAbajo() - 2) || arriba;
+    if (arriba && arriba !== ultArriba) { meta.setAttribute('content', arriba); ultArriba = arriba; }
+    if (abajo && abajo !== ultAbajo) { document.documentElement.style.setProperty('--sf-abajo', abajo); ultAbajo = abajo; }
+  }
+  setInterval(colorearBarras, 400);
 
   // App instalable (PWA): service worker mínimo.
   if ('serviceWorker' in navigator) {
