@@ -49,7 +49,9 @@
       // Sin costuras: las franjas de arriba montan 1px sobre el cuerpo y el
       // fondo de la barra se alarga hacia abajo para tapar la rendija del borde.
       'html.modo-app [data-sf-cont] nav>span:nth-child(1),html.modo-app [data-sf-cont] nav>span:nth-child(2){height:9px!important}',
-      'html.modo-app [data-sf-cont] nav::after{content:"";position:absolute;left:0;right:0;top:calc(100% - 2px);height:12px;background:var(--card);pointer-events:none}',
+      'html.modo-app [data-sf-cont] nav::after{content:"";position:absolute;left:0;right:0;top:calc(100% - 2px);height:40px;background:var(--card);pointer-events:none}',
+      // El fondo del marco y de la página, del color de abajo: si queda un borde, no se nota.
+      'html.modo-app,html.modo-app body,html.modo-app [data-om-starter="ios-frame"]{background:var(--sf-abajo,var(--card,#fff))!important}',
       // Animaciones infinitas fuera de la pantalla: en pausa (ver pausarOcultas).
       '[data-sf-quieta]{animation-play-state:paused!important}'
     ].join('');
@@ -99,7 +101,9 @@
       // La app llega hasta el borde de abajo; la barra de navegación de la app
       // se alarga lo que mida la barra de Android, para pintarla con su color.
       raiz.style.setProperty('--sf-pie', Math.round(6 + inset('bottom') / z) + 'px');
-      var alto = Math.round(window.innerHeight / z) + 'px';
+      // Hacia arriba (ceil + 1): si se redondea hacia abajo queda una rendija
+      // de medio píxel bajo el marco y se ve como una línea gris.
+      var alto = (Math.ceil(window.innerHeight / z) + 1) + 'px';
       host.style.padding = '0'; host.style.display = 'block'; host.style.minHeight = '0'; host.style.zoom = '';
       frame.style.height = alto;
       if (contenido) contenido.style.height = (parseInt(alto, 10) + RECORTE) + 'px';
