@@ -29,16 +29,22 @@
   // (ancho de diseño 390 px escalado al ancho real; el alto se adapta).
   // Espacio que el diseño reserva para la barra de estado del iPhone: en Android
   // ya existe la barra real, así que se recorta (px de diseño).
-  var RECORTE = 40;
-  var CSS_APP = [
-    'html.modo-app,html.modo-app body{background:var(--sf-abajo,var(--bg))!important;overflow:hidden;height:100%;overscroll-behavior:none}',
-    'html.modo-app [data-om-starter="ios-frame"]{border-radius:0!important;box-shadow:none!important}',
-    'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(1),',
-    'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(2),',
-    'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(4){display:none!important}',
-    'html.modo-app [data-sf-cont]{margin-top:-' + RECORTE + 'px!important}',
-    'html.modo-app [data-sf-cont] nav{padding-bottom:6px!important}'
-  ].join('');
+  // El diseño deja ~50-68 px arriba para la barra del iPhone; se recortan 46
+  // (quedan ~4-22 px). Si Android dibuja la página debajo de la barra de estado
+  // (pantalla de borde a borde), se devuelve ese alto para no tapar nada.
+  var RECORTE_BASE = 46;
+  var RECORTE = RECORTE_BASE;
+  function cssApp() {
+    return [
+      'html.modo-app,html.modo-app body{background:var(--sf-abajo,#fff)!important;overflow:hidden;height:100%;overscroll-behavior:none}',
+      'html.modo-app [data-om-starter="ios-frame"]{border-radius:0!important;box-shadow:none!important}',
+      'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(1),',
+      'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(2),',
+      'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(4){display:none!important}',
+      'html.modo-app [data-sf-cont]{margin-top:-' + RECORTE + 'px!important}',
+      'html.modo-app [data-sf-cont] nav{padding-bottom:var(--sf-pie,6px)!important}'
+    ].join('');
+  }
   function ajustar() {
     if (!esApp) return;
     var frame = document.querySelector('[data-om-starter="ios-frame"]');
@@ -50,11 +56,16 @@
     var chico = window.innerWidth < 600;
     var raiz = document.documentElement;
     if (on && chico) {
-      if (!document.getElementById('sf-css-app')) {
-        var s = document.createElement('style'); s.id = 'sf-css-app'; s.textContent = CSS_APP; document.head.appendChild(s);
-      }
+      var z = window.innerWidth / 390;
+      RECORTE = Math.max(0, Math.round(RECORTE_BASE - inset('top') / z));
+      var s = document.getElementById('sf-css-app');
+      if (!s) { s = document.createElement('style'); s.id = 'sf-css-app'; document.head.appendChild(s); }
+      s.textContent = cssApp();
       raiz.classList.add('modo-app');
-      var z = window.innerWidth / 390, alto = Math.round((window.innerHeight - insetAbajo()) / z) + 'px';
+      // La app llega hasta el borde de abajo; la barra de navegación de la app
+      // se alarga lo que mida la barra de Android, para pintarla con su color.
+      raiz.style.setProperty('--sf-pie', Math.round(6 + inset('bottom') / z) + 'px');
+      var alto = Math.round(window.innerHeight / z) + 'px';
       host.style.padding = '0'; host.style.display = 'block'; host.style.minHeight = '0'; host.style.zoom = String(z);
       frame.style.height = alto;
       if (contenido) contenido.style.height = (parseInt(alto, 10) + RECORTE) + 'px';
@@ -69,14 +80,16 @@
   // Barras del sistema (arriba y abajo) con los colores de la app:
   // mide el color de lo que está pegado al borde superior e inferior.
   var sonda;
-  function insetAbajo() {
+  function inset(lado) {
     if (!sonda) {
       sonda = document.createElement('div');
-      sonda.style.cssText = 'position:fixed;left:0;bottom:0;width:0;height:0;visibility:hidden;pointer-events:none;padding-bottom:env(safe-area-inset-bottom,0px)';
+      sonda.style.cssText = 'position:fixed;left:0;bottom:0;width:0;height:0;visibility:hidden;pointer-events:none;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)';
       document.body.appendChild(sonda);
     }
-    return parseFloat(getComputedStyle(sonda).paddingBottom) || 0;
+    var cs = getComputedStyle(sonda);
+    return parseFloat(lado === 'top' ? cs.paddingTop : cs.paddingBottom) || 0;
   }
+  function insetAbajo() { return inset('bottom'); }
   function colorEn(x, y) {
     var el = document.elementFromPoint(x, y);
     while (el && el !== document.documentElement) {
@@ -99,7 +112,15 @@
     if (!meta) { meta = document.createElement('meta'); meta.name = 'theme-color'; document.head.appendChild(meta); }
     var x = 12;
     var arriba = colorEn(x, 2) || getComputedStyle(document.body).getPropertyValue('--bg').trim();
-    var abajo = colorEn(x, window.innerHeight - insetAbajo() - 2) || arriba;
+    // Abajo: si está la barra de navegación de la app, su color (--card).
+    var nav = document.querySelector('[data-sf-cont] nav');
+    var abajo = null;
+    if (nav && nav.offsetParent) {
+      var t = document.createElement('i'); t.style.cssText = 'position:absolute;background:var(--card)'; nav.appendChild(t);
+      abajo = getComputedStyle(t).backgroundColor; nav.removeChild(t);
+      if (!abajo || /rgba\(0, 0, 0, 0\)|transparent/.test(abajo)) abajo = null;
+    }
+    abajo = abajo || colorEn(x, window.innerHeight - insetAbajo() - 2) || arriba;
     if (arriba && arriba !== ultArriba) { meta.setAttribute('content', arriba); ultArriba = arriba; }
     if (abajo && abajo !== ultAbajo) { document.documentElement.style.setProperty('--sf-abajo', abajo); ultAbajo = abajo; }
   }
