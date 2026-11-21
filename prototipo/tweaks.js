@@ -42,7 +42,9 @@
       'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(2),',
       'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(4){display:none!important}',
       'html.modo-app [data-sf-cont]{margin-top:-' + RECORTE + 'px!important}',
-      'html.modo-app [data-sf-cont] nav{padding-bottom:var(--sf-pie,6px)!important}'
+      'html.modo-app [data-sf-cont] nav{padding-bottom:var(--sf-pie,6px)!important}',
+      // El desenfoque animado (filter: blur) es lo más pesado para la GPU del celular.
+      'html.modo-app [style*="filter: blur"],html.modo-app [style*="filter:blur"]{filter:none!important}'
     ].join('');
   }
   function ajustar() {
@@ -53,10 +55,16 @@
     var contenido = frame.querySelector('[data-sf-cont]') || frame.querySelector('div[style*="height: 844px"]');
     if (contenido) contenido.setAttribute('data-sf-cont', '1');
     var on = leer(CLAVE_AJUSTE, true);
-    var chico = window.innerWidth < 600;
+    var chico = Math.min(window.innerWidth, screen.width || 9999) < 600;
     var raiz = document.documentElement;
+    // Escalado nativo del navegador (viewport de 390 px) en vez de CSS zoom:
+    // el zoom obliga a recalcular todo en cada cuadro y baja los fps.
+    var vp = document.querySelector('meta[name="viewport"]');
+    var vpApp = 'width=390, user-scalable=no, viewport-fit=cover';
+    var vpNormal = 'width=device-width, initial-scale=1, viewport-fit=cover';
+    if (vp) { var quiero = (on && chico) ? vpApp : vpNormal; if (vp.getAttribute('content') !== quiero) vp.setAttribute('content', quiero); }
     if (on && chico) {
-      var z = window.innerWidth / 390;
+      var z = 1;
       RECORTE = Math.max(0, Math.round(RECORTE_BASE - inset('top') / z));
       var s = document.getElementById('sf-css-app');
       if (!s) { s = document.createElement('style'); s.id = 'sf-css-app'; document.head.appendChild(s); }
@@ -66,7 +74,7 @@
       // se alarga lo que mida la barra de Android, para pintarla con su color.
       raiz.style.setProperty('--sf-pie', Math.round(6 + inset('bottom') / z) + 'px');
       var alto = Math.round(window.innerHeight / z) + 'px';
-      host.style.padding = '0'; host.style.display = 'block'; host.style.minHeight = '0'; host.style.zoom = String(z);
+      host.style.padding = '0'; host.style.display = 'block'; host.style.minHeight = '0'; host.style.zoom = '';
       frame.style.height = alto;
       if (contenido) contenido.style.height = (parseInt(alto, 10) + RECORTE) + 'px';
     } else {
@@ -113,18 +121,24 @@
     var x = 12;
     var arriba = colorEn(x, 2) || getComputedStyle(document.body).getPropertyValue('--bg').trim();
     // Abajo: si está la barra de navegación de la app, su color (--card).
+    // Abajo: color de fondo de la barra de navegación de la app (sin tocar el DOM).
     var nav = document.querySelector('[data-sf-cont] nav');
     var abajo = null;
-    if (nav && nav.offsetParent) {
-      var t = document.createElement('i'); t.style.cssText = 'position:absolute;background:var(--card)'; nav.appendChild(t);
-      abajo = getComputedStyle(t).backgroundColor; nav.removeChild(t);
-      if (!abajo || /rgba\(0, 0, 0, 0\)|transparent/.test(abajo)) abajo = null;
+    if (nav) {
+      var r = nav.getBoundingClientRect();
+      if (r.height) abajo = colorEn(x, Math.min(window.innerHeight - 1, r.top + r.height / 2));
     }
     abajo = abajo || colorEn(x, window.innerHeight - insetAbajo() - 2) || arriba;
     if (arriba && arriba !== ultArriba) { meta.setAttribute('content', arriba); ultArriba = arriba; }
     if (abajo && abajo !== ultAbajo) { document.documentElement.style.setProperty('--sf-abajo', abajo); ultAbajo = abajo; }
   }
-  setInterval(colorearBarras, 400);
+  // Solo se mide después de tocar algo (cuando la pantalla terminó de cambiar)
+  // y cada 3 s, para no interrumpir las animaciones.
+  var tColor = null;
+  function colorLuego() { clearTimeout(tColor); tColor = setTimeout(colorearBarras, 700); }
+  window.addEventListener('pointerup', colorLuego, { passive: true });
+  window.addEventListener('load', colorLuego);
+  setInterval(function () { if (!document.hidden) colorearBarras(); }, 3000);
 
   // App instalable (PWA): service worker mínimo.
   if ('serviceWorker' in navigator) {
