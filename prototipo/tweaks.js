@@ -46,6 +46,10 @@
       'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(4){display:none!important}',
       'html.modo-app [data-sf-cont]{margin-top:-' + RECORTE + 'px!important}',
       'html.modo-app [data-sf-cont] nav{padding-bottom:var(--sf-pie,6px)!important}',
+      // Sin costuras: las franjas de arriba montan 1px sobre el cuerpo y el
+      // fondo de la barra se alarga hacia abajo para tapar la rendija del borde.
+      'html.modo-app [data-sf-cont] nav>span:nth-child(1),html.modo-app [data-sf-cont] nav>span:nth-child(2){height:9px!important}',
+      'html.modo-app [data-sf-cont] nav::after{content:"";position:absolute;left:0;right:0;top:calc(100% - 2px);height:12px;background:var(--card);pointer-events:none}',
       // Animaciones infinitas fuera de la pantalla: en pausa (ver pausarOcultas).
       '[data-sf-quieta]{animation-play-state:paused!important}'
     ].join('');
