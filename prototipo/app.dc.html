@@ -9,7 +9,7 @@
 <link rel="icon" href="./assets/icon-192.png">
 <link rel="apple-touch-icon" href="./assets/icon-192.png">
 <script src="./support.js"></script>
-<script src="./tweaks.js?v=13" defer></script>
+<script src="./tweaks.js?v=14" defer></script>
 </head>
 <body>
 <x-dc>
@@ -802,10 +802,9 @@ class Component extends DCLogic {
     else if (n == null) { if (d.src != null) { const idx = plan[d.src]; let q = 0; Object.keys(plan).forEach((k) => { if (plan[k] >= idx) { delete plan[k]; delete horas[k]; q++; } }); if (q > 1) msg = 'También devolví las rutinas que seguían'; } }
     else if (n < this.hoy()) msg = 'Ese día ya pasó';
     else if (!ind && ![1, 4].includes((n + 5) % 7)) msg = 'Las grupales son martes y viernes';
-    else if (ind && Object.keys(plan).filter((k) => fila(+k) === fila(n) && +k !== n && plan[k] !== d.i).length >= 2) msg = 'Tu plan permite 2 por semana';
     else { const occ = plan[n]; Object.keys(plan).forEach((k) => { if (plan[k] === d.i) delete plan[k]; }); const swap = occ != null && occ !== d.i && d.src != null && d.src !== n; if (swap) plan[d.src] = occ; else if (d.src != null && d.src !== n) delete horas[d.src]; plan[n] = d.i; if (d.src !== n) { if (!swap) delete horas[n]; ask = n; }
       const dias = Object.keys(plan).map(Number).sort((a, b) => a - b), usados = dias.map((k) => plan[k]).sort((a, b) => a - b), falta = usados.findIndex((v, j) => v !== j);
-      if (falta >= 0) { vuelve = true; msg = 'Primero agenda la rutina ' + (falta + 1); } else if (dias.some((k, j) => plan[k] !== j)) { vuelve = true; msg = d.i > 0 && plan0[n] == null ? 'La rutina ' + (d.i + 1) + ' va después de la ' + d.i : 'Las rutinas van en el orden de Sol'; } else this.bip(880, 0.12); }
+      if (falta >= 0) { vuelve = true; msg = 'Primero agenda la rutina ' + (falta + 1); } else if (dias.some((k, j) => plan[k] !== j)) { vuelve = true; msg = d.i > 0 && plan0[n] == null ? 'La rutina ' + (d.i + 1) + ' va después de la ' + d.i : 'Las rutinas van en el orden de Sol'; } else { this.bip(880, 0.12); if (ind && dias.filter((k) => fila(k) === fila(n)).length > 2) msg = 'Sol recomienda 2 por semana, pero quedó agendada'; } }
     const ok = !vuelve && plan[n] === d.i; this.setState(vuelve ? { drag: null, planMov: null, plan: plan0, horas: horas0, horaAsk: null, planMsg: msg, verSol: null } : { drag: null, planSel: ok ? null : this.state.planSel, planMov: ok ? null : this.state.planMov, plan, horas, horaAsk: ask, horaPrev: ask != null && d.src != null ? { plan: plan0, horas: horas0 } : null, planMsg: msg, verSol: null }); clearTimeout(this.pmT); if (msg) this.pmT = setTimeout(() => this.setState({ planMsg: '' }), 2200); }
   rut(dia) { if (this.pm()) { const i = this.state.plan[dia]; return i == null ? null : this.solRut()[i]; } const w = (dia + 5) % 7, o = (this.state.sync.rutinas || {})[w]; return o || this.semana[w].r; }
   ejInfo(n) { n = (n || '').toLowerCase(); const T = [
