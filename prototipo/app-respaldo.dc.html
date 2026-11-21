@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" href="./assets/icon-192.png">
+<link rel="apple-touch-icon" href="./assets/icon-192.png">
+<script src="./support.js"></script>
+<script src="./tweaks.js?v=10" defer></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Oswald:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0..1,0&display=swap" rel="stylesheet">
+<style>
+@keyframes solfitGira{to{transform:rotate(360deg)}}
+@keyframes solfitSube{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes solfitPulso{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(var(--k1),0.55)}50%{opacity:0.6;box-shadow:0 0 0 7px rgba(var(--k1),0)}}
+input::placeholder{color:var(--k13);opacity:1;font-size:17px}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes solfitInh{from{--a:0deg}to{--a:216deg}}
+@keyframes solfitExh{from{opacity:1}to{opacity:0}}
+@keyframes solfitPalabra{from{opacity:0;transform:translateY(6px);filter:blur(6px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes solfitAsa{0%,100%{opacity:1}50%{opacity:0.25}}
+@keyframes solfitVelo{from{opacity:0}to{opacity:1}}
+@keyframes solfitVeloSale{to{opacity:0}}
+@keyframes solfitHoja{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes solfitHojaSale{to{transform:translateY(100%)}}
+@keyframes solfitManual{from{opacity:0;clip-path:inset(0 0 0 75% round 999px)}to{opacity:1;clip-path:inset(0 0 0 0 round 999px)}}
+@keyframes solfitCaps{from{opacity:0;transform:scale(0.96)}to{opacity:1;transform:scale(1)}}
+@keyframes solfitPop{from{opacity:0;transform:scale(0.6)}to{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){[data-hoja],[data-hoja] *{animation-duration:0.01s!important;animation-delay:0s!important}}
+@keyframes solfitLuzI{0%{transform:translateX(55%);opacity:0}12%,60%{opacity:1}100%{transform:translateX(-100%);opacity:0}}
+@keyframes solfitLuzD{0%{transform:translateX(-55%);opacity:0}12%,60%{opacity:1}100%{transform:translateX(100%);opacity:0}}
+@keyframes solfitLate{0%,100%{transform:scale(0.95);opacity:0.6}50%{transform:scale(1.04);opacity:1}}
+@media (prefers-reduced-motion:reduce){[data-late]{animation:none!important}}
+body{--bg:#0B1A1F;--bg2:#07141A;--card:#11262D;--line:#1C363E;--line2:#2F515B;--txt:#EEF6F7;--mut:#8FAEB5;--sage:#9FD6D8;--okbg:#16343A;--badbg:#3A1F1A;--bad:#F2A090;--warnbg:#17323A;--st1:#142B32;--st2:#25474F;--nav:rgba(15,34,40,0.9);--acct:#62C6CB;--page:#1A2B30}
+body.claro{--bg:#EEF6F7;--bg2:#EEF6F7;--card:#FFFFFF;--line:#D9E8EA;--line2:#C3D8DB;--txt:#0F2F38;--mut:#4A6A72;--sage:#17616B;--okbg:#D5ECEE;--badbg:#F6DDD7;--bad:#8A2A1B;--warnbg:#E0F1F3;--st1:#E3EFF1;--st2:#C5DEE2;--nav:rgba(255,255,255,0.92);--acct:#0F7C85;--page:#D3E3E6}
+[data-oscuro],body.claro [data-oscuro]{--bg:#0B1A1F;--bg2:#07141A;--card:#11262D;--line:#1C363E;--line2:#2F515B;--txt:#EEF6F7;--mut:#8FAEB5;--sage:#9FD6D8;--okbg:#16343A;--badbg:#3A1F1A;--bad:#F2A090;--warnbg:#17323A;--st1:#142B32;--st2:#25474F;--nav:rgba(15,34,40,0.9);--acct:#62C6CB;color:#EEF6F7}
+body{--k0:#62C6CB;--k1:98,198,203;--k2:#06181D;--k3:#EEF6F7;--k4:#1C363E;--k5:#8FAEB5;--k6:#9FD6D8;--k7:#4FA3AB;--k8:#11262D;--k9:24,48,56;--k10:#0B1A1F;--k11:#C3D8DB;--k12:#17616B;--k13:#B0C7CC;--k14:#2F515B;--k15:#142B32;--k16:7,20,26;--k17:#07141A;--k22:20,42,49;--k23:#244048;--k24:4,12,16;--k25:#9BE0E3;--k26:23,97,107;--k27:#5A7880;--k28:#C9E6E8;--k34:#E0F1F3;--k37:#0F7C85;--k39:11,26,31;--k40:15,47,56;--k41:79,163,171;--k42:#1B3138;--k43:#0F2228;--k44:#18303A;--k45:238,246,247;--k46:rgba(190,240,242,0.85);--k47:#26424A;--k48:#DDF2F3;--c2:#F5B94A;--c3:#F27D72;--c4:#5AA9F2}
+body.claro{--c2:#A86A00;--c3:#C4473A;--c4:#1E78C8}
+[data-oscuro],body.claro [data-oscuro]{--c2:#F5B94A;--c3:#F27D72;--c4:#5AA9F2}
+body.naranjo{--bg:#0E1311;--bg2:#0A0E0C;--card:#161D1A;--line:#232D28;--line2:#3A4740;--txt:#F2F5F0;--mut:#8FA39A;--sage:#A9CDA7;--okbg:#22332B;--badbg:#3A1F1A;--bad:#F2A090;--warnbg:#2B2415;--st1:#1C2420;--st2:#2F4236;--nav:rgba(25,33,29,0.9);--acct:#F39200;--page:#23282A;--k0:#F39200;--k1:243,146,0;--k2:#10140F;--k3:#F2F5F0;--k4:#232D28;--k5:#8FA39A;--k6:#A9CDA7;--k7:#86AD85;--k8:#161D1A;--k9:35,43,39;--k10:#0E1311;--k11:#C9D3C6;--k12:#25574A;--k13:#B4C4BC;--k14:#3A4740;--k15:#1C2420;--k16:10,14,12;--k17:#0A0E0C;--k22:30,38,34;--k23:#2C3832;--k24:5,8,6;--k25:#F8B046;--k26:37,87,74;--k27:#5F7068;--k28:#CFE3C4;--k34:#FDF1DC;--k37:#A85F00;--k39:14,19,17;--k40:28,58,50;--k41:134,173,133;--k42:#232B27;--k43:#141A17;--k44:#1F2622;--k45:242,245,240;--k46:rgba(255,196,110,0.75);--k47:#2E3A34;--k48:#FDEBCB;--c2:#A9CDA7;--c3:#F2A090;--c4:#6FB7E8}
+body.naranjo.claro{--bg:#F7F3EA;--bg2:#F7F3EA;--card:#FFFFFF;--line:#E4DDCC;--line2:#C9D3C6;--txt:#1C3A32;--mut:#4F6A61;--sage:#25574A;--okbg:#DDEBDA;--badbg:#F6DDD7;--bad:#8A2A1B;--warnbg:#FDF1DC;--st1:#EFE8D8;--st2:#CFE0CC;--nav:rgba(255,255,255,0.92);--acct:#A85F00;--page:#E9E2D0;--c2:#25574A;--c3:#B4412F;--c4:#1E78C8}
+body.naranjo [data-oscuro],body.naranjo.claro [data-oscuro]{--bg:#0E1311;--bg2:#0A0E0C;--card:#161D1A;--line:#232D28;--line2:#3A4740;--txt:#F2F5F0;--mut:#8FA39A;--sage:#A9CDA7;--okbg:#22332B;--badbg:#3A1F1A;--bad:#F2A090;--warnbg:#2B2415;--st1:#1C2420;--st2:#2F4236;--nav:rgba(25,33,29,0.9);--acct:#F39200;--c2:#A9CDA7;--c3:#F2A090;--c4:#6FB7E8;color:#F2F5F0}
+body{margin:0;background:var(--page);color:var(--txt);font-family:Montserrat,sans-serif;font-size:16px;line-height:1.45}
+a{color:var(--sage)}a:hover{color:var(--k37)}
+input{font-family:Montserrat,sans-serif}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box">
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="{{ devW }}" height="{{ devH }}" dark="{{ devDark }}" hint-size="390px,844px">
+<div style="height:844px;display:flex;flex-direction:column;background:var(--bg);position:relative;overflow:hidden;color:var(--txt);font-family:Montserrat,sans-serif;font-size:16px;line-height:1.45">
+
+<sc-if value="{{ comEdOn }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ comEdCerrar }}" style="position:absolute;z-index:29;inset:0;background:rgba(0,0,0,0.45);animation:{{ comEdVeloAnim }}"></div>
+<div role="dialog" aria-label="Registrar comida" data-hoja="1" style="animation:{{ comEdAnim }};position:absolute;z-index:30;left:0;right:0;bottom:0;border-radius:34px 34px 0 0;background:var(--card);color:var(--txt);box-shadow:0 -10px 40px rgba(0,0,0,0.3);padding:12px 20px 34px;display:flex;flex-direction:column;gap:14px">
+  <span style="align-self:center;width:44px;height:5px;border-radius:999px;background:var(--line2)"></span>
+  <div style="display:flex;align-items:flex-start;gap:12px">
+    <div style="flex:1;min-width:0"><div style="font-weight:700;font-size:22px;line-height:1.2">{{ comEdTit }}</div><div style="color:var(--mut);font-size:14px;line-height:1.35;margin-top:4px">{{ comEdSub }}</div></div>
+    <button onClick="{{ comEdCerrar }}" aria-label="Cerrar" style="flex:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--line);color:var(--txt);cursor:pointer;font-family:'Material Symbols Rounded';font-size:24px">close</button>
+  </div>
+  <div style="font-weight:600">¿Cuánto comiste de cada uno?</div>
+  <sc-for list="{{ comEdFilas }}" as="f" hint-placeholder-count="3">
+    <div style="display:flex;flex-direction:column;gap:6px;animation:solfitSube 0.4s cubic-bezier(0.32,0.72,0,1) {{ f.delay }} both">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><span style="font-weight:600;font-size:15px">{{ f.nombre }}</span><span style="color:var(--mut);font-size:14px">{{ f.g }}</span></div>
+      <sc-if value="{{ f.esCaps }}" hint-placeholder-val="{{ true }}"><div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;animation:solfitCaps 0.25s ease both"><sc-for list="{{ f.ops }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.ir }}" style="min-height:44px;border-radius:999px;border:1.5px solid {{ o.bd }};background:{{ o.bg }};color:{{ o.fg }};font:600 14px Montserrat,sans-serif;cursor:pointer;padding:0;transition:background 0.22s ease,color 0.22s ease,border-color 0.22s ease,transform 0.15s ease" style-active="transform:scale(0.94)">{{ o.t }}</button></sc-for></div></sc-if>
+      <sc-if value="{{ f.esMan }}" hint-placeholder-val="{{ false }}"><div style="animation:solfitManual 0.34s cubic-bezier(0.32,0.72,0,1) both;min-height:44px;box-sizing:border-box;border-radius:999px;border:1.5px solid var(--k0);background:var(--bg);display:flex;align-items:center;gap:8px;padding:0 0 0 18px"><input value="{{ f.manVal }}" onChange="{{ f.manSet }}" autoFocus="{{ f.esMan }}" inputMode="decimal" aria-label="{{ f.manAria }}" placeholder="0" style="flex:1;min-width:0;height:44px;border:0;outline:none;background:transparent;color:var(--txt);font:600 20px Oswald,sans-serif;padding:0"><span style="font-weight:600;color:var(--mut)">gramos</span><button onClick="{{ f.manSalir }}" aria-label="Volver a las opciones" style="flex:none;width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:var(--txt);cursor:pointer;font-family:'Material Symbols Rounded';font-size:22px">close</button></div></sc-if>
+    </div>
+  </sc-for>
+  <div style="font:600 22px/1 Oswald,sans-serif">{{ comEdKcal }}</div>
+  <label style="min-height:56px;border:1.5px dashed var(--line2);border-radius:20px;padding:4px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;font-weight:600"><input type="file" accept="image/*" onChange="{{ comEdFoto }}" style="display:none">
+    <sc-if value="{{ comEdHayFoto }}" hint-placeholder-val="{{ false }}"><span role="img" aria-label="Foto del plato" style="width:46px;height:46px;border-radius:14px;flex:none;background:{{ comEdFotoBg }} center/cover no-repeat;animation:solfitPop 0.3s cubic-bezier(0.34,1.4,0.64,1) both"></span></sc-if>
+    <span style="font-family:'Material Symbols Rounded';font-size:26px;color:var(--acct)">photo_camera</span><span style="flex:1">{{ comEdFotoTxt }}</span><span style="color:var(--mut);font-size:14px;font-weight:400">Opcional</span></label>
+  <div style="display:flex;gap:10px">
+    <sc-if value="{{ comEdHayQuitar }}" hint-placeholder-val="{{ false }}"><button onClick="{{ comEdQuitar }}" style="flex:none;min-height:58px;padding:0 22px;border:1.5px solid var(--line2);border-radius:999px;background:transparent;color:var(--txt);font:700 16px Montserrat,sans-serif;cursor:pointer">Quitar</button></sc-if>
+    <button onClick="{{ comEdGuardar }}" style="flex:1;min-height:58px;border:0;border-radius:999px;background:var(--k0);color:var(--k2);font:700 17px Montserrat,sans-serif;cursor:pointer;transition:transform 0.15s ease" style-active="transform:scale(0.97)">Guardar comida</button>
+  </div>
+</div>
+</sc-if>
+<sc-if value="{{ tutoOn }}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-label="Cómo armar tu mes" style="position:absolute;z-index:30;left:0;right:0;bottom:0;border-radius:34px 34px 0 0;background:var(--card);box-shadow:0 -10px 40px rgba(0,0,0,0.3);padding:10px 24px 34px;display:flex;flex-direction:column">
+  <span style="align-self:center;width:44px;height:5px;border-radius:999px;background:var(--line2)"></span>
+  <div style="margin-top:16px;font-weight:700;font-size:22px;line-height:1.2">Así armas tu mes</div>
+  <div style="margin-top:14px;display:flex;flex-direction:column;gap:12px">
+    <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px;align-items:center;min-height:44px"><span style="flex:none;width:32px;height:32px;border-radius:50%;background:rgba(var(--k1),0.16);color:var(--acct);display:flex;align-items:center;justify-content:center;font:600 18px/1 Oswald,sans-serif">1</span><span style="font-size:15px;line-height:1.35"><strong style="display:block;font-size:16px">Arrastra</strong>Lleva la rutina 1 al día en que vas a entrenar.</span></div>
+    <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px;align-items:center;min-height:44px"><span style="flex:none;width:32px;height:32px;border-radius:50%;background:rgba(var(--k1),0.16);color:var(--acct);display:flex;align-items:center;justify-content:center;font:600 18px/1 Oswald,sans-serif">2</span><span style="font-size:15px;line-height:1.35"><strong style="display:block;font-size:16px">Sigue en orden</strong>Agenda las demás, solo las que quieras.</span></div>
+    <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px;align-items:center;min-height:44px"><span style="flex:none;width:32px;height:32px;border-radius:50%;background:rgba(var(--k1),0.16);color:var(--acct);display:flex;align-items:center;justify-content:center;font:600 18px/1 Oswald,sans-serif">3</span><span style="font-size:15px;line-height:1.35"><strong style="display:block;font-size:16px">Guarda</strong>Después puedes cambiarlas con Editar.</span></div>
+  </div>
+  <button onClick="{{ tutoCerrar }}" style="margin-top:20px;min-height:56px;border:0;border-radius:999px;background:var(--k0);color:var(--k2);font:700 17px Montserrat,sans-serif;cursor:pointer">Entendido</button>
+</div>
+</sc-if>
+<div aria-hidden="true" style="position:absolute;left:0;top:0;width:390px;height:2px;opacity:0.01;pointer-events:none;overflow:hidden;display:flex;z-index:0"><span style="flex:1;height:2px;background-image:url(assets/fotos/barra.avif);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/bici.avif);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/cuerdas.jpg);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/curl.avif);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/dominada.jpg);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/espalda.jpg);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/estocada.jpg);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/hombros.jpg);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/kettlebell.jpg);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/mancuerna.avif);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/pareja.jpg);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/polea.jpg);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/remo.jpg);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/sentadilla.jpg);background-size:cover"></span><span style="flex:1;height:2px;background-image:url(assets/fotos/zapatilla.avif);background-size:cover"></span></div>
+<sc-if value="{{ esLogin }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="Login" data-oscuro="1" style="flex:1;min-height:0;position:relative;overflow:hidden;display:flex;flex-direction:column;background:var(--bg2)">
+  <div style="position:absolute;top:0;left:0;right:0;height:480px"><image-slot id="solfit-login-foto" src="assets/fotos/barra.avif" shape="rect" placeholder="Foto de Sol o del gimnasio"></image-slot></div>
+  <div style="position:absolute;top:220px;left:0;right:0;height:260px;background:linear-gradient(rgba(var(--k16),0),var(--bg2));pointer-events:none"></div>
+  <div style="position:relative;padding:60px 20px 0;pointer-events:none"><img src="assets/logo-solfit.jpg" alt="SOLFIT Gimnasio" style="width:76px;border-radius:20px;display:block"></div>
+  <div style="flex:1;pointer-events:none"></div>
+  <div style="position:relative;padding:0 20px 34px;display:flex;flex-direction:column;gap:12px">
+    <div style="font-family:Oswald,sans-serif;font-weight:600;font-size:46px;line-height:1.02;text-transform:uppercase;padding-bottom:6px">Muévete.<br>Entrena.<br><span style="color:var(--acct)">Siéntete bien.</span></div>
+    <input type="email" aria-label="Correo" placeholder="Correo" value="{{ correo }}" onChange="{{ setCorreo }}" style="height:58px;box-sizing:border-box;border:1px solid var(--line);border-radius:999px;padding:0 24px;font-size:16px;color:var(--txt);background:rgba(var(--k22),0.94);outline:none;width:100%" style-focus="border:1px solid var(--k0)">
+    <input type="password" aria-label="Contraseña" placeholder="Contraseña" defaultValue="solfit2026" style="height:58px;box-sizing:border-box;border:1px solid var(--line);border-radius:999px;padding:0 24px;font-size:16px;color:var(--txt);background:rgba(var(--k22),0.94);outline:none;width:100%" style-focus="border:1px solid var(--k0)">
+    <button onClick="{{ ingresar }}" style="position:relative;min-height:66px;border:0;border-radius:999px;background:var(--k0);color:var(--k2);font:700 18px Montserrat,sans-serif;cursor:pointer;box-shadow:0 10px 28px rgba(var(--k1),0.3)" style-active="transform:scale(0.98)">Ingresar<span style="position:absolute;right:9px;top:9px;width:48px;height:48px;border-radius:50%;background:var(--k2);color:var(--acct);display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:26px">arrow_forward</span></button>
+    <button onClick="{{ olvide }}" style="min-height:44px;border:0;background:transparent;color:var(--txt);font:600 16px Montserrat,sans-serif;cursor:pointer">Olvidé mi contraseña</button>
+    <sc-if value="{{ olvideVisto }}" hint-placeholder-val="{{ false }}"><div style="background:var(--card);border:1px solid var(--line);border-radius:26px;padding:12px 16px;border-radius:18px">Te enviamos un enlace a tu correo para crear una nueva contraseña.</div></sc-if>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ esConsent }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Consentimiento" style="flex:1;overflow:auto;scrollbar-width:none;padding:68px 20px 28px;display:flex;flex-direction:column;gap:16px">
+  <div><div style="font-family:Oswald,sans-serif;font-weight:500;letter-spacing:0.14em;color:var(--mut)">PRIMER INGRESO</div>
+  <div style="font-weight:700;font-size:26px;line-height:1.2;color:var(--txt)">Antes de empezar, tu permiso</div></div>
+  <p style="margin:0">Sol necesita guardar algunos datos tuyos para armar tu plan. Tú decides.</p>
+  <button role="checkbox" onClick="{{ toggleSalud }}" style="text-align:left;border:2px solid {{ saludBorde }};background:var(--card);border-radius:20px;padding:18px;display:flex;gap:14px;cursor:pointer;font:400 16px/1.45 Montserrat,sans-serif;color:var(--txt)">
+    <span style="width:32px;height:32px;border-radius:9px;border:2px solid var(--sage);background:{{ saludFondo }};flex:none;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:24px;color:var(--k2)">{{ saludIcono }}</span>
+    <span><strong style="display:block;font-size:18px">Datos de salud</strong>Acepto que SOLFIT guarde mi peso, medidas y resultados de la balanza para hacer mi seguimiento. Solo los ven Sol y yo. <span style="font-weight:600;color:var(--bad)">Necesario para usar la app.</span></span>
+  </button>
+  <button role="checkbox" onClick="{{ toggleFotos }}" style="text-align:left;border:2px solid {{ fotosBorde }};background:var(--card);border-radius:20px;padding:18px;display:flex;gap:14px;cursor:pointer;font:400 16px/1.45 Montserrat,sans-serif;color:var(--txt)">
+    <span style="width:32px;height:32px;border-radius:9px;border:2px solid var(--sage);background:{{ fotosFondo }};flex:none;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:24px;color:var(--k2)">{{ fotosIcono }}</span>
+    <span><strong style="display:block;font-size:18px">Fotos de progreso</strong>Acepto guardar fotos de mi cuerpo para comparar mi avance. Son privadas y puedo borrarlas cuando quiera. <span style="font-weight:600;color:var(--mut)">Opcional.</span></span>
+  </button>
+  <p style="margin:0;color:var(--mut)">Puedes cambiar esto después en tu Perfil.</p>
+  <div style="flex:1"></div>
+  <button onClick="{{ aceptarConsent }}" disabled="{{ consentBloqueado }}" style="min-height:60px;border:0;border-radius:18px;background:{{ consentBtnFondo }};color:{{ consentBtnTexto }};font:700 18px Montserrat,sans-serif;cursor:pointer">Continuar</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ esTimer }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Temporizador" style="flex:1;display:flex;flex-direction:column;background:{{ tFondo }};color:{{ tTexto }};padding:60px 20px 40px;transition:background 0.3s">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <button onClick="{{ cerrarTimer }}" aria-label="Cerrar" style="width:52px;height:52px;border-radius:50%;border:0;background:rgba(128,128,128,0.28);cursor:pointer;font-family:'Material Symbols Rounded';font-size:28px;color:inherit">close</button>
+    <div style="font-weight:700;font-size:18px">Temporizador</div>
+    <div style="width:52px"></div>
+  </div>
+  <sc-if value="{{ tConfig }}" hint-placeholder-val="{{ false }}">
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px">
+      <sc-for list="{{ tAjustes }}" as="a" hint-placeholder-count="3">
+        <div style="background:var(--card);border-radius:20px;padding:12px 14px 12px 18px;display:flex;align-items:center;gap:10px">
+          <div style="flex:1;font-weight:600">{{ a.nombre }}</div>
+          <button onClick="{{ a.menos }}" aria-label="Menos" style="width:52px;height:52px;border-radius:14px;border:2px solid var(--sage);background:transparent;cursor:pointer;font-family:'Material Symbols Rounded';font-size:26px;color:var(--sage)">remove</button>
+          <div style="width:76px;text-align:center;font-family:Oswald,sans-serif;font-weight:600;font-size:32px">{{ a.valor }}</div>
+          <button onClick="{{ a.mas }}" aria-label="Más" style="width:52px;height:52px;border-radius:14px;border:2px solid var(--sage);background:transparent;cursor:pointer;font-family:'Material Symbols Rounded';font-size:26px;color:var(--sage)">add</button>
+        </div>
+      </sc-for>
+      <div style="text-align:center;color:var(--mut)">Tiempo total: {{ tTotal }}</div>
+    </div>
+    <button onClick="{{ tEmpezar }}" style="min-height:68px;border:0;border-radius:999px;background:var(--k0);color:var(--k2);font:700 20px Montserrat,sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(var(--k1),0.28)">Empezar</button>
+  </sc-if>
+  <sc-if value="{{ tCorriendo }}" hint-placeholder-val="{{ false }}">
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+      <div style="font-family:Oswald,sans-serif;font-weight:600;font-size:40px;letter-spacing:0.12em">{{ tFaseNombre }}</div>
+      <div style="font-family:Oswald,sans-serif;font-weight:600;font-size:170px;line-height:1;font-variant-numeric:tabular-nums">{{ tReloj }}</div>
+      <div style="font-weight:600;font-size:20px">{{ tRondaTexto }}</div>
+      <div style="display:flex;gap:8px;margin-top:14px">
+        <sc-for list="{{ tPuntos }}" as="p" hint-placeholder-count="8"><span style="width:14px;height:14px;border-radius:50%;background:{{ p.c }};border:2px solid var(--k2);box-sizing:border-box"></span></sc-for>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <button onClick="{{ tPausar }}" style="min-height:72px;border:0;border-radius:20px;background:var(--k2);color:#FFFFFF;font:700 20px Montserrat,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px"><span style="font-family:'Material Symbols Rounded';font-size:30px;font-variation-settings:'FILL' 1">{{ tPausaIcono }}</span>{{ tPausaTexto }}</button>
+      <button onClick="{{ tSaltar }}" style="min-height:72px;border:2.5px solid var(--k2);border-radius:20px;background:rgba(255,255,255,0.35);color:var(--k2);font:700 20px Montserrat,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px"><span style="font-family:'Material Symbols Rounded';font-size:30px;font-variation-settings:'FILL' 1">skip_next</span>Saltar</button>
+    </div>
+  </sc-if>
+  <sc-if value="{{ tFin }}" hint-placeholder-val="{{ false }}">
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center">
+      <div style="font-family:Oswald,sans-serif;font-weight:600;font-size:96px;line-height:1;color:var(--sage)">¡LISTO!</div>
+      <div style="font-size:18px">Terminaste las {{ tRondas }} rondas. Toma agua.</div>
+    </div>
+    <button onClick="{{ tReiniciar }}" style="min-height:68px;border:2px solid var(--sage);border-radius:999px;background:transparent;color:var(--sage);font:700 20px Montserrat,sans-serif;cursor:pointer">Otra vez</button>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ esEjercicio }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Ejercicio en curso" data-oscuro="1" style="flex:1;min-height:0;position:relative;display:flex;flex-direction:column;background:var(--bg2);overflow:hidden">
+  <div style="position:absolute;top:0;left:0;right:0;height:480px"><div style="width:100%;height:100%;background-image:{{ ejFoto }};background-size:cover;background-position:center"></div></div>
+  <div style="position:absolute;top:240px;left:0;right:0;height:240px;background:linear-gradient(rgba(var(--k16),0),var(--bg2))"></div>
+  <div style="position:relative;z-index:2;display:flex;justify-content:space-between;padding:58px 16px 0">
+    <button onClick="{{ volverRutina }}" aria-label="Volver" style="width:52px;height:52px;border-radius:50%;border:0;background:rgba(var(--k9),0.92);cursor:pointer;font-family:'Material Symbols Rounded';font-size:26px;color:var(--txt)">arrow_back</button>
+    <div style="display:flex;flex-direction:column;gap:10px"><sc-if value="{{ ejConTimer }}" hint-placeholder-val="{{ false }}"><button onClick="{{ abrirTimer }}" aria-label="Temporizador" style="width:52px;height:52px;border-radius:50%;border:0;background:rgba(var(--k9),0.92);cursor:pointer;font-family:'Material Symbols Rounded';font-size:26px;color:var(--acct)">timer</button></sc-if><button onClick="{{ sonidoToggle }}" aria-label="{{ sonidoAria }}" aria-pressed="{{ sonidoOn }}" style="width:52px;height:52px;border-radius:50%;border:0;background:rgba(var(--k9),0.92);cursor:pointer;font-family:'Material Symbols Rounded';font-size:26px;color:{{ sonidoCol }}">{{ sonidoIcono }}</button><button onClick="{{ abrirNota }}" aria-label="Escribir cómo sentiste el ejercicio" style="position:relative;width:52px;height:52px;border-radius:50%;border:0;background:rgba(var(--k9),0.92);cursor:pointer;font-family:'Material Symbols Rounded';font-size:28px;color:var(--k3)">edit_note<span style="position:absolute;top:8px;right:8px;width:11px;height:11px;border-radius:50%;background:var(--k0);opacity:{{ notaEjPunto }}"></span></button><button onClick="{{ ejInfoToggle }}" aria-expanded="{{ ejInfoOn }}" aria-label="{{ ejInfoAria }}" style="width:52px;height:52px;border-radius:50%;border:0;background:{{ ejInfoBg }};color:{{ ejInfoFg }};cursor:pointer;font-family:'Material Symbols Rounded';font-size:26px;transition:background 0.3s ease,color 0.3s ease">info</button></div>
+  </div>
+  <div onPointerDown="{{ ejInfoDown }}" onPointerUp="{{ ejInfoUp }}" onPointerCancel="{{ ejInfoUp }}" onWheel="{{ ejInfoRueda }}" style="position:relative;flex:1;min-height:0;touch-action:none;cursor:grab">
+    <div style="position:absolute;top:-260px;left:0;right:0;bottom:0;pointer-events:none;background:linear-gradient(rgba(var(--k16),0.45),rgba(var(--k16),0.94) 60%);opacity:{{ ejInfoOp }};transition:opacity 0.35s ease"></div>
+    <div style="position:absolute;left:16px;right:16px;bottom:16px;display:flex;flex-direction:column;gap:10px;color:var(--k3);pointer-events:none;opacity:{{ ejInfoOp }};transform:{{ ejInfoMov }};transition:opacity 0.3s ease,transform 0.45s cubic-bezier(0.32,0.72,0,1)">
+      <div style="font-weight:700;font-size:22px;line-height:1.15">{{ ejNombre }}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ ejZonas }}" as="z" hint-placeholder-count="3"><span style="padding:5px 12px;border-radius:999px;background:rgba(var(--k45),0.14);font-weight:600;font-size:13px">{{ z.t }}</span></sc-for></div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:2px"><sc-for list="{{ ejPasos }}" as="p" hint-placeholder-count="3"><div style="display:flex;gap:10px;align-items:flex-start"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:var(--k0);color:var(--k2);display:flex;align-items:center;justify-content:center;font:600 13px/1 Oswald,sans-serif">{{ p.n }}</span><span style="font-size:15px;line-height:1.35;text-wrap:pretty">{{ p.t }}</span></div></sc-for></div>
+    </div>
+  </div>
+  <sc-if value="{{ ejActivo }}" hint-placeholder-val="{{ true }}">
+  <div style="animation:solfitSube 0.5s cubic-bezier(0.32,0.72,0,1) 0.00s backwards;position:relative;padding:0 16px;display:flex;flex-direction:column;gap:8px">
+    <div style="display:flex;align-items:center;gap:12px"><span style="font-weight:700;font-size:15px;color:var(--k3);flex:none">{{ serieTxt }}</span><div style="flex:1;display:flex;gap:5px"><sc-for list="{{ serieSegs }}" as="g" hint-placeholder-count="4"><span style="flex:1;height:5px;border-radius:3px;background:{{ g.c }};transition:background 0.35s ease"></span></sc-for></div></div>
+    <div style="position:relative">
+    <div style="position:absolute;top:27px;left:0;right:0;z-index:1;pointer-events:none;display:grid;grid-template-columns:28px 1fr 1fr 56px;gap:8px;color:var(--k13);font-size:13px;font-weight:600;text-align:center"><span></span><span>Peso (kg)</span><span>{{ repsLbl }}</span><span></span></div>
+    <div onPointerDown="{{ serieDown }}" onPointerUp="{{ serieUp }}" onPointerCancel="{{ serieUp }}" onWheel="{{ serieRueda }}" style="height:156px;overflow:hidden;touch-action:none;cursor:grab;-webkit-mask-image:linear-gradient(180deg,transparent,#000 24%,#000 76%,transparent);mask-image:linear-gradient(180deg,transparent,#000 24%,#000 76%,transparent)"><div style="display:flex;flex-direction:column;gap:22px;transform:{{ serieMov }};transition:transform 0.5s cubic-bezier(0.32,0.72,0,1)">
+    <sc-for list="{{ series }}" as="s" hint-placeholder-count="4">
+      <div style="display:grid;grid-template-columns:28px minmax(0,1fr) 56px;gap:8px;align-items:center;opacity:{{ s.filaOp }};transform:{{ s.filaEsc }};filter:{{ s.filaBlur }};transition:opacity 0.45s ease,transform 0.5s cubic-bezier(0.32,0.72,0,1),filter 0.45s ease">
+        <span style="font-family:Oswald,sans-serif;font-weight:600;font-size:22px;text-align:center;color:{{ s.nColor }};text-decoration:{{ s.tach }}">{{ s.n }}</span>
+        <div style="position:relative;height:56px">
+          <div style="display:flex;gap:{{ s.gap }};height:56px;opacity:{{ s.inOp }};transition:gap 0.4s cubic-bezier(0.32,0.72,0,1),opacity 0.3s ease">
+            <input inputMode="decimal" value="{{ s.pesoVal }}" placeholder="Sin peso" onChange="{{ s.setPeso }}" aria-label="Peso" style="flex:1;height:56px;min-width:0;width:100%;box-sizing:border-box;border:{{ s.inBorde }};border-radius:999px;text-align:center;font:600 22px Oswald,sans-serif;color:{{ s.inColor }};text-decoration:{{ s.tach }};background:{{ s.inFondo }};outline:none;transition:color 0.3s ease,background 0.3s ease,border-color 0.3s ease" style-focus="border:1.5px solid var(--k0)">
+            <input inputMode="numeric" value="{{ s.reps }}" onChange="{{ s.setReps }}" aria-label="Repeticiones" style="flex:1;height:56px;min-width:0;width:100%;box-sizing:border-box;border:{{ s.inBorde }};border-radius:999px;text-align:center;font:600 22px Oswald,sans-serif;color:{{ s.inColor }};text-decoration:{{ s.tach }};background:{{ s.inFondo }};outline:none;transition:color 0.3s ease,background 0.3s ease,border-color 0.3s ease" style-focus="border:1.5px solid var(--k0)">
+          </div>
+          <div style="position:absolute;inset:0;border-radius:999px;background:var(--k0);color:var(--k2);display:flex;align-items:center;gap:8px;padding:0 6px 0 16px;opacity:{{ s.restOp }};transform:{{ s.restEsc }};pointer-events:{{ s.restPE }};transition:opacity 0.3s ease,transform 0.4s cubic-bezier(0.32,0.72,0,1)">
+            <span style="font-family:'Material Symbols Rounded';font-size:24px">timer</span>
+            <span style="flex:1;font-family:Oswald,sans-serif;font-weight:600;font-size:30px;line-height:1;font-variant-numeric:tabular-nums">{{ s.reloj }}</span>
+            <button onClick="{{ masDescanso }}" aria-label="Sumar 15 segundos" style="height:44px;padding:0 12px;border:1.5px solid var(--k2);border-radius:999px;background:transparent;color:var(--k2);font:700 15px Montserrat,sans-serif;cursor:pointer">+15</button>
+            <button onClick="{{ saltarDescanso }}" style="height:44px;padding:0 14px;border:0;border-radius:999px;background:var(--k2);color:#fff;font:700 15px Montserrat,sans-serif;cursor:pointer">Saltar</button>
+          </div>
+          <div style="position:absolute;inset:0;border-radius:999px;background:var(--k6);color:var(--k2);display:flex;align-items:center;gap:8px;padding:0 18px 0 16px;opacity:{{ s.trabOp }};transform:{{ s.trabEsc }};pointer-events:none;transition:opacity 0.3s ease,transform 0.4s cubic-bezier(0.32,0.72,0,1)">
+            <span style="font-family:'Material Symbols Rounded';font-size:24px">hourglass_top</span>
+            <span style="flex:1;font-family:Oswald,sans-serif;font-weight:600;font-size:30px;line-height:1;font-variant-numeric:tabular-nums">{{ s.trabReloj }}</span>
+            <span style="font-weight:700;font-size:15px">Aguanta</span>
+          </div>
+        </div>
+        <button onClick="{{ s.btnClick }}" aria-label="{{ s.btnAria }}" style="width:56px;height:56px;border-radius:50%;border:0;background:{{ s.btnFondo }};color:{{ s.btnColor }};cursor:pointer;font-family:'Material Symbols Rounded';font-size:30px;font-variation-settings:'FILL' 1;transition:background 0.3s ease,color 0.3s ease">{{ s.btnIcono }}</button>
+      </div>
+    </sc-for>
+    </div></div>
+    </div>
+  </div>
+  <div style="animation:solfitSube 0.5s cubic-bezier(0.32,0.72,0,1) 0.07s backwards;position:relative;margin:14px 16px 0;border-top:1px dashed var(--line);padding:12px 0 30px;display:flex;align-items:center;gap:10px">
+    <span style="width:50px;height:50px;border-radius:50%;background:{{ ringBg }};display:flex;align-items:center;justify-content:center;flex:none"><span style="width:42px;height:42px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-family:Oswald,sans-serif;font-weight:600;font-size:16px">{{ ejFrac }}</span></span>
+    <span style="flex:1;min-width:0"><strong style="display:block;line-height:1.2">{{ ejNombre }}</strong><span style="color:var(--mut);font-size:14px">{{ ejRutina }}</span></span>
+    <div style="width:172px;height:96px;margin:-20px 0;flex:none;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 28%,#000 72%,transparent);mask-image:linear-gradient(90deg,transparent,#000 28%,#000 72%,transparent)">
+      <div style="display:flex;align-items:center;height:96px;transform:{{ ejCarMov }};transition:transform 0.45s cubic-bezier(0.32,0.72,0,1)">
+        <sc-for list="{{ ejNums }}" as="n" hint-placeholder-count="6">
+          <button onClick="{{ n.ir }}" aria-label="{{ n.aria }}" style="flex:none;width:48px;height:48px;padding:0;border-radius:50%;border:0;background:{{ n.fondo }};color:{{ n.color }};cursor:pointer;font:600 20px/1 Oswald,sans-serif;opacity:{{ n.op }};transform:{{ n.esc }};box-shadow:{{ n.sombra }};transition:transform 0.45s cubic-bezier(0.32,0.72,0,1),opacity 0.45s ease,background 0.3s ease,color 0.3s ease,box-shadow 0.3s ease">{{ n.n }}</button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+  <sc-if value="{{ ejIntro }}" hint-placeholder-val="{{ false }}">
+  <div style="position:relative;padding:0 16px 34px;display:flex;flex-direction:column;gap:14px;opacity:{{ ejIntroOp }};transform:{{ ejIntroMov }};transition:opacity 0.26s ease,transform 0.3s cubic-bezier(0.32,0.72,0,1)">
+    <div style="border-top:1px dashed var(--line);padding-top:14px"><span style="display:block;color:var(--k13);font-size:13px;font-weight:700;letter-spacing:0.06em">{{ ejPos }}</span><strong style="display:block;margin-top:2px;font-size:17px;line-height:1.3;color:var(--k3)">{{ ejResumen }}</strong></div>
+    <button onClick="{{ ejStart }}" style="height:60px;border:0;border-radius:999px;background:var(--k0);color:var(--k2);font:700 18px Montserrat,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><span style="font-family:'Material Symbols Rounded';font-size:30px;font-variation-settings:'FILL' 1">play_arrow</span>Empezar</button>
+  </div>
+  </sc-if>
+<sc-if value="{{ notaEjOn }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ cerrarNota }}" style="position:absolute;inset:0;z-index:18;background:rgba(var(--k24),0.72)"></div>
+    <div role="dialog" aria-label="Comentario del ejercicio" style="position:absolute;z-index:19;left:0;right:0;bottom:0;background:var(--k8);border-radius:32px 32px 0 0;padding:20px 20px 36px;display:flex;flex-direction:column;gap:12px;color:var(--k3)">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="width:48px;height:48px;border-radius:50%;background:var(--k4);display:flex;align-items:center;justify-content:center;flex:none;font-family:'Material Symbols Rounded';font-size:28px;color:var(--k0)">edit_note</span>
+        <div style="flex:1;min-width:0"><div style="font-weight:700;font-size:19px;line-height:1.2">¿Cómo sentiste este ejercicio?</div><div style="color:var(--k5);font-size:14px">{{ ejNombre }}</div></div>
+        <button onClick="{{ cerrarNota }}" aria-label="Cerrar" style="width:44px;height:44px;border-radius:50%;border:0;background:var(--k4);color:var(--k3);cursor:pointer;font-family:'Material Symbols Rounded';font-size:24px;flex:none">close</button>
+      </div>
+      <textarea value="{{ notaTxt }}" onChange="{{ setNotaTxt }}" aria-label="Comentario para Sol" placeholder="Ej: me molestó la rodilla al bajar, o el peso se me hizo liviano" style="width:100%;height:120px;box-sizing:border-box;border:1px solid var(--k23);border-radius:18px;background:var(--k10);color:var(--k3);padding:12px 14px;font:400 16px/1.4 Montserrat,sans-serif;resize:none;outline:none" style-focus="border:1px solid var(--k0)"></textarea>
+      <div style="color:var(--k5);font-size:14px;display:flex;align-items:center;gap:6px"><span style="font-family:'Material Symbols Rounded';font-size:18px">visibility</span>Sol lo verá en tu ficha para ajustar tu rutina.</div>
+      <button onClick="{{ enviarNota }}" disabled="{{ notaSin }}" style="min-height:58px;border:0;border-radius:999px;background:{{ notaBtnFondo }};color:{{ notaBtnColor }};font:700 17px Montserrat,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px"><span style="font-family:'Material Symbols Rounded';font-size:22px">send</span>Enviar a Sol</button>
+    </div>
+  </sc-if>
+  <sc-if value="{{ finAsk }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ finAskNo }}" style="position:absolute;inset:0;z-index:22;background:rgba(var(--k24),0.74)"></div>
+    <div role="alertdialog" aria-label="¿Terminar la rutina?" style="position:absolute;z-index:23;left:16px;right:16px;bottom:34px;border-radius:30px;background:var(--k8);color:var(--k3);box-shadow:0 20px 50px rgba(0,0,0,0.5);padding:24px 20px 20px;display:flex;flex-direction:column;gap:10px;text-align:center">
+      <div style="font-family:Oswald,sans-serif;font-weight:600;font-size:30px;line-height:1.1;text-transform:uppercase">¿Segura que quieres terminar?</div>
+      <div style="font-size:16px;line-height:1.4;color:var(--k11)">{{ finAskTxt }}</div>
+      <button onClick="{{ finAskNo }}" style="margin-top:8px;min-height:58px;border:0;border-radius:999px;background:var(--k0);color:var(--k2);font:700 17px Montserrat,sans-serif;cursor:pointer">Seguir entrenando</button>
+      <button onClick="{{ finAskSi }}" style="min-height:52px;border:1px solid var(--k14);border-radius:999px;background:transparent;color:var(--k3);font:700 16px Montserrat,sans-serif;cursor:pointer">Terminar igual</button>
+    </div>
+  </sc-if>
+  <sc-if value="{{ finOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;z-index:20;background:{{ finVelo }};transition:background 0.45s ease"></div>
+    <div role="dialog" aria-label="Entrenamiento terminado" style="position:absolute;z-index:21;left:{{ finL }};top:{{ finT }};width:{{ finW }};height:{{ finH }};border-radius:{{ finR }};background:{{ finBg }};box-shadow:0 20px 50px rgba(0,0,0,0.5);overflow:hidden;transition:left 0.55s cubic-bezier(0.32,0.72,0,1),top 0.55s cubic-bezier(0.32,0.72,0,1),width 0.55s cubic-bezier(0.32,0.72,0,1),height 0.55s cubic-bezier(0.32,0.72,0,1),border-radius 0.55s cubic-bezier(0.32,0.72,0,1),background 0.4s ease 0.1s">
+      <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:600 20px/1 Oswald,sans-serif;color:var(--k2);opacity:{{ finBolaOp }};transition:opacity 0.2s ease;pointer-events:none">Fin</span>
+      <div style="width:358px;box-sizing:border-box;padding:26px 20px 20px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;color:var(--k3);opacity:{{ finOp }};transition:opacity 0.3s ease 0.32s">
+        <span style="width:56px;height:56px;border-radius:50%;background:var(--k0);color:var(--k2);display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:34px">check</span>
+        <div style="font-family:Oswald,sans-serif;font-weight:600;font-size:44px;line-height:1.05;text-transform:uppercase;color:var(--k0)">¡Lo lograste!</div>
+        <div style="font-weight:600;font-size:18px;line-height:1.3;max-width:280px">¿Cómo te sentiste en tu entrenamiento?</div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;width:100%;margin-top:4px">
+          <sc-for list="{{ finOpc }}" as="o" hint-placeholder-count="5">
+            <button onClick="{{ o.ir }}" aria-label="{{ o.nombre }}" style="height:58px;border-radius:18px;border:{{ o.borde }};background:{{ o.fondo }};color:{{ o.color }};cursor:pointer;padding:0;font-family:'Material Symbols Rounded';font-size:34px;transform:{{ o.esc }};transition:transform 0.25s ease,background 0.2s ease,color 0.2s ease">{{ o.icono }}</button>
+          </sc-for>
+        </div>
+        <div style="min-height:24px;font-weight:600;color:var(--k25)">{{ finLabel }}</div>
+        <textarea value="{{ nota }}" onChange="{{ setNota }}" aria-label="Comentario para Sol" placeholder="Cuéntale a Sol cómo te fue (opcional)" style="width:100%;height:88px;box-sizing:border-box;border:1px solid var(--k23);border-radius:18px;background:var(--k10);color:var(--k3);padding:12px 14px;font:400 16px/1.4 Montserrat,sans-serif;resize:none;outline:none" style-focus="border:1px solid var(--k0)"></textarea>
+        <button onClick="{{ finListo }}" disabled="{{ finSin }}" style="width:100%;min-height:58px;border:0;border-radius:999px;background:{{ finBtnFondo }};color:{{ finBtnColor }};font:700 17px Montserrat,sans-serif;cursor:pointer">Listo</button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ esTabs }}" hint-placeholder-val="{{ false }}">
+<div style="flex:1;min-height:0;position:relative;display:flex;flex-direction:column">
+<div ref="{{ scRef }}" style="flex:1;overflow:auto;scrollbar-width:none;min-height:0;padding-bottom:112px">
+
+<sc-if value="{{ conCal }}" hint-placeholder-val="{{ true }}">
+<div style="position:sticky;top:0;z-index:5;background:transparent;padding:0;display:flex;flex-direction:column;gap:8px">
+  <div style="background:var(--card);border:0;border-radius:0 0 34px 34px;padding:50px 12px 0;box-shadow:0 10px 24px rgba(0,0,0,0.22)">
+      <div onPointerDown="{{ pagDown }}" onPointerUp="{{ pagUp }}" style="overflow:hidden;touch-action:pan-y;margin:0 -12px">
+        <div style="display:flex;align-items:flex-start;width:400%;transform:{{ pagMov }};transition:transform 0.45s cubic-bezier(0.32,0.72,0,1)">
+          <div style="width:25%;flex:none;box-sizing:border-box;padding:0 12px;filter:{{ pagF0 }};opacity:{{ pagO0 }};transition:filter 0.45s ease,opacity 0.45s ease">
+      <button onClick="{{ asaClick }}" onPointerDown="{{ asaDown }}" onPointerUp="{{ asaUp }}" onPointerCancel="{{ asaUp }}" aria-label="Abrir o cerrar el calendario" style="outline:none;touch-action:none;display:grid;grid-template-columns:repeat(7,minmax(0,1fr)) 46px;width:100%;border:0;background:transparent;color:var(--mut);font:600 14px Montserrat,sans-serif;padding:0 0 4px;cursor:pointer;align-items:center;min-height:28px"><span>Lu</span><span>Ma</span><span>Mi</span><span>Ju</span><span>Vi</span><span>Sá</span><span>Do</span><span style="font-family:'Material Symbols Rounded';font-size:20px;color:var(--c3);font-variation-settings:'FILL' 1">local_fire_department</span></button>
+      <div style="height:{{ calAlto }};overflow:hidden;will-change:height;transition:height 0.42s cubic-bezier(0.32,0.72,0,1)">
+        <div style="transform:{{ calMov }};will-change:transform;transition:transform 0.42s cubic-bezier(0.32,0.72,0,1)">
+          <sc-for list="{{ semanas }}" as="w" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr)) 46px;height:48px;align-items:center;justify-items:center;opacity:{{ w.op }};transition:opacity 0.3s ease">
+              <sc-for list="{{ w.dias }}" as="d" hint-placeholder-count="7">
+                <button data-dia="{{ d.dd }}" onClick="{{ d.ir }}" onPointerDown="{{ d.down }}" onPointerMove="{{ planMove }}" onPointerUp="{{ planUp }}" onPointerCancel="{{ planUp }}" disabled="{{ d.fuera }}" aria-label="{{ d.aria }}" style="position:relative;z-index:{{ d.z }};width:36px;height:36px;border-radius:50%;border:{{ d.borde }};background:{{ d.fondo }};color:{{ d.color }};padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;box-sizing:border-box;line-height:1;font:{{ d.fuente }};transform:{{ d.mov }};transition:{{ d.tr }};touch-action:{{ d.ta }};animation:{{ d.anim }};box-shadow:{{ d.sombra }}">{{ d.txt }}</button>
+              </sc-for>
+              <span style="position:relative;width:36px;height:48px;background:{{ w.rFondo }};border-radius:{{ w.rRadio }};display:flex;align-items:center;justify-content:center;transition:background 0.42s ease,border-radius 0.42s ease"><span style="position:absolute;left:1px;top:7px;width:34px;height:34px;border-radius:50%;background:{{ w.rCol }};box-shadow:{{ w.rSh }};transform:{{ w.rEsc }};will-change:transform;transition:transform 0.42s cubic-bezier(0.32,0.72,0,1),background 0.42s ease,box-shadow 0.42s ease"></span><span style="position:absolute;left:1px;top:7px;width:34px;height:34px;border-radius:50%;background:{{ w.rAro }};opacity:{{ w.rAroOp }};transform:{{ w.rEsc }};will-change:transform,opacity;transition:transform 0.42s cubic-bezier(0.32,0.72,0,1),opacity 0.3s ease"></span><span style="position:relative;color:{{ w.rColor }};font:{{ w.rFuente }};transition:color 0.3s ease">{{ w.rTxt }}</span></span>
+            </div>
+          </sc-for>
+          <sc-if value="{{ planOff }}" hint-placeholder-val="{{ false }}">
+          <div style="height:40px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:15px;opacity:{{ rachaOp }};transition:opacity 0.3s ease"><span style="font-family:'Material Symbols Rounded';font-size:20px;color:var(--c3);font-variation-settings:'FILL' 1">local_fire_department</span><strong>{{ racha }} entrenamientos</strong> seguidos sin fallar</div>
+          </sc-if>
+          <sc-if value="{{ planOn }}" hint-placeholder-val="{{ true }}">
+          <div style="position:relative;height:40px;display:flex;align-items:center;gap:6px;padding:0 4px;opacity:{{ rachaOp }};transition:opacity 0.3s ease">
+            <div onWheel="{{ planRueda }}" style="position:relative;flex:1;min-width:0;height:40px;display:flex;align-items:center"><div style="flex:1;min-width:0;height:40px;display:flex;align-items:center;clip-path:{{ planClip }}"><sc-if value="{{ planListo }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:center;gap:6px;font-weight:600;font-size:15px"><span style="font-family:'Material Symbols Rounded';font-size:22px;color:var(--sage);font-variation-settings:'FILL' 1">check_circle</span>{{ planListoTxt }}</span></sc-if><div ref="{{ planRowRef }}" onTransitionEnd="{{ planAjuste }}" style="display:flex;flex:none;gap:6px;width:max-content;transform:{{ planRowMov }};transition:{{ planRowTr }}"><sc-for list="{{ planChips }}" as="c" hint-placeholder-count="3"><button onPointerDown="{{ c.down }}" onPointerMove="{{ planMove }}" onPointerUp="{{ planUp }}" onPointerCancel="{{ planUp }}" aria-label="{{ c.aria }}" style="position:relative;z-index:{{ c.z }};flex:none;left:{{ c.left }};max-width:{{ c.max }};height:36px;border-radius:999px;border:1px solid var(--line2);background:#fff;color:var(--k2);padding:{{ c.pad }};transition:max-width 0.28s cubic-bezier(0.32,0.72,0,1),padding 0.28s cubic-bezier(0.32,0.72,0,1),left 0.28s cubic-bezier(0.32,0.72,0,1),box-shadow 0.2s ease;display:flex;align-items:center;gap:8px;cursor:grab;touch-action:none;box-sizing:border-box;overflow:hidden;font:700 14px/1 Montserrat,sans-serif;transform:{{ c.mov }};box-shadow:{{ c.sombra }}"><span style="flex:none;width:26px;height:26px;border-radius:50%;background:rgba(var(--k1),0.16);color:var(--k0);display:flex;align-items:center;justify-content:center;font:600 17px/1 Oswald,sans-serif">{{ c.n }}</span><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.t }}</span></button></sc-for></div></div><span style="position:absolute;top:0;bottom:0;right:-2px;width:36px;z-index:7;pointer-events:none;background:linear-gradient(90deg,transparent,var(--card) 88%);opacity:{{ planFadeR }};transition:opacity 0.2s ease"></span><span style="position:absolute;top:0;bottom:0;left:-4px;width:16px;z-index:7;pointer-events:none;background:linear-gradient(270deg,transparent,var(--card) 75%);opacity:{{ planFadeL }};transition:opacity 0.2s ease"></span></div>
+            <div style="position:relative;z-index:3;flex:none;margin-left:auto;height:40px;display:flex;align-items:center;gap:6px;background:var(--card);box-shadow:8px 0 0 var(--card),-6px 0 0 var(--card)">
+            <button onClick="{{ planBtn }}" disabled="{{ planBtnOff }}" style="flex:none;height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ planBtnBd }};background:{{ planBtnBg }};color:{{ planBtnFg }};font:700 14px/1 Montserrat,sans-serif;cursor:pointer;opacity:{{ planBtnOp }};transition:opacity 0.2s ease,background 0.2s ease">{{ planBtnTxt }}</button></div>
+            <div style="position:absolute;inset:0;z-index:4;background:var(--card);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;color:var(--txt);pointer-events:none;opacity:{{ planOvOp }};transition:opacity 0.2s ease">{{ planOvTxt }}</div>
+          </div>
+          </sc-if>
+        </div>
+      </div>
+          </div>
+          <div style="width:25%;flex:none;box-sizing:border-box;padding:0 12px;filter:{{ pagF1 }};opacity:{{ pagO1 }};transition:filter 0.45s ease,opacity 0.45s ease"><div style="height:80px;box-sizing:border-box;padding:0 6px;display:flex;align-items:center;gap:12px">
+            <span style="width:48px;height:48px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;flex:none;font-family:'Material Symbols Rounded';font-size:26px;color:var(--c4)">water_drop</span>
+            <div style="flex:1;min-width:0"><div style="font-weight:700;line-height:1.2">Toma agua</div><div style="color:var(--mut);font-size:14px">{{ aguaMl }} de {{ aguaMeta }} ml hoy</div>
+              <div style="display:flex;gap:4px;margin-top:6px"><sc-for list="{{ vasosDots }}" as="v" hint-placeholder-count="8"><span style="flex:1;height:6px;border-radius:3px;background:{{ v.c }};transition:background 0.3s ease"></span></sc-for></div></div>
+            <span style="position:relative;z-index:2;width:52px;height:52px;flex:none"><button onClick="{{ masVaso }}" aria-label="Sumar una toma" style="position:absolute;inset:0;width:52px;height:52px;border-radius:50%;border:0;padding:0;background:var(--k0);color:var(--k2);cursor:pointer;font-family:'Material Symbols Rounded';font-size:30px;transform:{{ aguaMasMov }};transition:transform 0.45s cubic-bezier(0.32,0.72,0,1)">add</button></span>
+          </div>
+            <div style="height:{{ aguaAlto }};overflow:hidden;transition:height 0.45s cubic-bezier(0.32,0.72,0,1)"><div style="height:280px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:8px">
+              <div style="display:flex;align-items:center;gap:28px;flex:none"><button onClick="{{ menosVaso }}" aria-label="Quitar una toma" style="flex:none;width:52px;height:52px;border-radius:50%;border:1.5px solid var(--line2);background:transparent;color:var(--txt);cursor:pointer;font-family:'Material Symbols Rounded';font-size:24px;padding:0">remove</button>
+              <div style="position:relative;width:140px;height:140px;border-radius:50%;overflow:hidden;background:var(--bg);border:3px solid var(--line2);box-sizing:border-box;flex:none">{{ aguaOla }}
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none"><span style="font-family:Oswald,sans-serif;font-weight:600;font-size:36px;line-height:1">{{ aguaMl }}</span><span style="font-size:13px;font-weight:600">ml de {{ aguaMeta }}</span></div>
+              </div><span style="flex:none;width:52px;height:52px"></span></div>
+              <div style="font-weight:600;margin-top:2px;font-size:15px">{{ aguaTexto }}</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-top:10px"><sc-for list="{{ tomaOpts }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.elegir }}" style="min-height:44px;padding:0 12px;border-radius:999px;border:1.5px solid {{ o.bd }};background:{{ o.bg }};color:{{ o.fg }};font:700 14px Montserrat,sans-serif;cursor:pointer;transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease">{{ o.ml }}</button></sc-for><span style="color:var(--mut);font-size:13px;font-weight:600">ml</span></div>
+            </div></div>
+          </div>
+          <div style="width:25%;flex:none;box-sizing:border-box;padding:0 12px;filter:{{ pagF2 }};opacity:{{ pagO2 }};transition:filter 0.45s ease,opacity 0.45s ease"><div style="height:80px;box-sizing:border-box;padding:0 6px;display:flex;align-items:center;gap:12px">
+            <span style="width:48px;height:48px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;flex:none;font-family:'Material Symbols Rounded';font-size:26px;color:var(--acct)">air</span>
+            <div style="flex:1;min-width:0"><div style="font-weight:700;line-height:1.2">Respiración</div><div style="color:var(--mut);font-size:14px;line-height:1.3">{{ respSub }}</div></div>
+            <button onClick="{{ toggleResp }}" style="min-height:48px;padding:0 16px;border:1.5px solid var(--txt);border-radius:999px;background:transparent;color:var(--txt);font:700 15px Montserrat,sans-serif;cursor:pointer;flex:none">{{ respBtn }}</button>
+          </div>
+            <div style="height:{{ respAlto }};overflow:hidden;transition:height 0.45s cubic-bezier(0.32,0.72,0,1)"><div style="height:280px;box-sizing:border-box;padding:18px 6px 0;display:flex;flex-direction:column;align-items:center;gap:10px">
+              <div style="position:relative;width:148px;height:148px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center">
+                <div style="position:absolute;inset:10px;border-radius:50%;border:1px solid var(--line2);box-sizing:border-box"></div>{{ rAro }}
+                <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:10px;color:var(--txt)"><span style="display:block;height:29px;overflow:visible">{{ rTitEl }}</span><span style="font-size:14px;color:var(--mut)">{{ rSeg }}</span><div style="display:flex;gap:4px;justify-content:center;margin-top:6px"><sc-for list="{{ rCiclos }}" as="c" hint-placeholder-count="4"><span style="width:6px;height:6px;border-radius:50%;background:{{ c.c }};transition:background 0.3s ease"></span></sc-for></div></div>
+              </div>
+              <div style="display:flex;gap:6px">
+                <sc-for list="{{ rFases }}" as="f" hint-placeholder-count="3"><span style="padding:6px 12px;border-radius:999px;background:{{ f.bg }};color:{{ f.fg }};font-weight:700;font-size:13px;transition:background 0.3s ease,color 0.3s ease">{{ f.txt }}</span></sc-for>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px">
+                <button onClick="{{ rReset }}" aria-label="Reiniciar respiración" style="width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line2);background:transparent;color:var(--txt);cursor:pointer;font-family:'Material Symbols Rounded';font-size:24px">replay</button>
+                <button onClick="{{ toggleResp }}" aria-label="{{ respBtn }}" style="width:60px;height:60px;border-radius:50%;border:0;background:var(--k0);color:var(--k2);cursor:pointer;font-family:'Material Symbols Rounded';font-size:34px;font-variation-settings:'FILL' 1">{{ rIcono }}</button>
+                <button onClick="{{ rMudoToggle }}" aria-label="{{ rMudoAria }}" aria-pressed="{{ rMudo }}" style="width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line2);background:transparent;color:{{ rMudoCol }};cursor:pointer;font-family:'Material Symbols Rounded';font-size:24px">{{ rMudoIcono }}</button>
+              </div>
+            </div></div>
+          </div>
+          <div style="width:25%;flex:none;box-sizing:border-box;padding:0 12px;filter:{{ pagF3 }};opacity:{{ pagO3 }};transition:filter 0.45s ease,opacity 0.45s ease"><div style="height:80px;box-sizing:border-box;padding:0 6px;display:flex;align-items:center;gap:12px">
+            <span style="width:48px;height:48px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;flex:none;font-family:'Material Symbols Rounded';font-size:26px;color:var(--c2)">restaurant</span>
+            <div style="flex:1;min-width:0"><div style="font-weight:700;line-height:1.2">Nutrición</div><div style="color:var(--mut);font-size:14px">{{ comidasTxt }}</div>
+              <div style="display:flex;gap:4px;margin-top:6px"><sc-for list="{{ comidasDots }}" as="v" hint-placeholder-count="4"><span style="flex:1;min-width:0;height:6px;border-radius:3px;background:{{ v.c }};transition:background 0.3s ease"></span></sc-for></div></div>
+            <button onClick="{{ masComida }}" aria-label="Registrar una comida" style="width:52px;height:52px;border-radius:50%;border:0;background:var(--k0);color:var(--k2);cursor:pointer;flex:none;font-family:'Material Symbols Rounded';font-size:30px">add</button>
+          </div>
+            <div style="height:{{ nutriAlto }};overflow:hidden;transition:height 0.45s cubic-bezier(0.32,0.72,0,1)"><div style="height:280px;box-sizing:border-box;padding:6px 6px 0;display:flex;flex-direction:column">
+              <sc-if value="{{ nutSin }}" hint-placeholder-val="{{ true }}"><div style="height:274px;display:flex;flex-direction:column">
+              <sc-for list="{{ comidasLista }}" as="c" hint-placeholder-count="4">
+                <button onClick="{{ c.ir }}" style="width:100%;flex:1;min-height:48px;border:0;border-bottom:{{ c.linea }};background:transparent;display:flex;align-items:center;gap:12px;cursor:pointer;padding:0;text-align:left;font:400 16px Montserrat,sans-serif;color:var(--txt)"><span style="font-family:'Material Symbols Rounded';font-size:26px;color:{{ c.color }};font-variation-settings:{{ c.relleno }}">{{ c.icono }}</span><span style="flex:1;font-weight:600">{{ c.nombre }}</span><span style="color:var(--mut);font-size:14px">{{ c.estado }}</span></button>
+              </sc-for>
+              </div></sc-if>
+              <sc-if value="{{ nutMac }}" hint-placeholder-val="{{ false }}"><div style="height:274px;box-sizing:border-box;padding-bottom:10px;display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;align-items:baseline;gap:8px"><span style="font:600 34px/1 Oswald,sans-serif">{{ nutKcal }}</span><span style="color:var(--mut);font-size:14px">de {{ nutKcalMeta }} kcal hoy</span></div>
+                <sc-for list="{{ nutFilas }}" as="f" hint-placeholder-count="3">
+                  <div style="display:grid;grid-template-columns:112px minmax(0,1fr) auto;gap:10px;align-items:center"><span style="font-weight:600;font-size:15px">{{ f.nombre }}</span><span style="height:8px;border-radius:999px;background:var(--line);overflow:hidden;display:flex"><span style="width:{{ f.ancho }};background:{{ f.c }};border-radius:999px;transition:width 0.4s ease"></span></span><span style="font-size:14px;min-width:86px;text-align:right">{{ f.txt }}</span></div>
+                </sc-for>
+                <div style="color:var(--mut);font-size:14px;line-height:1.3">{{ nutPorComida }}</div>
+                <div style="margin-top:auto;display:flex;gap:8px">
+                  <sc-for list="{{ nutComidas }}" as="c" hint-placeholder-count="5"><button onClick="{{ c.ir }}" aria-label="{{ c.aria }}" style="flex:1;min-width:0;height:48px;border-radius:999px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};cursor:pointer;font-family:{{ c.fuente }};font-weight:600;font-size:22px;padding:0;transition:background 0.25s ease">{{ c.txt }}</button></sc-for>
+                </div>
+              </div></sc-if>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <button onClick="{{ asaClick }}" onPointerDown="{{ asaDown }}" onPointerUp="{{ asaUp }}" onPointerCancel="{{ asaUp }}" aria-label="Abrir o cerrar (desliza hacia abajo o arriba)" style="outline:none;width:100%;height:44px;touch-action:none;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center"><span style="position:relative;width:44px;height:5px;border-radius:3px;background:{{ asaBg }};animation:{{ asaAnim }}">{{ asaLuz }}</span></button>
+    </div>
+  
+</div>
+</sc-if>
+
+<sc-if value="{{ tabInicio }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="Inicio" style="padding:0 16px;display:flex;flex-direction:column;gap:14px">
+  <div data-oscuro="1" onClick="{{ heroIr }}" style="cursor:{{ heroCursor }};position:relative;margin:-44px -16px 0;height:440px;overflow:hidden;border-radius:0 0 34px 34px;background:var(--k17)">
+    <div style="position:absolute;inset:0"><div style="width:100%;height:100%;background-image:{{ hoyFoto }};background-size:cover;background-position:center top"></div></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(var(--k16),0.94) 28%,rgba(var(--k16),0) 88%);pointer-events:none"></div>
+    <div style="position:relative;height:100%;box-sizing:border-box;padding:66px 20px 26px;display:flex;flex-direction:column;pointer-events:none;color:#fff">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="flex:1;min-width:0"><div style="font-weight:700;font-size:18px;line-height:1.2">Hola, Camila</div><div style="color:var(--k11);font-size:14px">{{ hoyTxt }}</div></div>
+        <span style="position:relative;width:46px;height:46px;border-radius:50%;background:rgba(var(--k39),0.6);display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:24px">notifications<span style="position:absolute;top:10px;right:11px;width:9px;height:9px;border-radius:50%;background:var(--k0)"></span></span>
+      </div>
+      <div style="flex:1"></div>
+      <div style="font-family:Oswald,sans-serif;font-weight:600;font-size:46px;line-height:1.02;text-transform:uppercase;max-width:290px">{{ hoyPre }}<br><span style="color:var(--k0)">{{ hoyTitulo }}</span></div>
+      <div style="margin-top:10px;max-width:220px;line-height:1.35">{{ hoySub }}</div>
+      <div onClick="{{ noProp }}" style="pointer-events:auto;position:relative;align-self:flex-start;margin-top:16px;width:280px;max-width:100%;height:62px;border-radius:999px;background:rgba(255,255,255,0.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.24);box-sizing:border-box;touch-action:none;user-select:none;-webkit-user-select:none;overflow:hidden">
+        <div style="position:absolute;top:0;bottom:0;left:0;width:{{ desFill }};border-radius:999px;background:rgba(var(--k1),0.4);transition:{{ desTransW }}"></div>
+        <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-left:48px;font-weight:700;font-size:16px;opacity:{{ desTextOp }}">{{ desTxt }}</span>
+        <button aria-label="{{ desAria }}" onPointerDown="{{ desDown }}" onPointerMove="{{ desMove }}" onPointerUp="{{ desUp }}" onPointerCancel="{{ desUp }}" onKeyDown="{{ desKey }}" style="position:absolute;top:3px;left:3px;width:54px;height:54px;border-radius:50%;border:0;padding:0;background:var(--k0);color:var(--k2);cursor:grab;transform:{{ desMov }};transition:{{ desTrans }};touch-action:none;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:28px;box-shadow:0 6px 18px rgba(var(--k1),0.4)">{{ desIco }}</button>
+      </div>
+    </div>
+  </div>
+  <div style="font-weight:700;font-size:19px;line-height:1.2;padding-top:2px">Tu resumen</div>
+  <button onClick="{{ dashIr }}" aria-label="{{ dashAria }}" style="background:var(--card);border:1px solid var(--line);color:var(--txt);cursor:pointer;font:400 16px/1.3 Montserrat,sans-serif;text-align:left;transition:transform 0.15s ease;border-radius:30px;padding:16px;display:flex;align-items:center;gap:16px" style-active="transform:scale(0.98)">
+    <span style="position:relative;flex:none;width:124px;height:124px;border-radius:50%;background:{{ dashRing }}"><span style="position:absolute;inset:12px;border-radius:50%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font:600 38px/1 Oswald,sans-serif">{{ dashPct }}<span style="font-size:20px">%</span></span><span style="font-size:13px;font-weight:600;color:var(--mut);margin-top:2px">del mes</span></span></span>
+    <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+      <span style="font-weight:700;font-size:16px;line-height:1.2">Entrenamientos</span>
+      <span style="display:flex;align-items:baseline;gap:6px"><span style="font:600 44px/1 Oswald,sans-serif;color:var(--acct)">{{ dashHechos }}</span><span style="font-weight:600;color:var(--mut)">de {{ dashTotal }}</span></span>
+      <span style="font-size:15px;line-height:1.3">{{ dashSub }}</span>
+    </span>
+  </button>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+    <sc-for list="{{ dashMini }}" as="d" hint-placeholder-count="3">
+      <button onClick="{{ d.ir }}" aria-label="{{ d.aria }}" style="background:var(--card);border:1px solid var(--line);color:var(--txt);cursor:pointer;font:400 16px/1.3 Montserrat,sans-serif;text-align:left;transition:transform 0.15s ease;border-radius:24px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0" style-active="transform:scale(0.96)">
+        <span style="font-family:'Material Symbols Rounded';font-size:24px;line-height:1;color:{{ d.c }};font-variation-settings:'FILL' 1">{{ d.ic }}</span><span style="font-weight:600;font-size:14px;white-space:nowrap">{{ d.label }}</span>
+        <span style="font:600 30px/1 Oswald,sans-serif;margin-top:4px">{{ d.val }}</span>
+        <span style="font-size:14px;font-weight:600;color:var(--mut);white-space:nowrap">{{ d.uni }}</span>
+        <span style="height:6px;border-radius:3px;background:var(--line);overflow:hidden;display:flex;margin-top:2px"><span style="width:{{ d.ancho }};background:{{ d.c }};border-radius:3px;transition:width 0.4s ease"></span></span>
+      </button>
+    </sc-for>
+  </div>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:30px;padding:16px;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><span style="font-weight:700;font-size:16px">Tu semana</span><span style="color:var(--mut);font-size:14px;font-weight:600">{{ dashSemTxt }}</span></div>
+    <sc-if value="{{ dashSemHay }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:12px">
+    <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;align-items:end">
+      <sc-for list="{{ dashSem }}" as="b" hint-placeholder-count="7">
+        <button onClick="{{ b.ir }}" aria-label="{{ b.aria }}" style="border:0;background:transparent;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;min-height:44px;color:var(--txt);font:400 14px Montserrat,sans-serif">
+          <span style="height:84px;width:100%;display:flex;align-items:flex-end;justify-content:center"><span style="width:100%;max-width:30px;height:{{ b.alto }};box-sizing:border-box;border-radius:10px;background:{{ b.bg }};border:{{ b.bd }};transition:height 0.4s cubic-bezier(0.32,0.72,0,1)"></span></span>
+          <span style="font-weight:{{ b.peso }};color:{{ b.col }}">{{ b.d }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--mut)"><span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:var(--k0)"></span>Hecho</span><span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;box-sizing:border-box;border:2px solid var(--c2)"></span>Agendado</span><span>Alto = minutos</span></div>
+    </div></sc-if>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+    <sc-for list="{{ dashPie }}" as="d" hint-placeholder-count="2">
+      <button onClick="{{ d.ir }}" aria-label="{{ d.aria }}" style="background:var(--card);border:1px solid var(--line);color:var(--txt);cursor:pointer;font:400 16px/1.3 Montserrat,sans-serif;text-align:left;transition:transform 0.15s ease;border-radius:24px;padding:12px;display:flex;align-items:center;gap:10px;min-width:0" style-active="transform:scale(0.97)">
+        <span style="width:40px;height:40px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;flex:none;font-family:'Material Symbols Rounded';font-size:22px;color:var(--acct);font-variation-settings:'FILL' 1">{{ d.ic }}</span>
+        <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:14px;color:var(--mut)">{{ d.label }}</span><span style="display:flex;align-items:baseline;gap:5px"><span style="font:600 28px/1 Oswald,sans-serif">{{ d.val }}</span><span style="font-weight:600;font-size:15px">{{ d.uni }}</span></span></span>
+      </button>
+    </sc-for>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;padding-top:2px"><div style="font-weight:700;font-size:19px;line-height:1.2">Esta semana</div><button onClick="{{ irRutina }}" style="min-height:44px;border:0;background:transparent;color:var(--mut);font:600 15px Montserrat,sans-serif;cursor:pointer;padding:0;display:flex;align-items:center;gap:4px">Ver el mes<span style="font-family:'Material Symbols Rounded';font-size:20px">arrow_forward</span></button></div>
+  <div onPointerDown="{{ semDown }}" onPointerMove="{{ semMove }}" onPointerUp="{{ semUp }}" onPointerLeave="{{ semUp }}" onPointerCancel="{{ semUp }}" onClickCapture="{{ semClick }}" style="display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px;cursor:grab;user-select:none;-webkit-user-select:none">
+    <sc-for list="{{ proximas }}" as="p" hint-placeholder-count="3">
+      <button data-oscuro="1" onClick="{{ p.ir }}" style="position:relative;flex:none;width:156px;height:186px;border:0;border-radius:24px;overflow:hidden;padding:0;cursor:pointer;text-align:left;background:repeating-linear-gradient(135deg,var(--k15) 0 10px,var(--k4) 10px 20px);color:#fff;font:400 16px/1.25 Montserrat,sans-serif">
+        <span style="position:absolute;inset:0;background-image:{{ p.foto }};background-size:cover;background-position:center"></span>
+        <span style="position:absolute;inset:0;background:linear-gradient(rgba(var(--k16),0) 35%,rgba(var(--k16),0.92))"></span>
+        <span style="position:absolute;top:12px;left:12px;background:rgba(var(--k39),0.8);border-radius:999px;padding:4px 10px;font-family:Oswald,sans-serif;font-weight:600;font-size:15px">{{ p.dia }}</span>
+        <span style="position:absolute;left:14px;right:14px;bottom:12px"><strong style="display:block">{{ p.titulo }}</strong><span style="color:var(--k11);font-size:14px">{{ p.dur }}</span></span>
+      </button>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ tabRutina }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Rutina mensual" style="padding:8px 16px 0;display:flex;flex-direction:column;gap:14px">
+  <div style="display:flex;align-items:center;gap:12px">
+      <div style="flex:1"><div style="color:var(--mut);font-size:14px">{{ diaSelTxt }}</div><div style="font-weight:700;font-size:28px;line-height:1.1;white-space:nowrap">Noviembre</div></div>
+      <button onClick="{{ abrirTimer }}" aria-label="Temporizador de intervalos" style="height:52px;padding:0 16px 0 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--txt);cursor:pointer;display:flex;align-items:center;gap:6px;font:600 15px Montserrat,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:26px;color:var(--acct)">timer</span>Intervalos</button>
+    </div>
+  <sc-if value="{{ diaConRutina }}" hint-placeholder-val="{{ true }}">
+    <div data-oscuro="1" style="position:relative;height:176px;border-radius:30px;overflow:hidden;background:var(--card)">
+      <div style="position:absolute;inset:0"><div style="width:100%;height:100%;background-image:{{ diaFoto }};background-size:cover;background-position:center"></div></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(rgba(var(--k16),0) 20%,rgba(var(--k16),0.92));pointer-events:none"></div>
+      <div style="position:absolute;left:18px;right:18px;bottom:16px;display:flex;align-items:flex-end;gap:12px;pointer-events:none">
+        <div style="flex:1;min-width:0"><div style="font-weight:700;font-size:22px;line-height:1.15">{{ diaTitulo }}</div><div style="margin-top:2px">{{ diaDur }}</div><sc-if value="{{ diaBloq }}" hint-placeholder-val="{{ false }}"><div style="margin-top:4px;font-size:14px;font-weight:700;color:var(--k25)">{{ diaBloqTxt }}</div></sc-if></div>
+        <button onClick="{{ empezarDia }}" disabled="{{ diaBloq }}" aria-label="{{ playAria }}" style="pointer-events:auto;width:64px;height:64px;border-radius:50%;border:0;background:{{ playBg }};color:{{ playFg }};cursor:pointer;font-family:'Material Symbols Rounded';font-size:{{ playTam }};font-variation-settings:'FILL' 1;flex:none;box-shadow:{{ playSombra }}">{{ playIco }}</button>
+      </div>
+    </div>
+    <div style="font-weight:700;font-size:19px;line-height:1.2;padding-top:4px">Plan de ejercicios</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <sc-for list="{{ ejerciciosDia }}" as="e" hint-placeholder-count="6">
+        <div>
+        <button onClick="{{ e.ir }}" aria-expanded="{{ e.ab }}" style="width:100%;text-align:left;border:0;background:transparent;display:flex;align-items:center;gap:14px;cursor:pointer;padding:0;font:400 16px/1.25 Montserrat,sans-serif;color:var(--txt);min-height:64px">
+          <span style="width:64px;height:64px;border-radius:18px;flex:none;background-image:{{ e.foto }};background-size:cover;background-position:center"></span>
+          <span style="flex:1;min-width:0"><strong style="display:block">{{ e.nombre }}</strong><span style="color:var(--mut)">{{ e.sxr }}</span></span>
+          <span style="font-family:'Material Symbols Rounded';font-size:24px;color:var(--mut);transform:{{ e.giro }};transition:transform 0.3s ease">expand_more</span>
+        </button>
+        <div style="display:grid;grid-template-rows:{{ e.filas }};transition:grid-template-rows 0.32s cubic-bezier(0.32,0.72,0,1)"><div style="overflow:hidden;min-height:0">
+          <div style="margin:10px 0 6px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ e.zonas }}" as="z" hint-placeholder-count="3"><span style="border:1px solid var(--line2);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600">{{ z }}</span></sc-for></div>
+            <ol style="margin:0;padding:0 0 0 20px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.4"><sc-for list="{{ e.pasos }}" as="p" hint-placeholder-count="3"><li>{{ p }}</li></sc-for></ol>
+            <div style="font-size:14px;color:var(--mut)">Carga sugerida: {{ e.carga }}</div>
+          </div>
+        </div></div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{ diaLibre }}" hint-placeholder-val="{{ false }}">
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:26px;padding:30px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px">
+      <span style="font-family:'Material Symbols Rounded';font-size:44px;color:var(--sage)">self_improvement</span>
+      <div style="font-weight:700;font-size:20px">Día de descanso</div><div style="color:var(--mut)">Camina, estira y duerme bien. El cuerpo también progresa descansando.</div>
+    </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ tabProgreso }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Progreso" style="padding:60px 16px 0;display:flex;flex-direction:column;gap:14px">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div style="flex:1;font-weight:700;font-size:28px;line-height:1.1">Progreso</div>
+    <div style="display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;gap:2px">
+      <button onClick="{{ verEval }}" style="min-height:44px;padding:0 14px;border:0;border-radius:999px;background:{{ segEvalFondo }};color:var(--txt);font:700 15px Montserrat,sans-serif;cursor:pointer">Evaluación</button>
+      <button onClick="{{ verFotos }}" style="min-height:44px;padding:0 14px;border:0;border-radius:999px;background:{{ segFotosFondo }};color:var(--txt);font:700 15px Montserrat,sans-serif;cursor:pointer">Fotos</button>
+    </div>
+  </div>
+  <sc-if value="{{ vistaEval }}" hint-placeholder-val="{{ true }}">
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:26px;border-radius:30px;padding:20px;display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;justify-content:space-between;gap:8px"><span style="font-weight:600">{{ mNombre }}</span><span style="color:var(--mut);font-size:14px">6 nov · Omron</span></div>
+      <div style="display:flex;align-items:baseline;gap:6px"><span style="font-family:Oswald,sans-serif;font-weight:600;font-size:60px;line-height:1">{{ mValor }}</span><span style="font-weight:600;color:var(--mut)">{{ mUnidad }}</span></div>
+      <svg viewBox="0 0 320 130" style="width:100%;height:auto;display:block">
+        <line x1="0" y1="20" x2="320" y2="20" style="stroke:var(--line)" stroke-width="1"></line><line x1="0" y1="65" x2="320" y2="65" style="stroke:var(--line)" stroke-width="1"></line><line x1="0" y1="110" x2="320" y2="110" style="stroke:var(--line)" stroke-width="1"></line>
+        <sc-if value="{{ mRef }}" hint-placeholder-val="{{ false }}"><line x1="0" y1="{{ mRefY }}" x2="320" y2="{{ mRefY }}" stroke="var(--bad)" stroke-width="2" stroke-dasharray="6 5"></line></sc-if>
+        <polyline points="{{ mPuntos }}" fill="none" style="stroke:var(--k0)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+        <circle cx="{{ mCx }}" cy="{{ mCy }}" r="7" fill="#FFFFFF" style="stroke:var(--k0)" stroke-width="4"></circle>
+      </svg>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);text-align:center;color:var(--mut);font-size:14px"><span>Jun</span><span>Jul</span><span>Ago</span><span>Sep</span><span>Oct</span><span style="font-weight:700;color:var(--txt)">Nov</span></div>
+      <sc-if value="{{ mRef }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;gap:8px;color:var(--bad);font-weight:600"><span style="width:22px;border-top:2px dashed var(--bad)"></span>Normal hasta 9</div></sc-if>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:4px"><div style="font-weight:700;font-size:19px;line-height:1.2">Tus 7 datos</div><div style="color:var(--mut);font-size:14px">vs. 9 de octubre</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <sc-for list="{{ comparacion }}" as="c" hint-placeholder-count="7">
+        <button onClick="{{ c.ir }}" style="background:var(--card);border:{{ c.borde }};border-radius:24px;padding:14px;text-align:left;color:var(--txt);cursor:pointer;font:400 16px/1.3 Montserrat,sans-serif;display:flex;flex-direction:column;gap:4px">
+          <span style="color:var(--mut);font-size:14px">{{ c.nombre }}</span>
+          <span style="display:flex;align-items:baseline;gap:4px"><span style="font-family:Oswald,sans-serif;font-weight:600;font-size:30px;line-height:1.1">{{ c.valor }}</span><span style="color:var(--mut)">{{ c.unidad }}</span></span>
+          <span style="display:inline-flex;align-self:flex-start;align-items:center;gap:2px;min-height:28px;padding:0 10px 0 6px;border-radius:999px;background:{{ c.fondo }};color:{{ c.color }};font-weight:600;font-size:15px"><span style="font-family:'Material Symbols Rounded';font-size:18px">{{ c.flecha }}</span>{{ c.delta }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <div style="font-weight:700;font-size:19px;line-height:1.2;padding-top:4px">Historial</div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:26px;padding:2px 16px">
+      <sc-for list="{{ historial }}" as="h" hint-placeholder-count="6">
+        <div style="min-height:56px;display:flex;align-items:center;gap:10px;border-bottom:{{ h.linea }}"><span style="flex:1;font-weight:600">{{ h.fecha }}</span><span style="font-family:Oswald,sans-serif;font-weight:600;font-size:22px">{{ h.peso }} kg</span><span style="color:var(--mut);width:86px;text-align:right;font-size:14px">{{ h.grasa }} % grasa</span></div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{ vistaFotos }}" hint-placeholder-val="{{ false }}">
+    <div style="background:var(--line);border-radius:18px;padding:14px 16px;display:flex;gap:12px;align-items:center"><span style="font-family:'Material Symbols Rounded';font-size:28px;color:var(--sage);font-variation-settings:'FILL' 1">lock</span><span>Tus fotos son privadas. Solo las ven tú y Sol, y puedes borrarlas cuando quieras.</span></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+      <sc-for list="{{ angulos }}" as="a" hint-placeholder-count="3">
+        <button onClick="{{ a.ir }}" style="min-height:48px;border-radius:999px;border:{{ a.borde }};background:{{ a.fondo }};color:{{ a.color }};font:600 16px Montserrat,sans-serif;cursor:pointer">{{ a.nombre }}</button>
+      </sc-for>
+    </div>
+    <div style="position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:repeating-linear-gradient(135deg,var(--line) 0 12px,var(--line) 12px 24px)">
+      <div style="position:absolute;left:14px;bottom:14px;font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;color:var(--mut)">foto {{ anguloNombre }} · antes</div>
+      <div style="position:absolute;inset:0;clip-path:{{ cmpClip }};background:repeating-linear-gradient(135deg,var(--st2) 0 12px,var(--okbg) 12px 24px)">
+        <div style="position:absolute;right:14px;bottom:14px;font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;color:var(--sage)">foto {{ anguloNombre }} · después</div>
+      </div>
+      <div style="position:absolute;top:0;bottom:0;left:{{ cmpLeft }};width:4px;margin-left:-2px;background:#FFFFFF;box-shadow:0 0 6px rgba(0,0,0,0.3)"></div>
+      <span style="position:absolute;top:12px;left:12px;background:var(--card);border-radius:999px;padding:4px 12px;font-weight:600">Antes · 5 jun</span>
+      <span style="position:absolute;top:12px;right:12px;background:var(--k12);color:#fff;border-radius:999px;padding:4px 12px;font-weight:600">Después · 6 nov</span>
+    </div>
+    <input type="range" min="0" max="100" value="{{ cmp }}" onChange="{{ setCmp }}" aria-label="Comparar antes y después" style="width:100%;height:44px;accent-color:var(--acct);margin:0">
+    <div style="font-weight:700;font-size:20px;padding:6px 4px 0">Por fecha</div>
+    <sc-for list="{{ fotosFechas }}" as="f" hint-placeholder-count="3">
+      <div style="background:var(--card);border-radius:20px;padding:14px;box-shadow:0 2px 10px rgba(var(--k26),0.08);display:flex;flex-direction:column;gap:10px">
+        <div style="font-weight:600">{{ f.fecha }}</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <div style="aspect-ratio:3/4;border-radius:12px;background:repeating-linear-gradient(135deg,var(--st1) 0 8px,var(--line) 8px 16px);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;color:var(--mut)">frente</div>
+          <div style="aspect-ratio:3/4;border-radius:12px;background:repeating-linear-gradient(135deg,var(--st1) 0 8px,var(--line) 8px 16px);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;color:var(--mut)">lado</div>
+          <div style="aspect-ratio:3/4;border-radius:12px;background:repeating-linear-gradient(135deg,var(--st1) 0 8px,var(--line) 8px 16px);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;color:var(--mut)">espalda</div>
+        </div>
+      </div>
+    </sc-for>
+    <button style="min-height:60px;border:2px solid var(--sage);border-radius:999px;background:transparent;color:var(--sage);font:700 18px Montserrat,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px"><span style="font-family:'Material Symbols Rounded';font-size:26px">add_a_photo</span>Agregar fotos de hoy</button>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ tabCursos }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Cursos" style="padding:60px 16px 0;display:flex;flex-direction:column;gap:14px">
+  <div><div style="font-weight:700;font-size:28px;line-height:1.1">Cursos</div><div style="color:var(--mut)">Aprende a tu ritmo con Sol</div></div>
+  <div role="tablist" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:4px;border-radius:999px;background:var(--card);border:1px solid var(--line)">
+    <button role="tab" aria-selected="{{ cvMios }}" onClick="{{ verMios }}" style="min-height:44px;border:0;border-radius:999px;background:{{ cvMiosBg }};color:{{ cvMiosFg }};font:700 15px Montserrat,sans-serif;cursor:pointer;transition:background 0.25s ease,color 0.25s ease">Mis cursos · {{ nMios }}</button>
+    <button role="tab" aria-selected="{{ cvTienda }}" onClick="{{ verTienda }}" style="min-height:44px;border:0;border-radius:999px;background:{{ cvTiendaBg }};color:{{ cvTiendaFg }};font:700 15px Montserrat,sans-serif;cursor:pointer;transition:background 0.25s ease,color 0.25s ease">Para comprar · {{ nTienda }}</button>
+  </div>
+  <sc-if value="{{ cursosVacio }}" hint-placeholder-val="{{ false }}">
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:30px;padding:28px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px"><span style="font-family:'Material Symbols Rounded';font-size:36px;color:var(--sage);font-variation-settings:'FILL' 1">check_circle</span><strong style="font-size:18px">Ya tienes todos los cursos</strong><span style="color:var(--mut)">Cuando Sol publique uno nuevo, aparecerá aquí.</span></div>
+  </sc-if>
+  <sc-for list="{{ cursos }}" as="c" hint-placeholder-count="4">
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:30px;overflow:hidden">
+      <button data-oscuro="1" onClick="{{ c.ir }}" disabled="{{ c.bloqueado }}" style="position:relative;width:100%;height:150px;border:0;padding:0;text-align:left;cursor:{{ c.cursor }};background:repeating-linear-gradient(135deg,var(--st1) 0 10px,var(--line) 10px 20px);color:var(--txt);font:400 16px/1.3 Montserrat,sans-serif;display:block;opacity:{{ c.opac }}">
+        <span style="position:absolute;inset:0;background-image:{{ c.foto }};background-size:cover;background-position:center"></span><span style="position:absolute;inset:0;background:linear-gradient(rgba(var(--k16),0.1),rgba(var(--k16),0.9))"></span>
+        <span style="position:absolute;top:14px;left:14px;width:46px;height:46px;border-radius:50%;background:rgba(var(--k39),0.85);display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:24px;color:{{ c.icoColor }}">{{ c.icono }}</span>
+        
+        <span style="position:absolute;left:16px;right:16px;bottom:14px;display:flex;align-items:flex-end;gap:10px"><span style="flex:1;min-width:0"><strong style="display:block;font-size:20px;line-height:1.2">{{ c.nombre }}</strong><span style="font-weight:{{ c.subPeso }}">{{ c.sub }}</span></span><span style="font-family:'Material Symbols Rounded';font-size:28px;transform:{{ c.giro }};transition:transform 0.35s ease">{{ c.flecha }}</span></span>
+      </button>
+      <div style="height:4px;background:var(--line)"><div style="height:4px;width:{{ c.pct }};background:var(--k0)"></div></div>
+      <div style="display:grid;grid-template-rows:{{ c.filas }};transition:grid-template-rows 0.4s cubic-bezier(0.32,0.72,0,1)"><div style="overflow:hidden;min-height:0">
+        <div style="padding:2px 16px 8px;opacity:{{ c.modOp }};transition:opacity 0.3s ease">
+          <sc-for list="{{ c.modulos }}" as="m" hint-placeholder-count="4">
+            <div style="min-height:54px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)">
+              <span style="font-family:'Material Symbols Rounded';font-size:26px;color:{{ m.color }};font-variation-settings:{{ m.relleno }}">{{ m.icono }}</span><span style="flex:1">{{ m.nombre }}</span><span style="color:var(--mut);font-size:14px">{{ m.min }} min</span>
+            </div>
+          </sc-for>
+          <sc-if value="{{ c.enVenta }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.comprar }}" style="width:100%;min-height:54px;margin:12px 0 6px;border:0;border-radius:999px;background:var(--k0);color:var(--k2);font:700 16px Montserrat,sans-serif;cursor:pointer">Comprar curso</button></sc-if>
+        </div>
+      </div></div>
+    </div>
+  </sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ tabChat }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Chat" style="min-height:732px;box-sizing:border-box;padding:64px 16px 0;display:flex;flex-direction:column;gap:14px">
+  <div style="display:flex;align-items:center;gap:12px">
+    <span style="width:48px;height:48px;border-radius:50%;background:var(--k0);color:var(--k2);display:flex;align-items:center;justify-content:center;flex:none;font:600 22px/1 Oswald,sans-serif">S</span>
+    <div><div style="font-weight:700;font-size:22px;line-height:1.2">Sol</div><div style="color:var(--mut);font-size:14px">Tu entrenadora</div></div>
+  </div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:10px">
+    <sc-for list="{{ chatMsgs }}" as="m" hint-placeholder-count="2">
+      <div style="align-self:{{ m.lado }};max-width:84%;box-sizing:border-box;background:{{ m.fondo }};color:{{ m.color }};border:{{ m.borde }};border-radius:{{ m.radio }};padding:10px 14px;display:flex;flex-direction:column;gap:4px">
+        <sc-if value="{{ m.hayEj }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:center;gap:6px;font-weight:700;font-size:14px;line-height:1.3"><span style="font-family:'Material Symbols Rounded';font-size:18px;flex:none">{{ m.ejIc }}</span><span>{{ m.ej }}</span></span></sc-if>
+        <sc-if value="{{ m.hayCara }}" hint-placeholder-val="{{ false }}"><span style="display:flex;align-items:center;gap:6px;font-weight:600"><span style="font-family:'Material Symbols Rounded';font-size:22px;font-variation-settings:'FILL' 1">{{ m.caraIc }}</span><span>{{ m.cara }}</span></span></sc-if>
+        <sc-if value="{{ m.hayTxt }}" hint-placeholder-val="{{ true }}"><span style="white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.35">{{ m.txt }}</span></sc-if>
+        <span style="font-size:13px;align-self:flex-end">{{ m.h }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="position:sticky;bottom:0;display:flex;gap:8px;align-items:center;background:var(--bg);padding:8px 0 4px;box-shadow:0 24px 0 var(--bg)">
+    <input value="{{ chatTxt }}" onChange="{{ setChatTxt }}" onKeyDown="{{ chatKey }}" aria-label="Mensaje para Sol" placeholder="Escríbele a Sol" style="flex:1;min-width:0;height:52px;box-sizing:border-box;border:1px solid var(--line2);border-radius:999px;padding:0 18px;font:400 16px Montserrat,sans-serif;color:var(--txt);background:var(--card);outline:none" style-focus="border:1px solid var(--k0)">
+    <button onClick="{{ chatEnviar }}" disabled="{{ chatSin }}" aria-label="Enviar" style="width:52px;height:52px;flex:none;border:0;border-radius:50%;background:{{ chatBtnFondo }};color:{{ chatBtnColor }};cursor:pointer;font-family:'Material Symbols Rounded';font-size:24px">send</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ tabPerfil }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Perfil" style="padding:64px 16px 0;display:flex;flex-direction:column;gap:14px">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
+    <span style="width:92px;height:92px;border-radius:50%;background:var(--k7);color:var(--k2);display:flex;align-items:center;justify-content:center;font-family:Oswald,sans-serif;font-weight:600;font-size:36px;box-shadow:0 0 0 4px var(--bg),0 0 0 6px var(--k0)">CR</span>
+    <div style="font-weight:700;font-size:24px;line-height:1.2;margin-top:8px">Camila Rojas</div><div style="color:var(--mut)">Alumna desde marzo de 2026</div>
+  </div>
+  <div style="background:var(--k12);color:#fff;border-radius:30px;padding:20px;display:flex;align-items:center;gap:12px">
+    <div style="flex:1;min-width:0"><div style="color:var(--k25);font-weight:600;font-size:14px">Plan actual</div><div style="font-weight:700;font-size:21px;line-height:1.2">{{ planNombre }}</div><div style="margin-top:4px">Se renueva el 1 de diciembre de 2026</div></div>
+    <span style="display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 12px;border-radius:999px;background:var(--k2);color:var(--k6);font-weight:600;flex:none"><span style="font-family:'Material Symbols Rounded';font-size:18px;font-variation-settings:'FILL' 1">check_circle</span>Activo</span>
+  </div>
+  <div style="font-weight:700;font-size:19px;line-height:1.2;padding-top:4px">Tus datos</div>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:26px;padding:4px 16px 14px">
+    <label style="display:flex;align-items:center;gap:12px;min-height:68px;border-bottom:1px solid var(--line)"><span style="width:44px;height:44px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;flex:none;font-family:'Material Symbols Rounded';font-size:24px;color:var(--sage)">call</span><span style="flex:1;min-width:0"><span style="display:block;color:var(--mut);font-size:14px">Teléfono</span><input type="tel" value="{{ telefono }}" onChange="{{ setTelefono }}" style="width:100%;height:32px;border:0;padding:0;background:transparent;color:var(--txt);font-size:16px;font-weight:600;outline:none"></span><span style="font-family:'Material Symbols Rounded';font-size:20px;color:var(--mut)">edit</span></label>
+    <label style="display:flex;align-items:center;gap:12px;min-height:68px"><span style="width:44px;height:44px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;flex:none;font-family:'Material Symbols Rounded';font-size:24px;color:var(--sage)">mail</span><span style="flex:1;min-width:0"><span style="display:block;color:var(--mut);font-size:14px">Correo</span><input type="email" value="{{ correo }}" onChange="{{ setCorreo }}" style="width:100%;height:32px;border:0;padding:0;background:transparent;color:var(--txt);font-size:16px;font-weight:600;outline:none"></span><span style="font-family:'Material Symbols Rounded';font-size:20px;color:var(--mut)">edit</span></label>
+    <button onClick="{{ guardarDatos }}" style="width:100%;min-height:52px;border:1.5px solid var(--txt);border-radius:999px;background:transparent;color:var(--txt);font:700 16px Montserrat,sans-serif;cursor:pointer;margin-top:6px">{{ guardarTexto }}</button>
+  </div>
+  <div style="font-weight:700;font-size:19px;line-height:1.2;padding-top:4px">Historial de pagos</div>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:26px;padding:2px 16px">
+    <sc-for list="{{ pagos }}" as="p" hint-placeholder-count="3">
+      <div style="min-height:66px;display:flex;align-items:center;gap:12px;border-bottom:{{ p.linea }}"><span style="width:44px;height:44px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;flex:none;font-family:'Material Symbols Rounded';font-size:24px;color:var(--sage)">receipt_long</span><span style="flex:1;min-width:0"><strong style="display:block">{{ p.mes }}</strong><span style="color:var(--mut);font-size:14px">{{ p.detalle }}</span></span><span style="font-family:Oswald,sans-serif;font-weight:600;font-size:20px">{{ p.monto }}</span></div>
+    </sc-for>
+  </div>
+  <div style="font-weight:700;font-size:19px;line-height:1.2;padding-top:4px">Consentimientos</div>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:26px;padding:2px 16px">
+    <div style="min-height:68px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)"><span style="flex:1"><strong style="display:block">Datos de salud</strong><span style="color:var(--mut);font-size:14px">Aceptado el 16 nov 2026</span></span><span style="font-family:'Material Symbols Rounded';font-size:28px;color:var(--sage);font-variation-settings:'FILL' 1">check_circle</span></div>
+    <div style="min-height:68px;display:flex;align-items:center;gap:12px"><span style="flex:1"><strong style="display:block">Fotos de progreso</strong><span style="color:var(--mut);font-size:14px">{{ fotosEstado }}</span></span>
+      <button role="switch" onClick="{{ toggleFotos }}" aria-label="Permitir fotos de progreso" style="width:64px;height:44px;border:0;background:transparent;padding:4px 0;cursor:pointer"><span style="display:block;width:64px;height:36px;border-radius:18px;background:{{ swFondo }};position:relative;transition:background 0.2s"><span style="position:absolute;top:3px;left:{{ swLeft }};width:30px;height:30px;border-radius:50%;background:#FFFFFF;transition:left 0.2s"></span></span></button>
+    </div>
+  </div>
+  <button onClick="{{ salir }}" style="min-height:60px;border:1.5px solid var(--txt);border-radius:999px;background:transparent;color:var(--txt);font:700 17px Montserrat,sans-serif;cursor:pointer;margin-top:6px">Cerrar sesión</button>
+  <button onClick="{{ pedirBorrar }}" style="min-height:52px;border:0;background:transparent;color:var(--bad);font:700 16px Montserrat,sans-serif;cursor:pointer">Borrar mi cuenta</button>
+</div>
+</sc-if>
+</div>
+
+<nav style="position:absolute;left:0;right:0;bottom:0;background:transparent;padding:0 0 22px">
+  <span style="position:absolute;top:0;left:0;height:8px;width:{{ navWL }};background:var(--card);border-radius:0 8px 0 0;transition:width 0.5s cubic-bezier(0.32,0.72,0,1)"></span>
+  <span style="position:absolute;top:0;right:0;height:8px;width:{{ navWR }};background:var(--card);border-radius:8px 0 0 0;transition:width 0.5s cubic-bezier(0.32,0.72,0,1)"></span>
+  <span style="position:absolute;top:8px;left:0;right:0;bottom:0;background:var(--card);-webkit-mask-image:radial-gradient(circle 31px at 50% -2px,transparent 30.5px,#000 31.5px);mask-image:radial-gradient(circle 31px at 50% -2px,transparent 30.5px,#000 31.5px);-webkit-mask-size:780px 100%;mask-size:780px 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:{{ navMask }};mask-position:{{ navMask }};transition:-webkit-mask-position 0.5s cubic-bezier(0.32,0.72,0,1),mask-position 0.5s cubic-bezier(0.32,0.72,0,1)"></span>
+  <span style="position:absolute;top:-18px;left:{{ navLeft }};width:48px;height:48px;border-radius:50%;background:var(--card);box-shadow:0 4px 14px rgba(0,0,0,0.2);transition:left 0.5s cubic-bezier(0.32,0.72,0,1)"></span>
+  <div style="position:relative;display:grid;grid-template-columns:repeat(6,1fr)">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="6">
+      <button onClick="{{ t.ir }}" style="position:relative;border:0;background:transparent;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;padding:0;color:{{ t.color }};font:{{ t.peso }} 12px Montserrat,sans-serif;transition:color 0.3s ease">
+        <span style="position:absolute;top:{{ t.puntoTop }};left:calc(50% + 6px);width:10px;height:10px;border-radius:50%;background:var(--k0);border:2px solid var(--card);opacity:{{ t.punto }};transition:top 0.5s cubic-bezier(0.32,0.72,0,1)"></span>
+        <span style="font-family:'Material Symbols Rounded';font-size:26px;line-height:1;color:{{ t.icoColor }};font-variation-settings:{{ t.relleno }};transform:{{ t.sube }};transition:transform 0.5s cubic-bezier(0.32,0.72,0,1),color 0.3s ease">{{ t.icono }}</span><span>{{ t.nombre }}</span>
+      </button>
+    </sc-for>
+  </div>
+</nav>
+</div>
+</sc-if>
+
+<sc-if value="{{ confirmBorrar }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;background:rgba(var(--k40),0.6);display:flex;align-items:flex-end;z-index:30">
+  <div style="background:var(--bg);border-radius:28px 28px 0 0;padding:24px 20px 40px;display:flex;flex-direction:column;gap:12px;width:100%;box-sizing:border-box">
+    <div style="font-weight:700;font-size:22px;line-height:1.2">¿Borrar tu cuenta?</div>
+    <p style="margin:0">Se eliminarán tus rutinas, evaluaciones y fotos para siempre. Esto no se puede deshacer.</p>
+    <button onClick="{{ borrarCuenta }}" style="min-height:60px;border:0;border-radius:999px;background:#B4412F;color:#fff;font:700 18px Montserrat,sans-serif;cursor:pointer;margin-top:6px">Sí, borrar mi cuenta</button>
+    <button onClick="{{ cancelarBorrar }}" style="min-height:60px;border:2px solid var(--sage);border-radius:999px;background:transparent;color:var(--sage);font:700 18px Montserrat,sans-serif;cursor:pointer">No, volver</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ horaOn }}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-label="Elegir horario" style="position:absolute;inset:0;background:rgba(var(--k16),0.6);display:flex;align-items:flex-end;z-index:30">
+  <div style="background:var(--bg);color:var(--txt);border-radius:28px 28px 0 0;padding:22px 20px 36px;display:flex;flex-direction:column;gap:14px;width:100%;box-sizing:border-box">
+    <div><div style="font-weight:700;font-size:22px;line-height:1.2">¿A qué hora vas?</div><div style="color:var(--mut);margin-top:4px">{{ horaSub }}</div></div>
+    <div style="display:grid;grid-template-columns:repeat({{ horaCols }},minmax(0,1fr));gap:8px">
+      <sc-for list="{{ horaOpts }}" as="h" hint-placeholder-count="4"><button onClick="{{ h.elegir }}" style="min-height:52px;border-radius:999px;border:1.5px solid {{ h.bd }};background:{{ h.bg }};color:{{ h.fg }};font:600 19px Oswald,sans-serif;cursor:pointer;font-variant-numeric:tabular-nums">{{ h.t }}</button></sc-for>
+    </div>
+    <button onClick="{{ horaCancelar }}" style="min-height:52px;border:0;background:transparent;color:var(--mut);font:700 16px Montserrat,sans-serif;cursor:pointer">{{ horaCancelTxt }}</button>
+  </div>
+</div>
+</sc-if>
+
+</div>
+</x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;paleta&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Celeste&quot;,&quot;Naranjo&quot;],&quot;default&quot;:&quot;Celeste&quot;,&quot;tsType&quot;:&quot;'Celeste'|'Naranjo'&quot;,&quot;section&quot;:&quot;Apariencia&quot;},&quot;tema&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Oscuro&quot;,&quot;Claro&quot;],&quot;default&quot;:&quot;Oscuro&quot;,&quot;tsType&quot;:&quot;'Oscuro'|'Claro'&quot;,&quot;section&quot;:&quot;Apariencia&quot;},&quot;plan&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Personalizado grupal&quot;,&quot;Personalizado individual&quot;],&quot;default&quot;:&quot;Personalizado grupal&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Alumno&quot;},&quot;primerIngreso&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Alumno&quot;},&quot;descansoSeg&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:15,&quot;max&quot;:180,&quot;step&quot;:15,&quot;unit&quot;:&quot;s&quot;,&quot;default&quot;:15,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Rutina&quot;},&quot;halo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Celeste&quot;,&quot;Naranjo&quot;,&quot;Amanecer&quot;,&quot;Agua&quot;,&quot;Blanco&quot;],&quot;default&quot;:&quot;Celeste&quot;,&quot;tsType&quot;:&quot;'Celeste'|'Naranjo'|'Amanecer'|'Agua'|'Blanco'&quot;,&quot;section&quot;:&quot;Respiración&quot;},&quot;inicioDeMes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Alumno&quot;},&quot;avanzarDias&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:28,&quot;step&quot;:1,&quot;unit&quot;:&quot; días&quot;,&quot;default&quot;:0,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Alumno&quot;}}">
+class Component extends DCLogic {
+  semana = [
+    { d: 'Lun', n: 16, r: { t: 'Tren inferior y core', dur: '45 min', ej: [['Sentadilla goblet', 4, '12', '12'], ['Peso muerto rumano', 3, '10', '20'], ['Estocadas atrás', 3, '12', '8'], ['Puente de glúteo', 4, '15', '25'], ['Plancha frontal', 3, '40 s', '0'], ['Elevación de piernas', 3, '12', '0']] } },
+    { d: 'Mar', n: 17, r: { t: 'Clase grupal · 09:00', dur: '60 min', ej: [['Movilidad de cadera', 2, '10', '0'], ['Circuito con kettlebell', 4, '12', '8'], ['Remo con banda', 3, '15', '0'], ['Core en parejas', 3, '30 s', '0']] } },
+    { d: 'Mié', n: 18, r: null },
+    { d: 'Jue', n: 19, r: { t: 'Tren superior', dur: '40 min', ej: [['Press con mancuernas', 4, '10', '8'], ['Remo con banda', 4, '12', '0'], ['Flexiones inclinadas', 3, '10', '0'], ['Press militar', 3, '10', '6'], ['Curl de bíceps', 3, '12', '5']] } },
+    { d: 'Vie', n: 20, r: { t: 'Clase grupal · 10:30', dur: '60 min', ej: [['Calentamiento articular', 2, '10', '0'], ['Sentadilla con salto', 4, '10', '0'], ['Press de hombro', 3, '12', '5'], ['Plancha lateral', 3, '30 s', '0']] } },
+    { d: 'Sáb', n: 21, r: null },
+    { d: 'Dom', n: 22, r: null }
+  ];
+  datos = {
+    peso: { n: 'Peso corporal', c: 'Peso', u: 'kg', v: [66.8, 66, 65.1, 64.2, 63.3, 62.4], baja: true },
+    grasa: { n: 'Grasa corporal', c: '% Grasa', u: '%', v: [33.5, 32.8, 31.9, 31, 30.2, 29.4], baja: true },
+    musculo: { n: 'Músculo', c: '% Músculo', u: '%', v: [26.1, 26.5, 26.9, 27.4, 27.8, 28.3], baja: false },
+    visceral: { n: 'Grasa visceral', c: 'Visceral', u: '', v: [7, 7, 6, 6, 6, 5], baja: true, dom: [0, 12], ref: 9 },
+    metab: { n: 'Metabolismo en reposo', c: 'Metabolismo', u: 'kcal', v: [1342, 1338, 1335, 1336, 1339, 1341], baja: false },
+    edad: { n: 'Edad corporal', c: 'Edad corporal', u: 'años', v: [41, 40, 39, 38, 37, 36], baja: true },
+    cintura: { n: 'Cintura', c: 'Cintura', u: 'cm', v: [84, 83, 82, 80.5, 79, 78], baja: true }
+  };
+  state = {
+    sync: {}, calAbierto: false, pag: 0, comidas: 2, fin: null, cursosVista: 'mios', comprados: {}, finAsk: false, tuto: false, tutoVisto: false, sent: -1, restRow: -1, plan: {}, horas: {}, horaAsk: null, horaPrev: null, drag: null, planMsg: '', ejAb: null, planOk: false, planX: 0, verSol: null, trab: 0, trabRow: -1, serieVer: null, sonido: true, prog: {}, notaEjOn: false, notaTxt: '', notasEj: {}, nota: '', finO: { l: 261, t: 757, w: 54, h: 54 }, des: 0, desOn: false, pantalla: 'login', tab: 'inicio', sub: null, olvide: false,
+    salud: false, fotos: false, ejInfo: false, ejIntro: false, ejSale: false, dia: 16, ejIdx: 0, series: [], descanso: 0,
+    t: { trabajo: 40, descanso: 20, rondas: 8, estado: 'config', fase: 'trabajo', ronda: 1, rest: 40, pausa: false },
+    vista: 'eval', metrica: 'peso', angulo: 0, cmp: 50, curso: 0,
+    ml: 750, toma: 250, rMudo: false, rOn: false, rFase: -1, rRest: 0, rCiclo: 1, telefono: '+56 9 8765 4321', correo: 'camila.rojas@gmail.com', guardado: false, confirmBorrar: false
+  };
+  componentDidMount() { if (this.pm()) this.setState({ dia: this.hoy(), calAbierto: true }); clearInterval(this.iv); try { const v = window.__solfitVivo; if (v && v !== this) { clearInterval(v.iv); clearInterval(v.rIv); if (v.ac) v.ac.close(); } window.__solfitVivo = this; } catch (e) {} this.iv = setInterval(() => this.tick(), 1000); this.onSt = () => { this.setState({ sync: this.leer() }); if (this.state.tab === 'chat') { this.chatVisto(); this.chatBaja(); } }; window.addEventListener('storage', this.onSt); this.onSt(); }
+  scRef = React.createRef();
+  chatVisto() { try { const y = this.leer(), n = (y.chat || []).length; if (n !== (y.chatVA || 0)) { const o = { ...y, chatVA: n }; localStorage.setItem('solfit_sync', JSON.stringify(o)); this.setState({ sync: o }); } } catch (e) {} }
+  chatAdd(m) { try { const y = this.leer(), c = [...(y.chat || []), { de: 'a', h: new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' }), ...m }], o = { ...y, chat: c, chatVA: this.state.tab === 'chat' ? c.length : (y.chatVA || 0) }; localStorage.setItem('solfit_sync', JSON.stringify(o)); this.setState({ sync: o }); } catch (e) {} }
+  chatBaja() { setTimeout(() => { const el = this.scRef.current; if (el) el.scrollTop = el.scrollHeight; }, 80); }
+  setCons(o) { this.setState(o); try { localStorage.setItem('solfit_sync', JSON.stringify({ ...this.leer(), salud: this.state.salud, fotos: this.state.fotos, ...o })); } catch (e) {} }
+  leer() { try { return JSON.parse(localStorage.getItem('solfit_sync') || '{}'); } catch (e) { return {}; } }
+  rTick() { const s = this.state, D = [4, 4, 6]; if (!s.rOn) return; if (s.rRest > 0) { this.setState({ rRest: s.rRest - 1 }); if (s.rRest === 1) { clearTimeout(this.rT0); this.rT0 = setTimeout(() => this.rTick(), 300); } return; } if (s.rFase < 2) return this.setState({ rFase: s.rFase + 1, rRest: D[s.rFase + 1] }); if (s.rCiclo < 4) return this.setState({ rCiclo: s.rCiclo + 1, rFase: 0, rRest: 4 }); clearInterval(this.rIv); this.setState({ rOn: false, rFase: 3, rRest: 0 }); }
+  componentWillUnmount() { clearInterval(this.iv); clearInterval(this.rIv); window.removeEventListener('storage', this.onSt); }
+  bip(f, d, cuando) { if (!this.state.sonido || window.__solfitVivo !== this || document.hidden) return; try { const C = window.AudioContext || window.webkitAudioContext; if (!this.ac) this.ac = new C(); if (this.ac.state === 'suspended') this.ac.resume(); const t0 = this.ac.currentTime + (cuando || 0), o = this.ac.createOscillator(), g = this.ac.createGain(); o.type = 'sine'; o.frequency.value = f; g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(0.25, t0 + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + d); o.connect(g); g.connect(this.ac.destination); o.start(t0); o.stop(t0 + d + 0.05); } catch (e) {} }
+  aviso10() { this.bip(440, 0.14); this.bip(440, 0.14, 0.2); }
+  finBip() { this.bip(784, 0.22); this.bip(1047, 0.22, 0.18); this.bip(1319, 0.5, 0.36); }
+  tick() {
+    const s = this.state;
+    if (window.__solfitVivo !== this) { clearInterval(this.iv); clearInterval(this.rIv); return; }
+    if (s.trab > 0 && (s.sub !== 'ejercicio' || s.fin)) this.setState({ trab: 0 });
+    else if (s.trab === 1) { this.finBip(); const i = s.trabRow, series = s.series.map((x, j) => j === i ? { ...x, ok: true } : x), ult = s.ejIdx >= this.rut(s.dia).ej.length - 1 && series.every((x) => x.ok); this.setState({ trab: 0, series, descanso: ult ? 0 : (this.props.descansoSeg ?? 15), restRow: i, serieVer: null }); }
+    else if (s.trab > 1) { this.setState({ trab: s.trab - 1 }); if (s.trab <= 6) this.bip(587, 0.12); else if (s.trab === 11) this.aviso10(); }
+    if (s.descanso > 0 && (s.sub !== 'ejercicio' || s.fin)) this.setState({ descanso: 0 });
+    else if (s.descanso > 0) { this.setState({ descanso: s.descanso - 1 }); if (s.descanso === 1) { this.finBip(); this.sigEj(); } else if (s.descanso <= 6) this.bip(587, 0.12); else if (s.descanso === 11) this.aviso10(); }
+    const t = s.t;
+    if (s.sub === 'timer' && t.estado === 'run' && !t.pausa) {
+      if (t.rest > 1) { this.setState({ t: { ...t, rest: t.rest - 1 } }); if (t.rest <= 6) this.bip(587, 0.12); else if (t.rest === 11) this.aviso10(); }
+      else { this.finBip(); this.avanzar(); }
+    }
+  }
+  avanzar() {
+    const t = this.state.t;
+    if (t.fase === 'trabajo') {
+      if (t.ronda >= t.rondas) this.setState({ t: { ...t, estado: 'fin' } });
+      else this.setState({ t: { ...t, fase: 'descanso', rest: t.descanso } });
+    } else this.setState({ t: { ...t, fase: 'trabajo', ronda: t.ronda + 1, rest: t.trabajo } });
+  }
+  componentDidUpdate() { const s = this.state; if (this._hoy !== this.hoy()) { const antes = this._hoy; this._hoy = this.hoy(); if (antes != null && this.pm()) return this.setState({ dia: this.hoy(), verSol: null }); } if (this.planRow && this.planRow.isConnected && (s.planX >= this.planMax() - 4 ? 0 : 1) !== this.fadeR) return this.forceUpdate(); if (s.planX > this.planMax() && this.planRow) return this.setState({ planX: this.planMax() }); if (s.sub !== 'ejercicio' || !s.series.length) return; const k = s.dia + '-' + s.ejIdx; if (s.prog[k] !== s.series) this.setState({ prog: { ...s.prog, [k]: s.series } }); }
+  sigEj() { const s = this.state, r = this.rut(s.dia); if (s.sub === 'ejercicio' && r && s.series.length && s.series.every((x) => x.ok) && s.ejIdx < r.ej.length - 1) setTimeout(() => this.abrirEj(s.dia, s.ejIdx + 1), 450); }
+  hecha(dia) { const r = this.rut(dia), st = this.state; if (!r) return false; return (!this.pm() && dia < this.hoy()) || r.ej.every((_, i) => { const p = st.prog[dia + '-' + i]; return p && p.length && p.every((x) => x.ok); }); }
+  abrirEj(dia, i) {
+    if (this.rut(dia) && dia > this.hoy()) return;
+    if (this.state.sub !== 'ejercicio' && this.hecha(dia)) return this.setState({ tab: 'rutina', dia, verSol: null, calAbierto: false });
+    if (!this.rut(dia)) { clearTimeout(this.pmT); this.pmT = setTimeout(() => this.setState({ planMsg: '' }), 2600); return this.setState({ tuto: this.pm() && !this.state.tutoVisto && !Object.keys(this.state.plan).length ? true : this.state.tuto, tutoVisto: this.state.tutoVisto || this.pm(), calAbierto: true, pag: 0, planMsg: this.pm() ? 'Arrastra la rutina a un día para empezarla' : '' }); }
+    const e = this.rut(dia).ej[i];
+    this.setState({ sub: 'ejercicio', dia, ejIdx: i, descanso: 0, trab: 0, serieVer: null, ...(() => { const st = this.state, v = st.sub !== 'ejercicio' && !(st.prog[dia + '-' + i] || []).some((x) => x.ok); return { ejInfo: v, ejIntro: v, ejSale: false }; })(), series: this.state.prog[dia + '-' + i] || Array.from({ length: e[1] }, () => ({ peso: e[3], reps: e[2], ok: false })) });
+  }
+  pm() { return this.props.inicioDeMes ?? true; }
+  hoy() { return Math.min(30, (this.pm() ? 2 : 16) + Math.max(0, Math.round(this.props.avanzarDias ?? 0))); }
+  fecha(n) { const x = new Date(2026, 10, n).toLocaleDateString('es-CL', { weekday: 'long' }); return x.charAt(0).toUpperCase() + x.slice(1) + ' ' + n; }
+  solRut() { const m = this.state.sync.rutinasMes; if (m && m.length) return m; const ind = (this.props.plan ?? 'Personalizado grupal') === 'Personalizado individual', b = ind ? [0, 3] : [0, 1, 3, 4]; return Array.from({ length: ind ? 8 : 5 }, (_, i) => this.semana[b[i % b.length]].r); }
+  diaEn(x, y, el) { const h = document.elementsFromPoint(x, y).find((n) => n !== el && n.dataset && n.dataset.dia); return h ? +h.dataset.dia : null; }
+  planMax() { const r = this.planRow; return r && r.parentElement ? Math.max(0, r.offsetWidth - r.parentElement.clientWidth) : 0; }
+  planDown(e, i, src) { if (e.button || this.state.planOk) return; e.stopPropagation(); const el = e.currentTarget, r = el.getBoundingClientRect(); try { el.setPointerCapture(e.pointerId); } catch (x) {} this.pd = { i, src, el, x: e.clientX, y: e.clientY, k: (r.width / el.offsetWidth) || 1, mov: false, dx: 0, dy: 0, ox: (e.clientX - r.left) / ((r.width / el.offsetWidth) || 1), modo: null, x0: this.state.planX }; }
+  planMove(e) { const d = this.pd; if (!d) return; d.dx = (e.clientX - d.x) / d.k; d.dy = (e.clientY - d.y) / d.k; if (!d.mov && Math.hypot(d.dx, d.dy) < 6) return; d.mov = true; if (!d.modo) d.modo = d.src == null && Math.abs(d.dx) > Math.abs(d.dy) * 1.2 ? 'lista' : 'arrastre'; if (d.modo === 'lista') return this.setState({ planX: Math.max(0, Math.min(this.planMax(), d.x0 - d.dx)) }); this.setState({ drag: { i: d.i, src: d.src, ox: d.ox, dx: d.dx, dy: d.dy, over: this.diaEn(e.clientX, e.clientY, d.el) } }); }
+  planUp(e) { const d = this.pd; if (!d) return; this.pd = null; if (!d.mov) { if (d.src == null) this.setState({ verSol: d.i, tab: 'rutina', calAbierto: false }); return; } if (d.modo === 'lista') return this.forceUpdate(); this.noClick = true; setTimeout(() => { this.noClick = false; }, 60);
+    const n = this.diaEn(e.clientX, e.clientY, d.el), plan = { ...this.state.plan }, ind = (this.props.plan ?? 'Personalizado grupal') === 'Personalizado individual', fila = (x) => Math.floor((x + 5) / 7), horas = { ...this.state.horas }, plan0 = this.state.plan, horas0 = this.state.horas; let msg = '', ask = null, vuelve = false;
+    if (d.src != null && Math.abs(d.dx) < 18 && Math.abs(d.dy) < 18) { /* vuelve a su día */ }
+    else if (n == null) { if (d.src != null) { const idx = plan[d.src]; let q = 0; Object.keys(plan).forEach((k) => { if (plan[k] >= idx) { delete plan[k]; delete horas[k]; q++; } }); if (q > 1) msg = 'También devolví las rutinas que seguían'; } }
+    else if (n < this.hoy()) msg = 'Ese día ya pasó';
+    else if (!ind && ![1, 4].includes((n + 5) % 7)) msg = 'Las grupales son martes y viernes';
+    else if (ind && Object.keys(plan).filter((k) => fila(+k) === fila(n) && +k !== n && plan[k] !== d.i).length >= 2) msg = 'Tu plan permite 2 por semana';
+    else { const occ = plan[n]; Object.keys(plan).forEach((k) => { if (plan[k] === d.i) delete plan[k]; }); const swap = occ != null && occ !== d.i && d.src != null && d.src !== n; if (swap) plan[d.src] = occ; else if (d.src != null && d.src !== n) delete horas[d.src]; plan[n] = d.i; if (d.src !== n) { if (!swap) delete horas[n]; ask = n; }
+      const dias = Object.keys(plan).map(Number).sort((a, b) => a - b), usados = dias.map((k) => plan[k]).sort((a, b) => a - b), falta = usados.findIndex((v, j) => v !== j);
+      if (falta >= 0) { vuelve = true; msg = 'Primero agenda la rutina ' + (falta + 1); } else if (dias.some((k, j) => plan[k] !== j)) { vuelve = true; msg = d.i > 0 && plan0[n] == null ? 'La rutina ' + (d.i + 1) + ' va después de la ' + d.i : 'Las rutinas van en el orden de Sol'; } else this.bip(880, 0.12); }
+    this.setState(vuelve ? { drag: null, plan: plan0, horas: horas0, horaAsk: null, planMsg: msg, verSol: null } : { drag: null, plan, horas, horaAsk: ask, horaPrev: ask != null && d.src != null ? { plan: plan0, horas: horas0 } : null, planMsg: msg, verSol: null }); clearTimeout(this.pmT); if (msg) this.pmT = setTimeout(() => this.setState({ planMsg: '' }), 2200); }
+  rut(dia) { if (this.pm()) { const i = this.state.plan[dia]; return i == null ? null : this.solRut()[i]; } const w = (dia + 5) % 7, o = (this.state.sync.rutinas || {})[w]; return o || this.semana[w].r; }
+  ejInfo(n) { n = (n || '').toLowerCase(); const T = [
+    ['sentadilla con salto', ['Cuádriceps', 'Glúteos', 'Potencia'], ['Baja hasta media sentadilla, con el pecho arriba', 'Salta extendiendo cadera y rodillas', 'Aterriza suave, amortiguando con las rodillas']],
+    ['sentadilla', ['Cuádriceps', 'Glúteos', 'Core'], ['Pies al ancho de hombros, puntas apenas abiertas', 'Baja con el pecho arriba y el peso pegado al cuerpo', 'Sube empujando el suelo con los talones']],
+    ['peso muerto', ['Isquiotibiales', 'Glúteos', 'Espalda baja'], ['Rodillas apenas flexionadas, espalda recta', 'Lleva la cadera hacia atrás y baja el peso pegado a las piernas', 'Sube apretando glúteos, sin arquear la espalda']],
+    ['estocada', ['Glúteos', 'Cuádriceps', 'Equilibrio'], ['Da un paso largo hacia atrás', 'Baja hasta que ambas rodillas queden en 90°', 'Vuelve empujando con la pierna de adelante']],
+    ['puente', ['Glúteos', 'Isquiotibiales'], ['Espalda alta apoyada y pies firmes en el suelo', 'Sube la cadera hasta alinear rodillas, cadera y hombros', 'Aprieta glúteos arriba un segundo y baja lento']],
+    ['plancha lateral', ['Oblicuos', 'Hombros', 'Core'], ['Codo justo bajo el hombro', 'Cuerpo en línea recta, cadera arriba', 'Respira sin soltar el abdomen']],
+    ['plancha', ['Core', 'Hombros'], ['Codos justo bajo los hombros', 'Cuerpo en línea de cabeza a talones', 'Aprieta abdomen y glúteos; que no caiga la cadera']],
+    ['elevación de piernas', ['Abdomen bajo', 'Flexores de cadera'], ['Espalda baja pegada al suelo', 'Sube las piernas juntas, sin impulso', 'Baja lento y sin tocar el suelo']],
+    ['kettlebell', ['Cuerpo completo', 'Cardio'], ['Espalda recta en cada movimiento', 'La fuerza sale de la cadera, no de los brazos', 'Lleva un ritmo que te deje cuidar la técnica']],
+    ['remo', ['Espalda', 'Bíceps'], ['Banda firme y espalda recta', 'Lleva los codos atrás, pegados al cuerpo', 'Junta las escápulas y vuelve lento']],
+    ['core en parejas', ['Core', 'Coordinación'], ['Abdomen activo durante todo el ejercicio', 'Coordina el ritmo con tu compañera', 'Sin tirones: movimiento controlado']],
+    ['press militar', ['Hombros', 'Tríceps'], ['Abdomen firme, sin arquear la espalda', 'Empuja hacia arriba hasta extender los brazos', 'Baja controlado hasta la altura del mentón']],
+    ['press de hombro', ['Hombros', 'Tríceps'], ['Abdomen firme, sin arquear la espalda', 'Empuja hacia arriba hasta extender los brazos', 'Baja controlado hasta la altura del mentón']],
+    ['press', ['Pecho', 'Hombros', 'Tríceps'], ['Escápulas juntas y pies firmes', 'Baja las mancuernas a la altura del pecho', 'Empuja hacia arriba sin bloquear los codos']],
+    ['flexion', ['Pecho', 'Tríceps', 'Core'], ['Manos algo más abiertas que los hombros', 'Cuerpo en línea recta; baja el pecho hacia el apoyo', 'Empuja hasta extender los brazos']],
+    ['curl', ['Bíceps', 'Antebrazos'], ['Codos pegados al cuerpo', 'Sube sin balancear el torso', 'Baja lento hasta extender el brazo']],
+    ['movilidad', ['Movilidad', 'Calentamiento'], ['Movimientos lentos y controlados', 'Aumenta el rango de a poco', 'Sin dolor: llega solo hasta donde estés cómoda']],
+    ['calentamiento', ['Movilidad', 'Calentamiento'], ['Movimientos lentos y controlados', 'Aumenta el rango de a poco', 'Sin dolor: llega solo hasta donde estés cómoda']]
+  ].find((x) => n.replace('ó', 'o').includes(x[0].replace('ó', 'o'))) || ['', ['Técnica'], ['Movimiento controlado en todo el recorrido', 'Abdomen activo y espalda recta', 'Si algo duele, para y avísale a Sol']]; return { z: T[1], p: T[2] }; }
+  foto(n) { return 'url(' + this.fotoSrc(n) + ')'; }
+  fotoSrc(n) { n = n.toLowerCase(); const F = 'assets/fotos/';
+    const M = [[/estocada|puente|glúteo|inferior/, 'estocada.jpg'], [/sentadilla|salto|pierna/, 'sentadilla.jpg'], [/remo/, 'remo.jpg'], [/espalda/, 'espalda.jpg'],
+      [/superior/, 'polea.jpg'], [/curl/, 'curl.avif'], [/militar|hombro/, 'hombros.jpg'], [/press|flexion/, 'mancuerna.avif'], [/kettlebell|peso muerto/, 'kettlebell.jpg'],
+      [/grupal|cuerda|cardio/, 'cuerdas.jpg'], [/respir/, 'bici.avif'], [/core|plancha|aliment/, 'pareja.jpg'], [/casa|fuerza/, 'dominada.jpg'], [/movilidad|calentamiento/, 'zapatilla.avif']];
+    for (const [re, f] of M) if (re.test(n)) return F + f;
+    return F + 'barra.avif'; }
+  reloj(x) { return Math.floor(x / 60) + ':' + String(x % 60).padStart(2, '0'); }
+  num(x) { return x.toLocaleString('es-CL', { maximumFractionDigits: 1 }); }
+  renderVals() {
+    const s = this.state, t = s.t, set = (o) => this.setState(o);
+    const claro = (this.props.tema ?? 'Oscuro') === 'Claro';
+    if (typeof document !== 'undefined') document.body.classList.toggle('naranjo', (this.props.paleta ?? 'Celeste') === 'Naranjo'), document.body.classList.toggle('claro', claro);
+    const individual = (this.props.plan ?? 'Personalizado grupal') === 'Personalizado individual';
+    const descSeg = this.props.descansoSeg ?? 15;
+    const enApp = s.pantalla === 'app';
+    const PM = this.pm(), sol = this.solRut(), dg = s.drag, total = PM ? sol.length : individual ? 12 : 8, quedan = PM ? total : Math.min(total, s.sync.clasesQuedan ?? (individual ? 7 : 5));
+    const selR = PM && s.dia !== this.hoy() && s.verSol == null ? this.rut(s.dia) : null, selBloq = !!selR && s.dia > this.hoy(), prox = PM ? Object.keys(s.plan).map(Number).filter((k) => k > this.hoy()).sort((a, b) => a - b)[0] : null, irProx = PM && !this.rut(this.hoy()) && prox != null && (s.planOk || Object.keys(s.plan).length >= sol.length), selLibre = PM && Object.keys(s.plan).length > 0 && s.dia !== this.hoy() && s.verSol == null && !this.rut(s.dia), desIr = () => selLibre ? this.setState({ calAbierto: true, pag: 0, des: 0, desOn: false }) : selR ? this.setState({ tab: 'rutina', calAbierto: false, des: 0, desOn: false }) : irProx ? this.setState({ dia: prox, tab: 'rutina', calAbierto: false, verSol: null, des: 0, desOn: false }) : this.abrirEj(this.hoy(), 0);
+    const hoyR = this.rut(this.hoy()) || sol[0], pe = (s.sync.proxEval || '2026-12-04').split('-').map(Number);
+
+    const tabsBase = [['inicio', 'Inicio', 'home'], ['rutina', 'Rutina', 'fitness_center'], ['progreso', 'Progreso', 'show_chart'], ['cursos', 'Cursos', 'school'], ['chat', 'Chat', 'chat'], ['perfil', 'Perfil', 'person']], chatL = s.sync.chat || [], chatNuevo = s.tab !== 'chat' && chatL.slice(s.sync.chatVA || 0).some((m) => m.de === 's');
+    const tabs = tabsBase.map(([id, nombre, icono]) => { const a = s.tab === id; return { nombre, icono, punto: id === 'chat' && chatNuevo ? 1 : 0, puntoTop: a ? '-6px' : '9px', ir: () => { if (id === 'chat' || s.tab === 'chat') this.chatVisto(); set({ tab: id }); if (id === 'chat') this.chatBaja(); }, color: a ? 'var(--txt)' : 'var(--mut)', peso: a ? 700 : 500, icoColor: a ? 'var(--acct)' : 'var(--mut)', sube: a ? 'translateY(-15px)' : 'translateY(0)', relleno: a ? "'FILL' 1" : "'FILL' 0" }; });
+
+    const enVista = PM && s.verSol != null && !Object.values(s.plan).includes(s.verSol), rut = enVista ? sol[s.verSol] : this.rut(s.dia), HOY = this.hoy();
+    const dias = Array.from({ length: 36 }, (_, k) => { const n = k - 5; if (n < 1) return { vis: 'hidden', n: '', ir: null, aria: '', borde: '0', fondo: 'transparent', color: 'transparent', punto: 'transparent' };
+      const a = n === s.dia, r = this.rut(n);
+      return { vis: 'visible', n, aria: n + ' de noviembre', ir: () => set({ dia: n }), fondo: a ? 'var(--k0)' : 'transparent', color: a ? 'var(--k2)' : 'var(--txt)', borde: n === HOY && !a ? '2px solid var(--k0)' : '2px solid transparent', punto: !r ? 'transparent' : a ? 'var(--k2)' : n < HOY ? 'var(--k7)' : 'var(--k0)' }; });
+    const MC = s.sync.macros || { kcal: 1652, p: 165, g: 55, c: 124, n: 4, agua: 2250 }, META = (MC && MC.agua) || 2000, NC = MC ? Math.max(1, MC.n || 4) : 4, nxLog = Array.from({ length: NC }, (_, i) => (s.comLog ? s.comLog[i] : i < s.comidas ? { p: 1, g: 1, c: 1 } : null) || null), comN = nxLog.filter(Boolean).length, nxG = (k) => nxLog.reduce((t, x) => t + (x ? x[k] : 0), 0) * MC[k] / NC, nxKF = MC.kcal / ((MC.p * 4 + MC.g * 9 + MC.c * 4) || 1), nxKcalDe = (x) => (x.p * MC.p * 4 + x.g * MC.g * 9 + x.c * MC.c * 4) / NC * nxKF, nxKcal = nxLog.reduce((t, x) => t + (x ? nxKcalDe(x) : 0), 0), nxSave = (log) => { this.setState({ comLog: log }); try { localStorage.setItem('solfit_sync', JSON.stringify({ ...this.leer(), comidasHoy: log })); } catch (e) {} }, nxEd = s.comEd || null, nxCerrar = () => { if (this.state.comEdSale) return; this.setState({ comEdSale: true }); setTimeout(() => this.setState({ comEd: null, comEdSale: false }), 260); }, fmt = (x) => Math.round(x).toLocaleString('es-CL');
+    const RACHA = 8, ab = s.calAbierto, filaSel = Math.floor((s.dia + 5) / 7), filaHoy = Math.floor((HOY + 5) / 7);
+    const semanas = Array.from({ length: 6 }, (_, r) => {
+      const ds = Array.from({ length: 7 }, (_, c) => { const n = r * 7 + c - 5, fuera = n < 1 || n > 30, num = n < 1 ? 31 + n : n > 30 ? n - 30 : n;
+        const pi = PM && !fuera ? s.plan[n] : null, arr = dg && dg.src === n;
+        const d = { anim: 'none', fuera, dd: fuera ? '' : n, z: arr ? 6 : 'auto', mov: arr ? 'translate(' + dg.dx + 'px,' + dg.dy + 'px) scale(1.15)' : 'none', tr: arr ? 'none' : 'transform 0.25s ease', ta: pi != null ? 'none' : 'auto', down: pi != null ? (e) => this.planDown(e, pi, n) : undefined, aria: fuera ? '' : n + ' de noviembre' + (pi != null ? ', rutina ' + (pi + 1) + ' agendada' + (s.horas[n] ? ' a las ' + s.horas[n] : '') : ''), ir: () => { if (this.noClick || (PM && !Object.keys(s.plan).length)) return; set(PM && (pi == null || s.tab === 'inicio') ? { dia: n, verSol: null } : { dia: n, calAbierto: false, tab: 'rutina', verSol: null }); }, txt: num, fuente: '600 16px/1 Oswald,sans-serif', borde: '0', fondo: 'transparent', color: 'var(--mut)', sombra: 'none' };
+        if (fuera) { d.color = 'var(--line2)'; return d; }
+        if (PM && n === s.dia && s.verSol == null && !arr) { d.sombra = 'inset 0 0 0 18px rgba(var(--k1),0.3)'; d.aria += ', seleccionado'; }
+        const ru = this.rut(n);
+        if (pi != null && ru.ej.every((_, i) => { const p = s.prog[n + '-' + i]; return p && p.length && p.every((x) => x.ok); })) { d.fondo = 'var(--txt)'; d.color = 'var(--bg)'; d.txt = 'fitness_center'; d.fuente = "500 18px/1 'Material Symbols Rounded'"; }
+        else if (pi != null && n === HOY) { d.fondo = 'var(--k0)'; d.color = 'var(--k2)'; if (!arr) d.anim = 'solfitPulso 1.6s ease-in-out infinite'; }
+        else if (pi != null) { d.borde = '2px solid var(--k0)'; d.color = 'var(--txt)'; }
+        else if (PM && n === HOY) { d.borde = '2px solid var(--txt)'; d.color = 'var(--txt)'; }
+        else if (PM && !individual && n > HOY) { if (c === 1 || c === 4) { d.borde = '1.5px dashed var(--mut)'; d.color = 'var(--txt)'; d.aria += ', día de clase grupal'; } else d.color = 'var(--line2)'; }
+        else if (!PM && n === s.dia) { d.fondo = 'var(--k0)'; d.color = 'var(--k2)'; }
+        else if (ru && n < HOY) { d.fondo = 'var(--txt)'; d.color = 'var(--bg)'; d.txt = 'fitness_center'; d.fuente = "500 18px/1 'Material Symbols Rounded'"; }
+        else if (n === HOY) { d.borde = '2px solid var(--k0)'; d.color = 'var(--txt)'; }
+        else if (n < HOY) { d.fondo = 'var(--line)'; }
+        else if (ru) { d.borde = '1.5px solid var(--txt)'; d.color = 'var(--txt)'; }
+        if (PM && n === s.dia && s.verSol == null && !arr && d.fondo === 'transparent') d.color = 'var(--txt)';
+        if (dg && dg.over === n && !arr) d.borde = '2px dashed var(--k0)';
+        return d; });
+      const w = { op: ab || r === filaSel ? 1 : 0, dias: ds, rFondo: 'transparent', rRadio: '0', rTam: '34px', rBorde: '0', rColor: 'var(--txt)', rFuente: '600 16px/1 Oswald,sans-serif', rTxt: PM ? 0 : RACHA, rBg: 'radial-gradient(closest-side, var(--card) 76%, transparent 79%), conic-gradient(var(--k0) ' + (PM ? 0 : 80) + '%, var(--line2) 0)' };
+      if (ab) {
+        if (PM && r <= filaHoy) Object.assign(w, r === filaHoy ? { rTam: '30px', rBg: 'transparent', rBorde: '1.5px solid var(--k0)' } : { rTam: '20px', rBg: 'transparent', rBorde: '1.5px solid var(--line2)', rTxt: '' });
+        else if (r < filaHoy) Object.assign(w, { rFondo: 'rgba(var(--k1),0.22)', rRadio: r === 0 ? '18px 18px 0 0' : '0', rTam: '24px', rBg: 'var(--k0)', rColor: 'var(--k2)', rTxt: 'check', rFuente: "500 16px/1 'Material Symbols Rounded'" });
+        else if (r === filaHoy) Object.assign(w, { rFondo: 'rgba(var(--k1),0.22)', rRadio: '0 0 18px 18px', rTam: '30px', rBg: 'var(--k0)', rColor: 'var(--k2)' });
+        else Object.assign(w, { rTam: '20px', rBg: 'transparent', rBorde: '1.5px solid var(--line2)', rTxt: '' });
+      }
+      { const anillo = w.rBg.indexOf('gradient') >= 0, k = parseFloat(w.rTam) / 34, b = w.rBorde === '0' ? null : w.rBorde.split(' '); w.rAro = 'radial-gradient(closest-side, var(--card) 76%, transparent 79%), conic-gradient(var(--k0) ' + (PM ? 0 : 80) + '%, var(--line2) 0)'; w.rAroOp = anillo ? 1 : 0; w.rCol = anillo ? 'transparent' : w.rBg; w.rEsc = 'scale(' + k + ')'; w.rSh = 'inset 0 0 0 ' + (b ? (1.5 / k).toFixed(2) + 'px ' + b[2] : '2px transparent'); }
+      return w; });
+    const ejOk = (i) => { const p = s.prog[s.dia + '-' + i]; return !!p && p.length > 0 && p.every((x) => x.ok); };
+    const ejerciciosDia = rut ? rut.ej.map((e, i) => ({ foto: this.foto(e[0]), n: ejOk(i) ? '✓' : i + 1, nombre: e[0], sxr: (ejOk(i) ? 'Completo · ' : '') + e[1] + ' × ' + e[2], linea: i === rut.ej.length - 1 ? '0' : '1px solid var(--line)', ir: () => set({ ejAb: s.ejAb === s.dia + '-' + i ? null : s.dia + '-' + i }), ab: s.ejAb === s.dia + '-' + i, giro: s.ejAb === s.dia + '-' + i ? 'rotate(180deg)' : 'none', filas: s.ejAb === s.dia + '-' + i ? '1fr' : '0fr', zonas: this.ejInfo(e[0]).z, pasos: this.ejInfo(e[0]).p, carga: +e[3] > 0 ? e[3] + ' kg' : 'Peso corporal' })) : [];
+
+    const ejs = rut ? rut.ej : [], ej = ejs[s.ejIdx] || ['', 0, '', ''];
+    const ultimo = s.ejIdx >= ejs.length - 1;
+    const actual = s.descanso > 0 ? -1 : s.series.findIndex((r) => !r.ok);
+    const focoAuto = s.trab > 0 && s.trabRow >= 0 ? s.trabRow : s.descanso > 0 && s.restRow >= 0 ? s.restRow : actual >= 0 ? actual : Math.max(0, s.series.length - 1), sv = s.serieVer, svK = s.dia + '-' + s.ejIdx;
+    const foco = sv && sv.k === svK ? Math.min(sv.i, Math.max(0, s.series.length - 1)) : focoAuto, irSerie = (i) => set({ serieVer: { k: svK, i: Math.max(0, Math.min(s.series.length - 1, i)) } });
+    const series = s.series.map((r, i) => {
+      const upd = (k) => (ev) => set({ series: s.series.map((x, j) => j === i ? { ...x, [k]: ev.target.value } : x) });
+      const rest = r.ok && s.descanso > 0 && s.restRow === i, hecho = r.ok && !rest, seg = /s\s*$/i.test(String(r.reps)) ? parseInt(r.reps, 10) || 0 : 0, trabajando = !r.ok && s.trab > 0 && s.trabRow === i, porPlay = seg > 0 && !r.ok && !trabajando;
+      const marcar = () => set({ series: s.series.map((x, j) => j === i ? { ...x, ok: !x.ok } : x), trab: 0, descanso: r.ok || (s.ejIdx >= this.rut(s.dia).ej.length - 1 && s.series.every((x, j) => j === i || x.ok)) ? 0 : descSeg, restRow: i, serieVer: null }) || (!r.ok && this.bip(880, 0.15));
+      return { pesoVal: String(r.peso) === '0' ? '' : r.peso, trabOp: trabajando ? 1 : 0, trabEsc: trabajando ? 'scaleX(1)' : 'scaleX(0.82)', trabReloj: this.reloj(s.trab), btnIcono: porPlay ? 'play_arrow' : 'check', btnAria: porPlay ? 'Empezar ' + seg + ' segundos' : 'Marcar serie lista', btnClick: porPlay ? () => { set({ trab: seg, trabRow: i, descanso: 0, serieVer: null }); this.bip(880, 0.15); } : marcar, filaOp: i === foco ? 1 : Math.abs(i - foco) === 1 ? 0.45 : 0.2, filaEsc: i === foco ? 'scale(1)' : 'scale(0.86)', filaBlur: i === foco ? 'none' : 'blur(1.2px)', n: i + 1, nColor: i === actual ? 'var(--k0)' : hecho ? 'var(--k27)' : 'var(--k5)', peso: r.peso, reps: r.reps, setPeso: upd('peso'), setReps: upd('reps'),
+        gap: rest || trabajando ? '0px' : '8px', inOp: rest || trabajando ? 0 : 1, restOp: rest ? 1 : 0, restEsc: rest ? 'scaleX(1)' : 'scaleX(0.82)', restPE: rest ? 'auto' : 'none', reloj: this.reloj(s.descanso),
+        tach: hecho ? 'line-through' : 'none', inColor: r.ok ? 'var(--k27)' : 'var(--k3)', inFondo: r.ok ? 'transparent' : 'rgba(var(--k9),0.94)', inBorde: r.ok ? '1.5px solid var(--k4)' : i === actual ? '1.5px solid var(--k0)' : '1.5px solid transparent', btnFondo: r.ok ? 'rgba(var(--k41),0.22)' : i === actual ? 'var(--k0)' : 'var(--k42)', btnColor: r.ok ? 'var(--k7)' : i === actual ? 'var(--k2)' : 'var(--k5)',
+        marcar };
+    });
+    const ejHecho = (i) => { const p = s.prog[s.dia + '-' + i]; return !!p && p.length > 0 && p.every((x) => x.ok); };
+    const carItem = (i, n, ir, aria) => { const d = Math.abs(i - s.ejIdx), act = d === 0, ok = ejHecho(i);
+      return { n: ok ? '✓' : n, ir, aria: ok ? aria + ', completo' : aria, fondo: act ? 'var(--k0)' : ok ? 'rgba(var(--k41),0.25)' : 'var(--line)', color: act ? 'var(--k2)' : ok ? 'var(--k7)' : 'var(--txt)', op: act ? 1 : d === 1 ? 0.5 : 0.22, esc: act ? 'scale(1.12)' : d === 1 ? 'scale(0.78)' : 'scale(0.62)', sombra: act ? '0 6px 18px rgba(var(--k1),0.4)' : 'none' }; };
+    const finAnim = (o) => { try { const ri = this.pm() ? s.plan[s.dia] : null, y = this.leer(); if (ri != null) localStorage.setItem('solfit_sync', JSON.stringify({ ...y, hechas: { ...(y.hechas || {}), [ri]: { dia: s.dia, falt: ejs.filter((_, i) => !ejOk(i)).length, tot: ejs.length, no: ejs.map((_, i) => i).filter((i) => !ejOk(i)) } } })); } catch (e) {} set({ finAsk: false, fin: 'bola', finO: o, sent: -1, nota: '', descanso: 0 }); setTimeout(() => this.setState({ fin: 'sube' }), 60); setTimeout(() => this.setState({ fin: 'caja' }), 620); }, finFaltan = ejs.filter((_, i) => !ejOk(i)).length;
+    const ejNums = ejs.map((_, i) => carItem(i, i + 1, () => this.abrirEj(s.dia, i), 'Ejercicio ' + (i + 1)))
+      .concat([carItem(ejs.length, 'Fin', (ev) => { let o = { l: 261, t: 757, w: 54, h: 54 }; try { const b = ev.currentTarget, root = b.closest('[data-screen-label]'), r = b.getBoundingClientRect(), R = root.getBoundingClientRect(), k = root.offsetWidth / R.width; o = { l: (r.left - R.left) * k, t: (r.top - R.top) * k, w: r.width * k, h: r.height * k }; } catch (x) {} if (ejs.some((_, i) => !ejOk(i))) return set({ finAsk: true, finO: o }); finAnim(o); }, 'Terminar rutina')]);
+    if (s.fin) ejNums[ejNums.length - 1].op = 0;
+    const paso = (k, d, min) => () => { const v = Math.max(min, t[k] + d); set({ t: { ...t, [k]: v } }); };
+    const tAjustes = [{ nombre: 'Trabajo', valor: t.trabajo + ' s', menos: paso('trabajo', -5, 5), mas: paso('trabajo', 5, 5) }, { nombre: 'Descanso', valor: t.descanso + ' s', menos: paso('descanso', -5, 5), mas: paso('descanso', 5, 5) }, { nombre: 'Rondas', valor: t.rondas, menos: paso('rondas', -1, 1), mas: paso('rondas', 1, 1) }];
+    const esTrabajo = t.fase === 'trabajo';
+
+    const m = this.datos[s.metrica], v = m.v;
+    const lo = m.dom ? m.dom[0] : Math.min(...v), hi = m.dom ? m.dom[1] : Math.max(...v), rg = (hi - lo) || 1;
+    const y = (x) => 110 - ((x - lo) / rg) * 90;
+    const metricas = ['peso', 'grasa', 'musculo', 'visceral', 'metab', 'edad'].map((k) => { const a = k === s.metrica; return { corto: this.datos[k].c, ir: () => set({ metrica: k }), fondo: a ? 'var(--k0)' : 'var(--card)', color: a ? 'var(--k2)' : 'var(--txt)', borde: a ? '2px solid var(--k0)' : '2px solid var(--line)' }; });
+    const comparacion = Object.keys(this.datos).map((k) => { const d = this.datos[k], dif = Math.round((d.v[5] - d.v[4]) * 10) / 10, bien = dif === 0 ? null : (dif < 0) === d.baja;
+      return { ir: () => set({ metrica: k }), borde: k === s.metrica ? '1.5px solid var(--k0)' : '1.5px solid var(--line)', nombre: d.n, valor: this.num(d.v[5]), unidad: d.u, delta: this.num(Math.abs(dif)), flecha: dif === 0 ? 'remove' : dif > 0 ? 'arrow_upward' : 'arrow_downward', fondo: bien === null ? 'var(--line)' : bien ? 'var(--okbg)' : 'var(--badbg)', color: bien === null ? 'var(--mut)' : bien ? 'var(--sage)' : 'var(--bad)' }; });
+    const fechas = ['6 nov 2026', '9 oct 2026', '4 sep 2026', '7 ago 2026', '3 jul 2026', '5 jun 2026'];
+    const historial = fechas.map((f, i) => ({ fecha: f, peso: this.num(this.datos.peso.v[5 - i]), grasa: this.num(this.datos.grasa.v[5 - i]), linea: i === 5 ? '0' : '1px solid var(--line)' }));
+    const angNombres = ['Frente', 'Lado', 'Espalda'];
+    const angulos = angNombres.map((n, i) => { const a = i === s.angulo; return { nombre: n, ir: () => set({ angulo: i }), fondo: a ? 'var(--k0)' : 'var(--card)', color: a ? 'var(--k2)' : 'var(--txt)', borde: a ? '2px solid var(--k0)' : '2px solid var(--line)' }; });
+
+    const cursosBase = [
+      { nombre: 'Movilidad para todos los días', icono: 'accessibility_new', libre: true, hechos: 2, mods: [['Cuello y hombros', 8], ['Columna', 10], ['Cadera', 12], ['Tobillos y pies', 7], ['Rutina completa', 15]] },
+      { nombre: 'Respiración y core', icono: 'air', libre: true, hechos: 0, mods: [['Respirar con el diafragma', 6], ['Activar el abdomen', 9], ['Core al caminar', 8]] },
+      { nombre: 'Alimentación simple', icono: 'restaurant', libre: false, hechos: 0, mods: [['Armar el plato', 10], ['Colaciones', 7], ['Hidratación', 5], ['Comer fuera de casa', 9]] },
+      { nombre: 'Fuerza en casa', icono: 'home', libre: false, hechos: 0, mods: [['Sin implementos', 12], ['Con banda elástica', 14], ['Con mancuernas', 15]] }
+    ];
+    const cTienda = s.cursosVista === 'tienda', cMio = (c, i) => c.libre || !!s.comprados[i];
+    const cursos = cursosBase.map((c, i) => { const mio = cMio(c, i), ok = true, ab = s.curso === i; if (mio === cTienda) return null;
+      return { foto: this.foto(c.nombre), pct: ok ? Math.round(c.hechos / c.mods.length * 100) + '%' : '0%', opac: ok ? 1 : 0.55, nombre: c.nombre, bloqueado: !ok, abierto: ab, filas: ab ? '1fr' : '0fr', modOp: ab ? 1 : 0, giro: ab ? 'rotate(180deg)' : 'none', icono: ok ? c.icono : 'lock', fondo: ok ? 'var(--card)' : 'var(--k43)', sombra: ok ? '0 2px 10px rgba(var(--k26),0.08)' : 'none', icoFondo: ok ? 'var(--line)' : 'var(--k44)', icoColor: ok ? 'var(--sage)' : 'var(--mut)', cursor: ok ? 'pointer' : 'default',
+        enVenta: !mio, comprar: () => set({ comprados: { ...s.comprados, [i]: true }, cursosVista: 'mios', curso: i }),
+        sub: mio ? c.mods.length + ' módulos · ' + c.hechos + ' vistos' : c.mods.length + ' módulos · ' + c.mods.reduce((a, x) => a + x[1], 0) + ' min', subColor: 'var(--mut)', subPeso: ok ? 400 : 600, flecha: ok ? 'expand_more' : '',
+        ir: () => set({ curso: ab ? -1 : i }),
+        modulos: c.mods.map((x, j) => ({ nombre: x[0], min: x[1], icono: !mio ? 'lock' : j < c.hechos ? 'check_circle' : 'play_circle', color: mio && j < c.hechos ? 'var(--k12)' : 'var(--mut)', relleno: mio && j < c.hechos ? "'FILL' 1" : "'FILL' 0" })) }; }).filter(Boolean);
+
+    const monto = individual ? '$60.000' : '$35.000';
+    const pagos = [['Noviembre 2026', 'Pagado el 2 nov · transferencia'], ['Octubre 2026', 'Pagado el 1 oct · efectivo'], ['Septiembre 2026', 'Pagado el 1 sep · transferencia']].map((p, i) => ({ mes: p[0], detalle: p[1], monto, linea: i === 2 ? '0' : '1px solid var(--line)' }));
+
+    return {
+      devW: 390, devH: 844, rachaOp: ab ? 1 : 0, rachaMov: ab ? 'translateY(0)' : 'translateY(-14px)', proximas: (PM ? Object.keys(s.plan).map(Number).sort((a, b) => a - b) : [17, 19, 20, 23, 24]).map((n) => { const r = this.rut(n); return r && { dia: this.semana[(n + 5) % 7].d + ' ' + n, foto: this.foto(r.t), titulo: r.t, dur: r.dur, ir: () => set({ tab: 'rutina', dia: n, verSol: null }) }; }).filter(Boolean), ...(() => { const inf = this.ejInfo(ej[0]), ver = (on) => { if (on !== s.ejInfo) set({ ejInfo: on }); }; return { ejIntro: s.ejIntro, ejActivo: !s.ejIntro, ejResumen: ej[1] + ' series · ' + (/ s$/.test(String(ej[2])) ? ej[2] : ej[2] + ' reps') + (String(ej[3]) !== '0' ? ' · ' + ej[3] + ' kg' : ' · sin peso'), ejIntroOp: s.ejSale ? 0 : 1, ejIntroMov: s.ejSale ? 'translateY(18px)' : 'translateY(0)', ejStart: () => { if (s.ejSale) return; set({ ejSale: true, ejInfo: false }); this.bip(880, 0.15); setTimeout(() => this.setState({ ejIntro: false, ejSale: false }), 270); }, ejInfoOn: s.ejInfo, ejInfoOp: s.ejInfo ? 1 : 0, ejInfoMov: s.ejInfo ? 'translateY(0)' : 'translateY(28px)', ejInfoBg: s.ejInfo ? 'var(--k0)' : 'rgba(var(--k9),0.92)', ejInfoFg: s.ejInfo ? 'var(--k2)' : 'var(--k3)', ejInfoAria: s.ejInfo ? 'Ocultar la técnica del ejercicio' : 'Ver cómo se hace el ejercicio', ejZonas: inf.z.map((t) => ({ t })), ejPasos: inf.p.map((t, i) => ({ n: i + 1, t })), ejInfoToggle: () => ver(!s.ejInfo), ejInfoDown: (e) => { this.infY = e.clientY; }, ejInfoUp: (e) => { if (this.infY == null) return; const d = e.clientY - this.infY; this.infY = null; if (d < -24) ver(true); else if (d > 24) ver(false); }, ejInfoRueda: (e) => { if (Math.abs(e.deltaY) > 8) ver(e.deltaY > 0); } }; })(), ejFoto: this.foto(ej[0] || ''), diaFoto: rut ? this.foto(rut.t) : 'none', desMov: 'translateX(' + s.des + 'px)', desTrans: s.desOn ? 'none' : 'transform 0.35s cubic-bezier(0.32,0.72,0,1)', desTransW: s.desOn ? 'none' : 'width 0.35s cubic-bezier(0.32,0.72,0,1)',
+      desFill: s.des > 0 ? (s.des + 60) + 'px' : '0px', desTextOp: Math.max(0, 1 - s.des / 120),
+      desDown: (e) => { try { e.currentTarget.setPointerCapture(e.pointerId); } catch (x) {} this.desX = e.clientX; set({ desOn: true }); },
+      desMove: (e) => { if (this.state.desOn) set({ des: Math.max(0, Math.min(218, e.clientX - this.desX)) }); },
+      desUp: () => { if (!this.state.desOn) return; const ok = this.state.des > 175 || !!selR; set({ des: 0, desOn: false }); if (ok) desIr(); },
+      desKey: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); desIr(); } },
+      ejCarMov: 'translateX(' + (62 - s.ejIdx * 48) + 'px)', hoyFoto: this.foto((selR || hoyR).t), desIco: selLibre ? 'edit_calendar' : selBloq ? 'lock' : selR ? 'visibility' : 'arrow_forward', heroIr: () => { if (selR) desIr(); else if (!selLibre && this.rut(this.hoy())) set({ tab: 'rutina', dia: this.hoy(), calAbierto: false, verSol: null }); }, heroCursor: selR || (!selLibre && this.rut(this.hoy())) ? 'pointer' : 'default', noProp: (e) => { e.stopPropagation(); if (selR || selLibre) desIr(); }, finOn: !!s.fin, finVelo: s.fin === 'bola' ? 'rgba(var(--k24),0)' : 'rgba(var(--k24),0.74)', ...(() => { const o = s.finO, g = s.fin === 'caja' ? { l: 16, t: 150, w: 358, h: 540, r: 34 } : s.fin === 'sube' ? { l: 159, t: 350, w: 72, h: 72, r: 36 } : { l: o.l, t: o.t, w: o.w, h: o.h, r: o.h / 2 };
+        return { finL: g.l + 'px', finT: g.t + 'px', finW: g.w + 'px', finH: g.h + 'px', finR: g.r + 'px' }; })(),
+      finBg: s.fin === 'caja' ? 'var(--k8)' : 'var(--k0)', finOp: s.fin === 'caja' ? 1 : 0, finBolaOp: s.fin === 'caja' ? 0 : 1, nota: s.nota, setNota: (e) => set({ nota: e.target.value }),
+      finOpc: [['sentiment_very_dissatisfied', 'Muy mal'], ['sentiment_dissatisfied', 'Cansada'], ['sentiment_neutral', 'Normal'], ['sentiment_satisfied', 'Bien'], ['sentiment_very_satisfied', '¡Excelente!']].map(([icono, nombre], i) => { const a = i === s.sent; return { icono, nombre, ir: () => set({ sent: i }), fondo: a ? 'var(--k0)' : 'var(--k4)', color: a ? 'var(--k2)' : 'var(--k3)', borde: '0', esc: a ? 'scale(1.1)' : 'scale(1)' }; }),
+      finLabel: s.sent < 0 ? '' : ['Muy mal', 'Cansada', 'Normal', 'Bien', '¡Excelente!'][s.sent], finSin: s.sent < 0, finBtnFondo: s.sent < 0 ? 'var(--k4)' : 'var(--k0)', finBtnColor: s.sent < 0 ? 'var(--k5)' : 'var(--k2)',
+      finAsk: !!s.finAsk, finAskTxt: finFaltan >= ejs.length ? 'Todavía no completas ningún ejercicio de esta rutina.' : 'Te ' + (finFaltan === 1 ? 'falta 1 ejercicio' : 'faltan ' + finFaltan + ' ejercicios') + ' de ' + ejs.length + ' por completar.', finAskNo: () => set({ finAsk: false }), finAskSi: () => finAnim(s.finO),
+      finListo: () => { this.chatAdd({ fin: (rut && rut.t) || 'Rutina', cara: s.sent, txt: (s.nota || '').trim() }); set({ fin: null, sub: null, tab: 'inicio', descanso: 0 }); },
+      notaEjOn: s.notaEjOn, notaTxt: s.notaTxt, setNotaTxt: (e) => set({ notaTxt: e.target.value }), notaSin: !s.notaTxt.trim(), notaBtnFondo: s.notaTxt.trim() ? 'var(--k0)' : 'var(--k4)', notaBtnColor: s.notaTxt.trim() ? 'var(--k2)' : 'var(--k5)',
+      notaEjPunto: s.notasEj[s.dia + '-' + s.ejIdx] ? 1 : 0, abrirNota: () => set({ notaEjOn: true, notaTxt: (s.notasEj[s.dia + '-' + s.ejIdx] || {}).txt || '' }), cerrarNota: () => set({ notaEjOn: false }),
+      enviarNota: () => { const tx = s.notaTxt.trim(), k0 = s.dia + '-' + s.ejIdx; if (!tx || this._notaLock || (s.notasEj[k0] || {}).txt === tx) { if (tx && !this._notaLock) set({ notaEjOn: false }); return; } this._notaLock = true; setTimeout(() => { this._notaLock = false; }, 800); const n = { ...s.notasEj, [s.dia + '-' + s.ejIdx]: { ej: ej[0], txt: s.notaTxt.trim() } }; set({ notasEj: n, notaEjOn: false }); try { localStorage.setItem('solfit_sync', JSON.stringify({ ...this.leer(), notas: Object.values(n) })); } catch (x) {} this.chatAdd({ ej: ej[0] + ' · ' + ((rut && rut.t) || 'Rutina'), txt: s.notaTxt.trim() }); },
+      comidas: comN, masComida: () => { const i = nxLog.findIndex((x) => !x), k = i >= 0 ? i : NC - 1; set({ comEd: { i: k, p: 1, g: 1, c: 1, ...(nxLog[k] || {}) } }); }, aguaMeta: META.toLocaleString('es-CL'), comidasTxt: MC ? comN + ' de ' + NC + ' comidas · ' + fmt(nxKcal) + ' kcal' : comN + ' de 4 comidas registradas hoy', ...(() => { const hechos = total - quedan, fr = (a, b) => Math.max(0, Math.min(1, b ? a / b : 0)), pct = (a, b) => fr(a, b) * 100 + '%', nuevos = (s.sync.chat || []).slice(s.sync.chatVA || 0).filter((m) => m.de === 's'), abre = (pag) => () => { set({ pag, calAbierto: true }); const el = this.scRef.current; if (el) el.scrollTop = 0; }, ar = (d) => ({ ...d, aria: d.label + ': ' + d.val + ' ' + d.uni });
+        const lun = Math.floor((HOY + 5) / 7) * 7 - 5, dias = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'].map((d, c) => { const n = lun + c, r = n >= 1 && n <= 30 ? this.rut(n) : null, min = r ? parseInt(r.dur) || 0 : 0, ok = !!r && (PM ? r.ej.every((_, i) => { const p = s.prog[n + '-' + i]; return p && p.length && p.every((x) => x.ok); }) : n < HOY); return { d, n, r, min, ok }; }), mx = Math.max(60, ...dias.map((x) => x.min)), conR = dias.filter((x) => x.r), okN = conR.filter((x) => x.ok).length;
+        return { dashRing: 'conic-gradient(from 225deg, var(--k0) 0 ' + fr(hechos, total) * 270 + 'deg, var(--line) 0 270deg, transparent 0)', dashPct: Math.round(fr(hechos, total) * 100), dashHechos: hechos, dashTotal: total, dashSub: quedan === 1 ? 'Te queda 1 este mes' : 'Te quedan ' + quedan + ' este mes', dashIr: () => set({ tab: 'rutina', verSol: null }), dashAria: 'Entrenamientos: ' + hechos + ' de ' + total + ' este mes',
+          dashMini: [{ c: 'var(--c4)', ic: 'water_drop', label: 'Agua', val: s.ml.toLocaleString('es-CL'), uni: 'ml', ancho: pct(s.ml, META), ir: abre(1) }, { c: 'var(--c2)', ic: 'restaurant', label: 'Nutrición', val: fmt(nxKcal), uni: 'kcal', ancho: pct(nxKcal, MC.kcal), ir: abre(3) }, { c: 'var(--c3)', ic: 'local_fire_department', label: 'Racha', val: PM ? 0 : RACHA, uni: 'seguidos', ancho: pct(PM ? 0 : RACHA, 10), ir: () => set({ pag: 0, calAbierto: true }) }].map(ar),
+          dashSemHay: conR.length > 0, dashSemTxt: conR.length ? okN + ' de ' + conR.length + ' hechos' : 'Sin rutinas agendadas',
+          dashSem: dias.map((x) => ({ d: x.d, alto: x.r ? Math.max(18, Math.round(x.min / mx * 84)) + 'px' : '6px', bg: x.ok ? 'var(--k0)' : x.r ? 'transparent' : 'var(--line)', bd: x.r && !x.ok ? '2px solid var(--c2)' : '0', peso: x.n === HOY ? 700 : 500, col: x.n === HOY ? 'var(--txt)' : 'var(--mut)', aria: x.d + ' ' + x.n + (x.r ? ': ' + x.r.t + ', ' + x.r.dur + (x.ok ? ', hecho' : ', agendado') : ': descanso'), ir: () => { if (x.n >= 1 && x.n <= 30) set({ tab: 'rutina', dia: x.n, verSol: null }); } })),
+          dashPie: [{ ic: 'monitor_weight', label: 'Evaluación', val: pe[2], uni: new Date(pe[0], pe[1] - 1, pe[2]).toLocaleDateString('es-CL', { month: 'short' }).replace('.', ''), ir: () => set({ tab: 'progreso', vista: 'eval' }) }, { ic: 'chat', label: 'Sol', val: nuevos.length, uni: nuevos.length === 1 ? 'nuevo' : 'nuevos', ir: () => { set({ tab: 'chat' }); setTimeout(() => this.chatVisto(), 0); } }].map(ar) }; })(),
+      nutMac: !!MC, nutSin: !MC, nutKcal: MC ? fmt(nxKcal) : '', nutKcalMeta: MC ? fmt(MC.kcal) : '',
+      nutFilas: MC ? [['Proteína', 'p', 'var(--k0)'], ['Grasa', 'g', 'var(--c2)'], ['Carbohidratos', 'c', 'var(--c3)']].map(([nombre, k, c]) => { const x = MC[k], y = nxG(k); return { nombre, c, ancho: Math.min(100, x ? y / x * 100 : 0) + '%', txt: fmt(y) + ' / ' + fmt(x) + ' g' }; }) : [],
+      nutPorComida: 'Toca una comida para ajustar las porciones o sumar una foto.',
+      comEdOn: !!nxEd, comEdAnim: s.comEdSale ? 'solfitHojaSale 0.26s cubic-bezier(0.4,0,1,1) forwards' : 'solfitHoja 0.42s cubic-bezier(0.32,0.72,0,1) both', comEdVeloAnim: s.comEdSale ? 'solfitVeloSale 0.26s ease forwards' : 'solfitVelo 0.3s ease both', comEdTit: nxEd ? 'Comida ' + (nxEd.i + 1) : '', comEdSub: 'Tu porción: ' + fmt(MC.kcal / NC) + ' kcal · ' + fmt(MC.p / NC) + ' g proteína · ' + fmt(MC.c / NC) + ' g carbohidratos · ' + fmt(MC.g / NC) + ' g grasa',
+      comEdFilas: nxEd ? [['p', 'Proteína'], ['c', 'Carbohidratos'], ['g', 'Grasa']].map(([k, nombre], fi) => ({ delay: (0.08 + fi * 0.06) + 's', nombre, g: fmt(nxEd[k] * MC[k] / NC) + ' g', esMan: (nxEd.man || {})[k] != null, esCaps: (nxEd.man || {})[k] == null, manVal: (nxEd.man || {})[k] ?? '', manAria: 'Gramos de ' + nombre.toLowerCase(), manSet: (e) => { const v = e.target.value.replace(/[^\d.,]/g, '').slice(0, 5), gr = parseFloat(v.replace(',', '.')) || 0; set({ comEd: { ...nxEd, man: { ...(nxEd.man || {}), [k]: v }, [k]: gr / ((MC[k] / NC) || 1) } }); }, manSalir: () => { const man = { ...(nxEd.man || {}) }; delete man[k]; set({ comEd: { ...nxEd, man, [k]: 1 } }); }, ops: [[0.5, 'Poco'], [1, 'Normal'], [1.5, 'Mucho'], ['m', 'Manual']].map(([v, t]) => { const a = nxEd[k] === v; return { t, ir: () => set({ comEd: v === 'm' ? { ...nxEd, man: { ...(nxEd.man || {}), [k]: String(Math.round(nxEd[k] * MC[k] / NC)) }, [k]: Math.round(nxEd[k] * MC[k] / NC) / ((MC[k] / NC) || 1) } : { ...nxEd, [k]: v } }), bg: a ? 'var(--k0)' : 'transparent', fg: a ? 'var(--k2)' : 'var(--txt)', bd: a ? 'var(--k0)' : 'var(--line2)' }; }) })) : [],
+      comEdKcal: nxEd ? '≈ ' + fmt(nxKcalDe(nxEd)) + ' kcal en esta comida' : '', comEdCerrar: nxCerrar, comEdHayQuitar: !!nxEd && !!nxLog[nxEd.i],
+      comEdGuardar: () => { if (!nxEd) return; const { i, ...x } = nxEd; nxSave(nxLog.map((y, j) => j === i ? x : y)); nxCerrar(); },
+      comEdQuitar: () => { if (!nxEd) return; nxSave(nxLog.map((y, j) => j === nxEd.i ? null : y)); nxCerrar(); },
+      comEdHayFoto: !!nxEd && !!nxEd.foto, comEdFotoBg: nxEd && nxEd.foto ? 'url(' + nxEd.foto + ')' : 'none', comEdFotoTxt: nxEd && nxEd.foto ? 'Cambiar foto' : 'Agregar foto del plato',
+      comEdFoto: (e) => { const f = e.target.files && e.target.files[0]; if (!f) return; const u = URL.createObjectURL(f), im = new Image(); im.onload = () => { const k = Math.min(1, 320 / Math.max(im.width, im.height)), cv = document.createElement('canvas'); cv.width = Math.round(im.width * k); cv.height = Math.round(im.height * k); cv.getContext('2d').drawImage(im, 0, 0, cv.width, cv.height); URL.revokeObjectURL(u); const ed = this.state.comEd; if (ed) this.setState({ comEd: { ...ed, foto: cv.toDataURL('image/jpeg', 0.6) } }); }; im.src = u; },
+      nutComidas: MC ? Array.from({ length: NC }, (_, i) => { const x = nxLog[i], ok = !!x; return { aria: 'Comida ' + (i + 1) + (ok ? ', registrada' : ''), txt: ok ? (x.foto ? 'photo_camera' : 'check') : i + 1, fuente: ok ? "'Material Symbols Rounded'" : 'Oswald,sans-serif', bg: ok ? 'var(--k0)' : 'transparent', fg: ok ? 'var(--k2)' : 'var(--txt)', bd: ok ? 'var(--k0)' : 'var(--line2)', ir: () => set({ comEd: { i, p: 1, g: 1, c: 1, ...(x || {}) } }) }; }) : [],
+      comidasDots: Array.from({ length: NC }, (_, i) => ({ c: nxLog[i] ? 'var(--k0)' : 'var(--line2)' })), aguaAlto: ab ? '280px' : '0px', aguaMasMov: ab ? 'translate(-27px,118px)' : 'none', respAlto: ab ? '280px' : '0px', nutriAlto: ab ? '280px' : '0px',
+      aguaMl: s.ml.toLocaleString('es-CL'), aguaTexto: s.ml >= META ? '¡Meta del día cumplida!' : 'Te faltan ' + (META - s.ml).toLocaleString('es-CL') + ' ml · ' + Math.ceil((META - s.ml) / s.toma) + (Math.ceil((META - s.ml) / s.toma) === 1 ? ' toma' : ' tomas'), menosVaso: () => set({ ml: Math.max(0, s.ml - s.toma) }),
+      tomaOpts: [150, 250, 350, 500].map((ml) => ({ ml, elegir: () => set({ toma: ml }), bg: s.toma === ml ? 'var(--k0)' : 'transparent', fg: s.toma === ml ? 'var(--k2)' : 'var(--ink, inherit)', bd: s.toma === ml ? 'var(--k0)' : 'var(--line2)' })),
+      aguaOla: (() => { const top = s.ml === 0 ? 150 : 134 * (1 - s.ml / META) + 2, ola = (bg, r, seg, dy, key) => React.createElement('div', { key, style: { position: 'absolute', left: -133, width: 400, height: 400, top: top + dy, borderRadius: r, background: bg, animation: 'solfitGira ' + seg + 's linear infinite', transition: 'top 1.2s cubic-bezier(0.32,0.72,0,1)' } });
+        return React.createElement('div', { style: { position: 'absolute', inset: 0 } }, ola('rgba(47,155,232,0.45)', '44%', 9, -7, 'a'), ola('#2F9BE8', '41%', 6, 0, 'b')); })(),
+      comidasLista: ['Desayuno', 'Almuerzo', 'Once', 'Cena'].map((nombre, i) => { const ok = i < s.comidas; return { nombre, estado: ok ? 'Registrada' : 'Pendiente', icono: ok ? 'check_circle' : 'radio_button_unchecked', color: ok ? 'var(--acct)' : 'var(--mut)', relleno: ok ? "'FILL' 1" : "'FILL' 0", linea: i === 3 ? '0' : '1px solid var(--line)', ir: () => set({ comidas: ok ? i : i + 1 }) }; }),
+      pagMov: 'translateX(-' + (s.pag * 25) + '%)', ...Object.fromEntries([0, 1, 2, 3].flatMap((i) => [['pagF' + i, i === s.pag ? 'blur(0px)' : 'blur(12px)'], ['pagO' + i, i === s.pag ? 1 : 0.35]])), pagDown: (e) => { this.pagX = e.clientX; },
+      pagUp: (e) => { if (this.pagX == null) return; const d = e.clientX - this.pagX; this.pagX = null; if (d < -40) set({ pag: Math.min(3, s.pag + 1) }); else if (d > 40) set({ pag: Math.max(0, s.pag - 1) }); },
+      asaLuz: (() => { if (this._pagPrev == null) this._pagPrev = s.pag; if (this._pagPrev !== s.pag) { this._pagDir = s.pag > this._pagPrev ? 'solfitLuzI' : 'solfitLuzD'; this._pagPrev = s.pag; this._pagK = (this._pagK || 0) + 1; } const an = this._pagDir + ' 0.75s cubic-bezier(0.2,0.6,0.35,1) both', E = React.createElement; return this._pagK ? E(React.Fragment, { key: this._pagK }, E('span', { key: 'c', style: { position: 'absolute', inset: 0, borderRadius: 3, overflow: 'hidden', pointerEvents: 'none' } }, E('span', { style: { position: 'absolute', top: 0, bottom: 0, left: 0, width: '100%', background: 'linear-gradient(90deg,rgba(var(--k1),0),rgba(var(--k1),0.18) 25%,var(--k46) 50%,rgba(var(--k1),0.18) 75%,rgba(var(--k1),0))', animation: an } }))) : null; })(),
+      vasosDots: Array.from({ length: 8 }, (_, i) => ({ c: s.ml >= (i + 1) * META / 8 ? 'var(--c4)' : 'var(--line2)' })), respSub: s.rFase === 3 ? '¡Listo! 4 ciclos completos' : s.rFase < 0 ? '1 minuto para bajar pulsaciones' : 'Ciclo ' + s.rCiclo + ' de 4 · ' + ['Inhala', 'Sostén', 'Exhala'][s.rFase],
+      rTitEl: (() => { const x = s.rFase === 3 ? '¡Bien!' : s.rFase < 0 ? 'Respira' : ['Inhala', 'Sostén', 'Exhala'][s.rFase]; const sale = s.rFase >= 0 && s.rFase < 3 && s.rRest <= 1; return React.createElement('span', { style: { display: 'block', opacity: sale ? 0 : 1, filter: sale ? 'blur(5px)' : 'none', transition: sale ? 'opacity 1.3s ease-in, filter 1.3s ease-in' : 'none' } }, React.createElement('span', { key: x, 'data-late': 1, style: { display: 'block', font: '400 26px/1.1 Oswald,sans-serif', textTransform: 'uppercase', letterSpacing: '0.05em', whiteSpace: 'nowrap', animation: 'solfitPalabra 0.7s ease-out both' } }, x)); })(),
+      rTit: s.rFase === 3 ? '¡Bien!' : s.rFase < 0 ? 'Respira' : ['Inhala', 'Sostén', 'Exhala'][s.rFase], rSeg: s.rFase === 3 ? '4 ciclos' : s.rFase < 0 ? '' : s.rOn ? s.rRest + ' s' : 'en pausa',
+      rAro: (() => { const f = s.rFase, col = 'conic-gradient(' + ({ Celeste: 'var(--k6), var(--k0), var(--k28), #7CCDD1, var(--k6)', Naranjo: '#F39200, #F7B955, #FBE3B8, #F6A532, #F39200', Amanecer: '#F39200, #F7C36B, #CFE3C4, #A9CDA7, #F7B955, #F39200', Agua: '#7FD6C2, #6FB7E8, #A6E3B8, #5FC4D6, #8FCBEF, #7FD6C2', Blanco: '#FFFFFF, var(--k34), #FFFFFF, var(--k48), #FFFFFF' }[this.props.halo ?? 'Celeste']) + ')', m = 'conic-gradient(from 180deg, #000 0deg, #000 calc(var(--a) - 36deg), transparent var(--a), transparent 360deg), conic-gradient(from 180deg, transparent 0deg, transparent calc(360deg - var(--a)), #000 calc(396deg - var(--a)), #000 360deg)',
+        aro = (h, op, key) => { const mk = h ? 'radial-gradient(closest-side, ' + [[2,0],[1.75,0.04],[1.5,0.12],[1.3,0.28],[1.15,0.55],[1,1],[0.85,0.55],[0.7,0.28],[0.5,0.12],[0.25,0.04],[0,0]].map(([k, a]) => 'rgba(0,0,0,' + a + ') calc(100% - ' + (k * h).toFixed(1) + 'px)').join(', ') + ')' : 'radial-gradient(closest-side, transparent calc(100% - 2.6px), #000 calc(100% - 1.8px), #000 calc(100% - 0.8px), transparent 100%)'; return React.createElement('div', { key, style: { position: 'absolute', inset: h ? 40 - h : 38.7, borderRadius: '50%', background: col, WebkitMaskImage: mk, maskImage: mk, opacity: op, animation: 'solfitGira 9s linear infinite' } }); };
+        const idle = React.createElement('div', { key: 'idle', style: { position: 'absolute', inset: -30, opacity: f < 0 ? 1 : 0, transition: 'opacity 1.8s ease-in-out' } }, React.createElement('div', { 'data-late': 1, style: { position: 'absolute', inset: 0, animation: 'solfitLate 5s ease-in-out infinite' } }, aro(22, 0.5, 'g'), aro(7, 0.75, 'h'), aro(0, 1, 'l')));
+        const act = React.createElement('div', { key: 'act', style: { position: 'absolute', inset: -30, '--a': f <= 0 ? '0deg' : '216deg', WebkitMaskImage: m, maskImage: m, animation: f === 0 ? 'solfitInh 4s linear forwards' : f === 2 ? 'solfitExh 6s ease-in forwards' : 'none', animationPlayState: s.rOn ? 'running' : 'paused' } }, aro(22, 0.5, 'g'), aro(7, 0.75, 'h'), aro(0, 1, 'l')); return React.createElement(React.Fragment, null, idle, act); })(),
+      rFases: [['Inhala 4 s', 0], ['Sostén 4 s', 1], ['Exhala 6 s', 2]].map(([txt, i]) => ({ txt, bg: s.rFase === i ? ({ Naranjo: '#F39200', Amanecer: '#F7B955', Agua: '#7FD6C2' }[this.props.halo] || 'var(--k6)') : 'var(--line)', fg: s.rFase === i ? 'var(--k17)' : 'var(--mut)' })), rIcono: s.rOn ? 'pause' : 'play_arrow', rMudo: s.rMudo, rMudoIcono: s.rMudo ? 'volume_off' : 'volume_up', rMudoAria: s.rMudo ? 'Activar audio guía' : 'Silenciar audio guía', rMudoCol: s.rMudo ? 'var(--mut)' : 'var(--txt)', rMudoToggle: () => set({ rMudo: !s.rMudo }),
+      rCiclos: [1, 2, 3, 4].map((n) => ({ c: s.rFase === 3 || n < s.rCiclo ? 'var(--k0)' : n === s.rCiclo && s.rFase >= 0 ? 'var(--mut)' : 'var(--line2)' })), rReset: () => { clearInterval(this.rIv); set({ rOn: false, rFase: -1, rRest: 0, rCiclo: 1 }); },
+      navWL: (tabsBase.findIndex((x) => x[0] === s.tab) * 65 + 1.5) + 'px', navWR: (390 - tabsBase.findIndex((x) => x[0] === s.tab) * 65 - 63.5) + 'px', navMask: (tabsBase.findIndex((x) => x[0] === s.tab) * 65 + 32.5 - 390) + 'px 0px', navLeft: 'calc(' + (tabsBase.findIndex((x) => x[0] === s.tab) * 100 / 6 + 100 / 12) + '% - 24px)', conCal: s.tab === 'inicio' || s.tab === 'rutina', calAbierto: ab, calCerrado: !ab, semanas, racha: RACHA, calAlto: ab ? '328px' : '48px', calMov: ab ? 'translateY(0)' : 'translateY(-' + filaSel * 48 + 'px)', calToggle: () => set({ calAbierto: !ab }), asaDown: (e) => { this.asaY = e.clientY; this.asaMov = false; }, asaUp: (e) => { if (this.asaY == null) return; const dy = e.clientY - this.asaY; this.asaY = null; if (Math.abs(dy) > 12) { this.asaMov = true; set({ calAbierto: dy > 0 }); } }, asaClick: () => { if (this.asaMov) { this.asaMov = false; return; } set({ calAbierto: !ab }); }, irRutina: () => set({ tab: 'rutina', verSol: null }), clasesRing: 'conic-gradient(var(--k0) ' + Math.round(quedan / total * 100) + '%, var(--line) 0)', proxDia: pe[2], proxMes: ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'][pe[1] - 1], devDark: !claro || s.pantalla === 'login' || (enApp && s.sub === 'ejercicio'), tTexto: t.estado === 'run' ? 'var(--k2)' : 'var(--txt)', ejNums, ejFrac: (s.ejIdx + 1) + '/' + ejs.length, ejRutina: rut ? rut.t : '', ringBg: 'conic-gradient(var(--k0) ' + Math.round((s.ejIdx + 1) / (ejs.length || 1) * 100) + '%, var(--line) 0)', ...(() => { const hay = !!this.rut(this.hoy()), f = s.planOk ? 0 : sol.length - Object.keys(s.plan).length; return selLibre ? { hoyPre: this.fecha(s.dia), hoyTitulo: 'descanso', hoySub: 'No tienes rutina agendada para ese día', desTxt: 'Desliza para agendar', desAria: 'Desliza para abrir el calendario y agendar' } : selR ? { hoyPre: this.fecha(s.dia), hoyTitulo: selR.t, hoySub: (selBloq ? 'Se desbloquea ese día · ' : '') + selR.ej.length + ' ejercicios · ' + selR.dur, desTxt: 'Toca para ver la rutina', desAria: 'Ver la rutina del ' + this.fecha(s.dia).toLowerCase() } : hay ? { hoyPre: 'Hoy toca', hoyTitulo: hoyR.t, hoySub: hoyR.dur + ' · ' + hoyR.ej.length + ' ejercicios armados por Sol', desTxt: 'Desliza para empezar', desAria: 'Desliza para empezar la rutina' } : { hoyPre: f > 0 ? 'Arma' : 'Hoy', hoyTitulo: f > 0 ? 'tu mes' : 'descansas', hoySub: f === sol.length ? '¡Tu planificación mensual ya está disponible para agendar!' : f > 0 ? 'Te faltan ' + f + ' de ' + sol.length + ' rutinas de Sol por agendar' : irProx ? 'Tu próxima rutina es el ' + this.fecha(prox).toLowerCase() : 'No tienes rutina agendada para hoy', desTxt: irProx ? 'Ver próxima rutina' : 'Desliza para agendar', desAria: irProx ? 'Desliza para ver tu próxima rutina' : 'Desliza para abrir el calendario y agendar' }; })(),
+      proxEvalTexto: new Date(pe[0], pe[1] - 1, pe[2]).toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long' }).replace(',', ''),
+      esLogin: s.pantalla === 'login', esConsent: s.pantalla === 'consent',
+      ...(() => { const n = s.horaAsk, on = PM && n != null && s.plan[n] != null, c = on ? (n + 5) % 7 : 0, ya = on ? s.horas[n] : null, lista = individual ? ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'] : c === 1 ? ['09:00', '19:30'] : ['10:30', '19:30'];
+        return { horaOn: on, horaCols: individual ? 4 : 2, horaSub: on ? 'Rutina ' + (s.plan[n] + 1) + ' · ' + ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'][c] + ' ' + n + ' de noviembre' : '', horaCancelTxt: ya ? 'Dejar ' + ya : s.horaPrev ? 'Cancelar y dejarla donde estaba' : 'Cancelar y devolver la rutina',
+          horaOpts: lista.map((h) => ({ t: h, bg: ya === h ? 'var(--k0)' : 'transparent', fg: ya === h ? 'var(--k2)' : 'var(--txt)', bd: ya === h ? 'var(--k0)' : 'var(--line2)', elegir: () => { set({ horas: { ...s.horas, [n]: h }, horaAsk: null }); this.bip(880, 0.12); } })),
+          horaCancelar: () => { if (ya) return set({ horaAsk: null }); if (s.horaPrev) return set({ plan: s.horaPrev.plan, horas: s.horaPrev.horas, horaAsk: null, horaPrev: null }); const plan = { ...s.plan }, horas = { ...s.horas }, idx = plan[n]; Object.keys(plan).forEach((k) => { if (plan[k] >= idx) { delete plan[k]; delete horas[k]; } }); set({ plan, horas, horaAsk: null }); } }; })(),
+      esTimer: enApp && s.sub === 'timer', planOn: PM, planOff: !PM, diaSelTxt: s.verSol != null && PM ? 'Tu rutina · 2026' : (() => { const x = new Date(2026, 10, s.dia).toLocaleDateString('es-CL', { weekday: 'long' }); return x.charAt(0).toUpperCase() + x.slice(1) + ' ' + s.dia + ' · 2026'; })(), hoyTxt: this.fecha(HOY) + ' de noviembre', diaBloq: (!!rut && !enVista && (s.dia > HOY || this.hecha(s.dia))), playIco: (!!rut && !enVista && (s.dia > HOY || this.hecha(s.dia))) ? ((!enVista && this.hecha(s.dia)) ? 'check' : 'lock') : 'play_arrow', playBg: (!!rut && !enVista && (s.dia > HOY || this.hecha(s.dia))) ? 'rgba(255,255,255,0.22)' : 'var(--k0)', playFg: (!!rut && !enVista && (s.dia > HOY || this.hecha(s.dia))) ? '#fff' : 'var(--k2)', playSombra: (!!rut && !enVista && (s.dia > HOY || this.hecha(s.dia))) ? 'none' : '0 8px 24px rgba(var(--k1),0.35)', playTam: (!!rut && !enVista && (s.dia > HOY || this.hecha(s.dia))) ? '28px' : '36px', playAria: (!enVista && this.hecha(s.dia)) ? 'Rutina completada' : (!!rut && !enVista && (s.dia > HOY || this.hecha(s.dia))) ? 'Rutina bloqueada hasta el ' + this.fecha(s.dia).toLowerCase() : 'Empezar rutina', diaBloqTxt: (!enVista && this.hecha(s.dia)) ? 'Completada · no se puede repetir' : 'Disponible el ' + this.fecha(s.dia).toLowerCase(), planMove: (e) => this.planMove(e), planUp: (e) => this.planUp(e), planTxt: s.planOk ? '' : Object.keys(s.plan).length + '/' + sol.length, planOvOp: (dg && dg.src != null) || s.planMsg ? 1 : 0, planOvTxt: dg && dg.src != null ? 'Rutina ' + (dg.i + 1) + ' · ' + sol[dg.i].t : s.planMsg, planPend: PM && !s.planOk && Object.keys(s.plan).length < sol.length, planPendTxt: 'Te faltan ' + (sol.length - Object.keys(s.plan).length) + ' de ' + sol.length + '.', planAbrir: () => set({ calAbierto: true, pag: 0 }),
+      cvMios: !cTienda, cvTienda: cTienda, cvMiosBg: cTienda ? 'transparent' : 'var(--txt)', cvMiosFg: cTienda ? 'var(--txt)' : 'var(--bg)', cvTiendaBg: cTienda ? 'var(--txt)' : 'transparent', cvTiendaFg: cTienda ? 'var(--bg)' : 'var(--txt)', verMios: () => set({ cursosVista: 'mios', curso: -1 }), verTienda: () => set({ cursosVista: 'tienda', curso: -1 }), nMios: cursosBase.filter(cMio).length, nTienda: cursosBase.length - cursosBase.filter(cMio).length, cursosVacio: !cursos.length,
+      tutoOn: PM && enApp && !s.sub && s.tuto && !Object.keys(s.plan).length, tutoCerrar: () => set({ tuto: false }), planClip: dg && dg.src == null ? 'inset(-340px -220px -40px -60px)' : 'inset(-340px 0 -6px 0)', planListo: PM && (s.planOk || Object.keys(s.plan).length >= sol.length), planListoTxt: Object.keys(s.plan).length >= sol.length ? 'Mes armado' : Object.keys(s.plan).length + ' de ' + sol.length + ' agendadas',
+      asaBg: PM && !s.planOk && !s.calAbierto ? 'var(--k0)' : 'var(--line2)', asaAnim: PM && !s.planOk && !s.calAbierto ? 'solfitAsa 1.2s ease-in-out infinite' : 'none', planBtnTxt: s.planOk ? 'Editar' : 'Guardar', planBtnOff: !s.planOk && !Object.keys(s.plan).length, planBtnOp: !s.planOk && !Object.keys(s.plan).length ? 0.45 : 1, planBtnBg: s.planOk ? 'transparent' : 'var(--k0)', planBtnFg: s.planOk ? 'var(--txt)' : 'var(--k2)', planBtnBd: s.planOk ? 'var(--line2)' : 'var(--k0)',
+      planBtn: () => { if (s.planOk) return set({ planOk: false }); clearTimeout(this.pmT); this.pmT = setTimeout(() => this.setState({ planMsg: '' }), 1800); try { localStorage.setItem('solfit_sync', JSON.stringify({ ...this.leer(), plan: s.plan })); } catch (e) {} set({ planOk: true, planX: 0, verSol: null, planMsg: 'Planificación guardada' }); },
+      planChips: sol.map((r, i) => i).filter((i) => !s.planOk && !Object.values(s.plan).includes(i)).map((i) => { const me = !!dg && dg.i === i && dg.src == null; return { n: i + 1, t: sol[i].t.replace(/ · .*/, ''), aria: 'Rutina ' + (i + 1) + ': ' + sol[i].t + '. Arrastra a un día', down: (e) => this.planDown(e, i, null), z: me ? 6 : 1, max: me ? '36px' : '260px', pad: me ? '0 4px' : '0 14px 0 4px', left: me ? Math.round((dg.ox || 18) - 18) + 'px' : '0px', mov: me ? 'translate(' + dg.dx + 'px,' + dg.dy + 'px) scale(1.15)' : 'none', sombra: me ? '0 8px 20px rgba(0,0,0,0.35)' : '0 1px 3px rgba(0,0,0,0.12)' }; }),
+      planRowRef: (el) => { if (el && this.planRow !== el) { this.planRow = el; setTimeout(() => this.forceUpdate(), 0); } }, planFadeL: s.planX > 4 ? 1 : 0, planFadeR: (this.fadeR = s.planX >= this.planMax() - 4 ? 0 : 1), planRowMov: 'translateX(-' + Math.min(s.planX, this.planRow ? this.planMax() : s.planX) + 'px)', planAjuste: () => this.forceUpdate(), planRowTr: this.pd && this.pd.modo === 'lista' ? 'none' : 'transform 0.3s ease', planRueda: (e) => { if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; set({ planX: Math.max(0, Math.min(this.planMax(), s.planX + e.deltaX)) }); },
+      semDown: (e) => { if (e.pointerType !== 'mouse') return; this.sem = { el: e.currentTarget, x: e.clientX, l: e.currentTarget.scrollLeft, mov: false }; }, semMove: (e) => { const d = this.sem; if (!d || !d.el) return; const dx = e.clientX - d.x; if (Math.abs(dx) > 5) d.mov = true; if (d.mov) d.el.scrollLeft = d.l - dx; }, semUp: () => { if (this.sem) this.sem = { mov: this.sem.mov }; }, semClick: (e) => { if (this.sem && this.sem.mov) { e.stopPropagation(); e.preventDefault(); } this.sem = null; },
+      repsLbl: / s$/.test(String(ej[2])) ? 'Tiempo' : 'Reps',
+      sonidoOn: s.sonido, sonidoIcono: s.sonido ? 'volume_up' : 'volume_off', sonidoCol: s.sonido ? 'var(--k3)' : 'var(--k5)', sonidoAria: s.sonido ? 'Silenciar sonidos' : 'Activar sonidos', sonidoToggle: () => { const on = !s.sonido; this.setState({ sonido: on }, () => on && this.bip(880, 0.15)); },
+      serieTxt: s.series.every((r) => r.ok) ? s.series.length + ' series listas' : 'Serie ' + (foco + 1) + ' de ' + s.series.length, serieSegs: s.series.map((r, i) => ({ c: r.ok ? 'var(--k7)' : i === foco ? 'var(--k0)' : 'var(--k47)' })),
+      serieDown: (e) => { this.serY = e.clientY; }, serieUp: (e) => { if (this.serY == null) return; const d = e.clientY - this.serY; this.serY = null; if (d < -20) irSerie(foco + 1); else if (d > 20) irSerie(foco - 1); }, serieRueda: (e) => { const n = Date.now(); if (Math.abs(e.deltaY) < 8 || n - (this.serW || 0) < 350) return; this.serW = n; irSerie(foco + (e.deltaY > 0 ? 1 : -1)); }, serieMov: 'translateY(' + (50 - foco * 78) + 'px)',
+      ejConTimer: / s$/.test(String(ej[2])) || /circuito/i.test(ej[0]), esEjercicio: enApp && s.sub === 'ejercicio', esTabs: enApp && !s.sub,
+      tabInicio: s.tab === 'inicio', tabRutina: s.tab === 'rutina', tabProgreso: s.tab === 'progreso', tabCursos: s.tab === 'cursos', tabPerfil: s.tab === 'perfil', tabChat: s.tab === 'chat', scRef: this.scRef, chatTxt: s.chatTxt || '', setChatTxt: (e) => set({ chatTxt: e.target.value }), chatSin: !(s.chatTxt || '').trim(), chatBtnFondo: (s.chatTxt || '').trim() ? 'var(--k0)' : 'var(--line)', chatBtnColor: (s.chatTxt || '').trim() ? 'var(--k2)' : 'var(--mut)',
+      chatEnviar: () => { const x = (s.chatTxt || '').trim(); if (!x) return; this.chatAdd({ txt: x }); set({ chatTxt: '' }); this.chatBaja(); }, chatKey: (e) => { if (e.key === 'Enter') { const x = (s.chatTxt || '').trim(); if (!x) return; this.chatAdd({ txt: x }); set({ chatTxt: '' }); this.chatBaja(); } },
+      chatMsgs: [{ de: 's', txt: 'Hola Camila. Cualquier duda de tus rutinas, escríbeme por aquí.', h: '' }].concat(chatL).map((m) => { const yo = m.de === 'a', CARA = [['sentiment_very_dissatisfied', 'Muy mal'], ['sentiment_dissatisfied', 'Cansada'], ['sentiment_neutral', 'Normal'], ['sentiment_satisfied', 'Bien'], ['sentiment_very_satisfied', '¡Excelente!']], lab = m.ej || (m.fin ? 'Terminé: ' + m.fin : '') || (m.re ? 'Sobre: ' + m.re : ''), hc = m.cara != null && m.cara >= 0;
+        return { lado: yo ? 'flex-end' : 'flex-start', fondo: yo ? 'var(--k0)' : 'var(--card)', color: yo ? 'var(--k2)' : 'var(--txt)', borde: yo ? '1px solid var(--k0)' : '1px solid var(--line)', radio: yo ? '20px 20px 6px 20px' : '20px 20px 20px 6px', hayEj: !!lab, ej: lab, ejIc: m.ej ? 'fitness_center' : m.fin ? 'task_alt' : 'reply', hayCara: hc, caraIc: hc ? CARA[m.cara][0] : '', cara: hc ? CARA[m.cara][1] : '', hayTxt: !!m.txt, txt: m.txt || '', h: m.h || '' }; }),
+      tabs, correo: s.correo, setCorreo: (e) => set({ correo: e.target.value, guardado: false }), olvide: () => set({ olvide: true }), olvideVisto: s.olvide,
+      ingresar: () => set({ pantalla: (this.props.primerIngreso ?? true) ? 'consent' : 'app', tab: 'inicio', sub: null }),
+      toggleSalud: () => this.setCons({ salud: !s.salud }), toggleFotos: () => this.setCons({ fotos: !s.fotos }),
+      saludBorde: s.salud ? 'var(--k0)' : 'var(--line)', saludFondo: s.salud ? 'var(--k0)' : 'transparent', saludIcono: s.salud ? 'check' : '',
+      fotosBorde: s.fotos ? 'var(--k0)' : 'var(--line)', fotosFondo: s.fotos ? 'var(--k0)' : 'transparent', fotosIcono: s.fotos ? 'check' : '',
+      consentBloqueado: !s.salud, consentBtnFondo: s.salud ? 'var(--k0)' : 'var(--line)', consentBtnTexto: s.salud ? 'var(--k2)' : 'var(--mut)', aceptarConsent: () => { this.setCons({}); set({ pantalla: 'app' }); },
+      planNombre: individual ? 'Personalizado individual' : 'Personalizado grupal', clasesQuedan: quedan, clasesTotal: total,
+      clasesBarra: Array.from({ length: total }, (_, i) => ({ c: i < total - quedan ? 'var(--k7)' : 'var(--line)' })),
+      empezarHoy: () => this.abrirEj(this.hoy(), 0), irProgreso: () => set({ tab: 'progreso', vista: 'eval' }),
+      masVaso: () => set({ ml: Math.min(META, s.ml + s.toma) }), respAbierta: false, respBtn: s.rOn ? 'Pausar' : s.rFase === 3 ? 'Repetir' : s.rFase >= 0 ? 'Seguir' : 'Empezar', toggleResp: () => { clearInterval(this.rIv); if (s.rOn) return set({ rOn: false }); this.rIv = setInterval(() => this.rTick(), 1000); set(s.rFase < 0 || s.rFase === 3 ? { rOn: true, rFase: 0, rRest: 4, rCiclo: 1, pag: 2, calAbierto: true } : { rOn: true, pag: 2, calAbierto: true }); },
+      dias, diaConRutina: !!rut, diaLibre: !rut, diaTitulo: rut ? rut.t : '', diaDur: rut ? (PM && !enVista && s.horas[s.dia] ? s.horas[s.dia] + ' · ' : '') + (enVista ? 'Rutina ' + (s.verSol + 1) + ' · sin agendar · ' : '') + rut.ej.length + ' ejercicios · ' + rut.dur : '', ejerciciosDia,
+      empezarDia: () => this.abrirEj(s.dia, 0), abrirTimer: () => set({ sub: 'timer', t: { ...t, estado: 'config' } }),
+      volverRutina: () => set({ sub: null, tab: 'rutina', descanso: 0 }), ejPos: 'EJERCICIO ' + (s.ejIdx + 1) + ' DE ' + ejs.length, ejNombre: ej[0], series,
+      sigTexto: ultimo ? 'Terminar rutina' : 'Siguiente ejercicio', sigEjercicio: () => ultimo ? set({ sub: null, tab: 'inicio', descanso: 0 }) : this.abrirEj(s.dia, s.ejIdx + 1),
+      enDescanso: s.descanso > 0, descansoReloj: this.reloj(s.descanso), masDescanso: () => set({ descanso: s.descanso + 15 }), saltarDescanso: () => { set({ descanso: 0 }); this.sigEj(); },
+      tConfig: t.estado === 'config', tCorriendo: t.estado === 'run', tFin: t.estado === 'fin', tAjustes, tRondas: t.rondas,
+      tTotal: this.reloj(t.rondas * t.trabajo + (t.rondas - 1) * t.descanso) + ' min',
+      tFondo: t.estado !== 'run' ? 'var(--bg)' : esTrabajo ? 'var(--k0)' : 'var(--k7)',
+      tFaseNombre: esTrabajo ? 'TRABAJO' : 'DESCANSO', tReloj: t.rest, tRondaTexto: 'Ronda ' + t.ronda + ' de ' + t.rondas,
+      tPuntos: Array.from({ length: t.rondas }, (_, i) => ({ c: i < t.ronda ? 'var(--k2)' : 'transparent' })),
+      tEmpezar: () => set({ t: { ...t, estado: 'run', fase: 'trabajo', ronda: 1, rest: t.trabajo, pausa: false } }),
+      tPausar: () => set({ t: { ...t, pausa: !t.pausa } }), tPausaIcono: t.pausa ? 'play_arrow' : 'pause', tPausaTexto: t.pausa ? 'Seguir' : 'Pausa',
+      tSaltar: () => this.avanzar(), tReiniciar: () => set({ t: { ...t, estado: 'config' } }), cerrarTimer: () => set({ sub: null, t: { ...t, estado: 'config' } }),
+      verEval: () => set({ vista: 'eval' }), verFotos: () => set({ vista: 'fotos' }), vistaEval: s.vista === 'eval', vistaFotos: s.vista === 'fotos',
+      segEvalFondo: s.vista === 'eval' ? 'var(--line2)' : 'transparent', segFotosFondo: s.vista === 'fotos' ? 'var(--line2)' : 'transparent',
+      metricas, mNombre: m.n, mValor: this.num(v[5]), mUnidad: m.u, mPuntos: v.map((x, i) => (14 + i * 58) + ',' + y(x).toFixed(1)).join(' '), mCx: 304, mCy: y(v[5]), mRef: !!m.ref, mRefY: m.ref ? y(m.ref) : 0,
+      comparacion, historial, angulos, anguloNombre: angNombres[s.angulo].toLowerCase(),
+      cmp: s.cmp, setCmp: (e) => set({ cmp: +e.target.value }), cmpClip: 'inset(0 0 0 ' + s.cmp + '%)', cmpLeft: s.cmp + '%',
+      fotosFechas: [{ fecha: '6 de noviembre de 2026' }, { fecha: '4 de septiembre de 2026' }, { fecha: '5 de junio de 2026' }],
+      cursos, pagos, telefono: s.telefono, setTelefono: (e) => set({ telefono: e.target.value, guardado: false }),
+      guardarDatos: () => set({ guardado: true }), guardarTexto: s.guardado ? 'Cambios guardados ✓' : 'Guardar cambios',
+      fotosEstado: s.fotos ? 'Aceptado · puedes quitarlo' : 'No aceptado', swFondo: s.fotos ? 'var(--k0)' : 'var(--line2)', swLeft: s.fotos ? '31px' : '3px',
+      salir: () => set({ pantalla: 'login' }), pedirBorrar: () => set({ confirmBorrar: true }), cancelarBorrar: () => set({ confirmBorrar: false }),
+      confirmBorrar: s.confirmBorrar, borrarCuenta: () => { this.setCons({ salud: false, fotos: false }); set({ confirmBorrar: false, pantalla: 'login' }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
