@@ -25,21 +25,45 @@
     return true;
   }
 
-  // Ajuste al celular: escala el teléfono de 390×844 para que quepa en la pantalla.
+  // Modo app: en el celular quita el marco del iPhone y llena la pantalla
+  // (ancho de diseño 390 px escalado al ancho real; el alto se adapta).
+  var CSS_APP = [
+    'html.modo-app,html.modo-app body{background:var(--bg)!important;overflow:hidden;height:100%;overscroll-behavior:none}',
+    'html.modo-app [data-om-starter="ios-frame"]{border-radius:0!important;box-shadow:none!important}',
+    'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(1),',
+    'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(2),',
+    'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(4){display:none!important}'
+  ].join('');
   function ajustar() {
     if (!esApp) return;
-    var host = document.querySelector('#dc-root > .sc-host > div') || document.querySelector('#dc-root > div > div');
-    if (!host) return;
+    var frame = document.querySelector('[data-om-starter="ios-frame"]');
+    if (!frame) return;
+    var host = frame.closest('div[style*="min-height"]') || frame.parentElement;
+    var contenido = frame.querySelector('[data-sf-cont]') || frame.querySelector('div[style*="height: 844px"]');
+    if (contenido) contenido.setAttribute('data-sf-cont', '1');
     var on = leer(CLAVE_AJUSTE, true);
-    var chico = window.innerWidth < 500;
+    var chico = window.innerWidth < 600;
+    var raiz = document.documentElement;
     if (on && chico) {
-      host.style.padding = '0';
-      var z = Math.min(window.innerWidth / 390, window.innerHeight / 844);
-      host.style.zoom = String(Math.min(1, z));
+      if (!document.getElementById('sf-css-app')) {
+        var s = document.createElement('style'); s.id = 'sf-css-app'; s.textContent = CSS_APP; document.head.appendChild(s);
+      }
+      raiz.classList.add('modo-app');
+      var z = window.innerWidth / 390, alto = Math.round(window.innerHeight / z) + 'px';
+      host.style.padding = '0'; host.style.display = 'block'; host.style.minHeight = '0'; host.style.zoom = String(z);
+      frame.style.height = alto;
+      if (contenido) contenido.style.height = alto;
     } else {
-      host.style.padding = '';
-      host.style.zoom = '';
+      raiz.classList.remove('modo-app');
+      host.style.padding = ''; host.style.display = ''; host.style.minHeight = ''; host.style.zoom = '';
+      frame.style.height = '844px';
+      if (contenido) contenido.style.height = '844px';
     }
+  }
+
+  // App instalable (PWA): service worker mínimo.
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
   }
 
   function css() {
@@ -100,7 +124,7 @@
     });
     if (esApp) {
       var aj = leer(CLAVE_AJUSTE, true);
-      h += '<h4>Vista</h4><label>Ajustar el teléfono a la pantalla</label><div class="ops">' +
+      h += '<h4>Vista</h4><label>Pantalla completa (sin marco de iPhone)</label><div class="ops">' +
         '<button class="op' + (aj ? ' on' : '') + '" data-aj="1">Sí</button><button class="op' + (!aj ? ' on' : '') + '" data-aj="0">No</button></div>';
     }
     h += '<div class="fila"><a href="' + (esApp ? 'panel.dc.html' : 'app.dc.html') + '">Ir a ' + (esApp ? 'Panel de Sol' : 'App alumna') + '</a>' +
@@ -176,6 +200,12 @@
       if (document.body) montar();
       setTimeout(ajustar, 300); setTimeout(ajustar, 1500);
       window.addEventListener('resize', ajustar);
+      // Si el prototipo vuelve a dibujar el marco, se reaplica el modo app.
+      var pend = null, root = document.getElementById('dc-root');
+      new MutationObserver(function () {
+        if (pend) return;
+        pend = setTimeout(function () { pend = null; var f = document.querySelector('[data-om-starter="ios-frame"]'); if (f && !f.querySelector('[data-sf-cont]')) ajustar(); }, 50);
+      }).observe(root, { childList: true, subtree: true });
       return;
     }
     if (++intentos < 200) setTimeout(esperar, 100);
