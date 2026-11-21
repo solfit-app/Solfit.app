@@ -150,6 +150,17 @@
       var r = nav.getBoundingClientRect();
       if (r.height) abajo = colorEn(x, Math.min(window.innerHeight - 1, r.top + r.height / 2));
     }
+    // Pantallas oscuras a pantalla completa (ejercicio, temporizador...): su fondo.
+    if (!abajo) {
+      var oscs = document.querySelectorAll('[data-oscuro="1"]');
+      for (var i = 0; i < oscs.length && !abajo; i++) {
+        var q = oscs[i].getBoundingClientRect();
+        if (q.width > window.innerWidth * 0.9 && q.bottom >= window.innerHeight - 4 && q.top < window.innerHeight / 2) {
+          var bg = getComputedStyle(oscs[i]).backgroundColor, mm = bg.match(/rgba?\(([^)]+)\)/);
+          if (mm) { var pp = mm[1].split(',').map(parseFloat); if (pp.length < 4 || pp[3] > 0.6) abajo = 'rgb(' + Math.round(pp[0]) + ',' + Math.round(pp[1]) + ',' + Math.round(pp[2]) + ')'; }
+        }
+      }
+    }
     abajo = abajo || colorEn(x, window.innerHeight - insetAbajo() - 2) || arriba;
     if (arriba && arriba !== ultArriba) { meta.setAttribute('content', arriba); ultArriba = arriba; }
     if (abajo && abajo !== ultAbajo) { document.documentElement.style.setProperty('--sf-abajo', abajo); ultAbajo = abajo; }
@@ -157,7 +168,8 @@
   // Solo se mide después de tocar algo (cuando la pantalla terminó de cambiar)
   // y cada 3 s, para no interrumpir las animaciones.
   var tColor = null;
-  function colorLuego() { clearTimeout(tColor); tColor = setTimeout(colorearBarras, 700); }
+  var tColor2 = null;
+  function colorLuego() { clearTimeout(tColor); clearTimeout(tColor2); tColor = setTimeout(colorearBarras, 700); tColor2 = setTimeout(colorearBarras, 1600); }
   window.addEventListener('pointerup', colorLuego, { passive: true });
   window.addEventListener('load', colorLuego);
   setInterval(function () { if (!document.hidden) colorearBarras(); }, 3000);
