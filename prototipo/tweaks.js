@@ -45,9 +45,30 @@
       'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(2),',
       'html.modo-app [data-om-starter="ios-frame"]>div:nth-child(4){display:none!important}',
       'html.modo-app [data-sf-cont]{margin-top:-' + RECORTE + 'px!important}',
-      'html.modo-app [data-sf-cont] nav{padding-bottom:var(--sf-pie,6px)!important}'
+      'html.modo-app [data-sf-cont] nav{padding-bottom:var(--sf-pie,6px)!important}',
+      // Animaciones infinitas fuera de la pantalla: en pausa (ver pausarOcultas).
+      '[data-sf-quieta]{animation-play-state:paused!important}'
     ].join('');
   }
+
+  // Los aros que giran (agua, respiración) y otras animaciones infinitas siguen
+  // corriendo aunque estén en otra página del carrusel o en una tarjeta cerrada,
+  // y le quitan cuadros a todo lo demás. Se pausan mientras no se ven.
+  var ioAnim = ('IntersectionObserver' in window) ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) e.target.removeAttribute('data-sf-quieta');
+      else e.target.setAttribute('data-sf-quieta', '');
+    });
+  }) : null;
+  function pausarOcultas() {
+    if (!ioAnim || !document.getAnimations) return;
+    document.getAnimations().forEach(function (a) {
+      var ef = a.effect, el = ef && ef.target;
+      if (!el || el.__sfVigilada || ef.getTiming().iterations !== Infinity) return;
+      el.__sfVigilada = true; ioAnim.observe(el);
+    });
+  }
+  setInterval(function () { if (!document.hidden) pausarOcultas(); }, 1000);
   function ajustar() {
     if (!esApp) return;
     var frame = document.querySelector('[data-om-starter="ios-frame"]');
