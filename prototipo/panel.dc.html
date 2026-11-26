@@ -28,6 +28,7 @@ input{font-family:Montserrat,sans-serif}
 @keyframes solfitMini{from{opacity:0;transform:translateY(10px) scale(0.92)}to{opacity:1;transform:none}}@keyframes solfitKen{from{transform:scale(1.02)}to{transform:scale(1.14) translate(-2%,-2%)}}@keyframes solfitBarra{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes solfitParpadeo{0%,100%{opacity:1}50%{opacity:0.25}}
 @media (prefers-reduced-motion:reduce){[data-parpadea]{animation:none!important}}
 .sf-fecha input::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:auto;height:auto;opacity:0;cursor:pointer}
+@keyframes guiaIn{from{opacity:0;transform:translateY(10px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}@keyframes guiaPaso{from{opacity:0;transform:translateY(8px);filter:blur(4px)}to{filter:none}}@keyframes guiaPil{from{opacity:0;transform:translateY(20px) scale(0.96)}to{opacity:1;transform:none}}@keyframes guiaPop{from{transform:scale(0.4)}to{transform:scale(1)}}
 </style>
 </helmet>
 <div style="display:flex;min-height:100vh;align-items:flex-start">
@@ -52,12 +53,19 @@ input{font-family:Montserrat,sans-serif}
         <span style="position:relative;width:36px;height:36px;border-radius:50%;background:var(--st1);display:flex;align-items:center;justify-content:center;flex:none;font:600 15px/1 Oswald,sans-serif;color:var(--sage)">{{ a.ini }}<span style="position:absolute;right:-2px;bottom:-2px;width:11px;height:11px;border-radius:50%;background:{{ a.punto }};border:2px solid var(--card)"></span></span>
         <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ a.nombre }}</span>
         <sc-if value="{{ a.msjHay }}" hint-placeholder-val="{{ false }}"><span title="Mensaje nuevo" style="flex:none;width:10px;height:10px;border-radius:50%;background:#62C6CB"></span></sc-if>
+        <sc-if value="{{ a.guiaHay }}" hint-placeholder-val="{{ false }}"><span title="Pasos para dejarlo listo" style="flex:none;min-height:22px;padding:0 8px;border-radius:999px;background:#62C6CB;color:#06181D;font:700 12px/22px Montserrat,sans-serif">{{ a.guiaTxt }}</span></sc-if>
         <sc-if value="{{ a.rutHay }}" hint-placeholder-val="{{ false }}"><span title="{{ a.rutTit }}" style="flex:none;font-family:'Material Symbols Rounded';font-size:20px;font-variation-settings:'FILL' 1;color:{{ a.rutColor }}">{{ a.rutIc }}</span></sc-if>
       </button>
     </sc-for>
     </div></div>
   </div>
 </nav>
+<sc-if value="{{ guiaPildora }}" hint-placeholder-val="{{ false }}">
+  <button onClick="{{ guiaPilIr }}" style="position:fixed;left:14px;bottom:14px;width:218px;z-index:60;min-height:60px;padding:8px 14px 8px 8px;border:0;border-radius:999px;background:#17616B;color:#fff;box-shadow:0 10px 30px rgba(6,24,29,0.28);cursor:pointer;display:flex;align-items:center;gap:12px;font:600 15px/1.25 Montserrat,sans-serif;text-align:left;animation:guiaPil 0.45s cubic-bezier(0.32,0.72,0,1)">
+    <span style="width:42px;height:42px;border-radius:50%;background:#62C6CB;color:#06181D;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:24px">checklist</span>
+    <span style="min-width:0"><strong style="display:block;font-size:14px">{{ guiaPilTxt }}</strong><span style="color:#9BE0E3">{{ guiaPilSub }}</span></span>
+  </button>
+</sc-if>
 <main style="flex:1;min-width:0;padding:28px;max-width:1240px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
 
 <sc-if value="{{ secDash }}" hint-placeholder-val="{{ true }}">
@@ -214,7 +222,46 @@ input{font-family:Montserrat,sans-serif}
     <sc-if value="{{ fTieneCond }}" hint-placeholder-val="{{ false }}">
       <div role="alert" style="background:var(--badbg);border:1px solid var(--bad);border-radius:26px;padding:14px 16px;display:flex;align-items:center;gap:12px;color:var(--bad)"><span style="font-family:'Material Symbols Rounded';font-size:32px;font-variation-settings:'FILL' 1">medical_information</span><span><strong style="display:block;font-size:18px">Condición médica</strong>{{ fCond }}</span></div>
     </sc-if>
-    
+    <sc-if value="{{ guiaOn }}" hint-placeholder-val="{{ false }}">
+    <div style="background:var(--card);border:2px solid #62C6CB;border-radius:30px;padding:20px 22px;display:flex;flex-direction:column;gap:16px;animation:guiaIn 0.5s cubic-bezier(0.32,0.72,0,1)">
+      <sc-if value="{{ guiaPend }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <span style="width:48px;height:48px;border-radius:50%;background:#62C6CB;color:#06181D;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:28px;flex:none">checklist</span>
+        <div style="flex:1;min-width:200px"><div style="font-weight:700;font-size:20px;line-height:1.2">Dejar lista a {{ guiaPn }}</div><div style="color:var(--mut)">Sigue los pasos en orden. Al terminar, {{ guiaPn }} tiene todo en su app.</div></div>
+        <span style="font:600 28px/1 Oswald,sans-serif;color:var(--sage)">{{ guiaCuenta }}</span>
+      </div>
+      <div style="height:8px;border-radius:999px;background:var(--line);overflow:hidden"><div style="height:100%;width:{{ guiaBarra }};background:linear-gradient(90deg,#17616B,#62C6CB);border-radius:999px;transition:width 0.6s cubic-bezier(0.32,0.72,0,1)"></div></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px">
+        <sc-for list="{{ guiaPasos }}" as="p" hint-placeholder-count="5">
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:20px;background:{{ p.fondo }};border:1.5px solid {{ p.borde }};opacity:{{ p.op }};animation:guiaPaso 0.45s cubic-bezier(0.32,0.72,0,1) {{ p.del }} both;transition:background 0.3s ease,border-color 0.3s ease">
+            <span style="width:34px;height:34px;border-radius:50%;background:{{ p.circFondo }};color:{{ p.circColor }};display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:20px;font-variation-settings:'FILL' 1;flex:none;transition:background 0.3s ease">{{ p.ic }}</span>
+            <span style="min-width:0"><span style="display:block;font-size:12px;color:var(--mut);font-weight:600">PASO {{ p.n }}</span><span style="display:block;font-weight:{{ p.peso }};color:{{ p.titColor }};line-height:1.25">{{ p.tit }}</span><span style="display:block;font-size:13px;color:var(--mut);line-height:1.3;margin-top:2px">{{ p.sub }}</span></span>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ guiaEsCons }}" hint-placeholder-val="{{ false }}">
+        <div style="background:var(--warnbg);border-radius:22px;padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:10px;align-items:flex-start"><span style="font-family:'Material Symbols Rounded';font-size:24px;color:var(--aviso);flex:none">hourglass_top</span><span>{{ guiaConsTxt }}</span></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+            <button onClick="{{ guiaReenviar }}" style="min-height:52px;padding:0 22px;border:0;border-radius:999px;background:#62C6CB;color:#06181D;font:700 16px Montserrat,sans-serif;cursor:pointer;display:flex;align-items:center;gap:8px"><span style="font-family:'Material Symbols Rounded';font-size:22px">notifications_active</span>Reenviar aviso a su app</button>
+            <button onClick="{{ guiaSimular }}" title="Solo en el prototipo: simula que el alumno aceptó en su app" style="min-height:52px;padding:0 18px;border:1.5px dashed var(--mut);border-radius:999px;background:transparent;color:var(--mut);font:600 14px Montserrat,sans-serif;cursor:pointer">Demo: simular que aceptó</button>
+            <sc-if value="{{ guiaAvisoOn }}" hint-placeholder-val="{{ false }}"><span style="color:var(--sage);font-weight:600;display:flex;align-items:center;gap:6px"><span style="font-family:'Material Symbols Rounded';font-size:20px">check_circle</span>{{ guiaAvisoTxt }}</span></sc-if>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ guiaHayBoton }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;justify-content:flex-end"><button onClick="{{ guiaSig }}" style="min-height:60px;padding:0 30px;border:0;border-radius:999px;background:#17616B;color:#fff;font:700 17px Montserrat,sans-serif;cursor:pointer;display:flex;align-items:center;gap:10px">{{ guiaSigTxt }}<span style="font-family:'Material Symbols Rounded';font-size:24px">arrow_forward</span></button></div>
+      </sc-if>
+      </sc-if>
+      <sc-if value="{{ guiaListo }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <span style="width:56px;height:56px;border-radius:50%;background:var(--okbg);color:var(--sage);display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:34px;font-variation-settings:'FILL' 1;flex:none;animation:guiaPop 0.6s cubic-bezier(0.34,1.56,0.64,1)">celebration</span>
+        <div style="flex:1;min-width:200px"><div style="font-weight:700;font-size:20px">¡Todo listo para {{ guiaPn }}!</div><div style="color:var(--mut)">{{ guiaFinTxt }}</div></div>
+        <button onClick="{{ guiaCerrar }}" style="min-height:52px;padding:0 24px;border:0;border-radius:999px;background:#62C6CB;color:#06181D;font:700 16px Montserrat,sans-serif;cursor:pointer">Listo, ocultar guía</button>
+      </div>
+      </sc-if>
+    </div>
+    </sc-if>
     <sc-if value="{{ fTabFicha }}" hint-placeholder-val="{{ true }}">
     <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:30px;overflow:hidden">
@@ -257,6 +304,7 @@ input{font-family:Montserrat,sans-serif}
     </div>
     </sc-if>
 <sc-if value="{{ fTabRut }}" hint-placeholder-val="{{ true }}">
+<div id="guiaRut" style="scroll-margin-top:16px"></div>
 <div data-screen-label="Constructor de rutinas" style="display:flex;flex-direction:column;gap:16px;padding-top:10px">
   <div style="font-weight:700;font-size:22px;line-height:1.2">Rutinas del mes</div>
   <div style="display:flex;flex-direction:column;gap:24px">
@@ -786,7 +834,7 @@ class Component extends DCLogic {
     const sinLeer = (id) => chatDe(id).slice(vistoDe(id)).filter((m) => m.de === 'a').length, msjTot = A.reduce((t, a) => t + sinLeer(a.id), 0);
     const msjAbrir = (id) => () => { const n = chatDe(id).length; if (id === 1 && (s.sync.chatVS || 0) !== n) this.escribir({ chatVS: n }); set({ listaMin: undefined, sec: 'msj', msjAl: id, msjRe: null, msjTxt: '', vistoL: { ...(s.vistoL || {}), [id]: n } }); };
     const PLANES = ['Personalizado grupal', '1 a 1', '2x1', 'Open Gym', 'Open Gym + asesoría', 'Pase diario', 'Pase semanal', 'Pase 2 semanas'], conFrec = (p) => p === 'Personalizado grupal' || p === '1 a 1', nOk = s.nNombre.trim().length > 1;
-    const nuevoGuardar = () => { if (!nOk) return; const id = A.length + 1, f = conFrec(s.nPlan), tot = s.nPlan === 'Personalizado grupal' ? s.nFrec * 4 : 0; set({ nuevos: [...s.nuevos, { id, nuevo: true, nac: s.nNac || '', tel: (s.nTel || '').trim(), mail: (s.nMail || '').trim(), nombre: s.nNombre.trim(), plan: s.nPlan, frec: f ? s.nFrec : null, estado: 'activo', vence: '16 dic', q: tot, tot, sin: 0, e30: 0, cond: '', salud: false, fotos: false, evSem: true, prox: '2026-11-18' }], alumno: id, nuevoOn: false, nPaso: 0, nNombre: '', nNac: '', nTel: '', nMail: '', nPlan: 'Personalizado grupal', nFrec: 2 }); };
+    const nuevoGuardar = () => { if (!nOk) return; const id = A.length + 1, f = conFrec(s.nPlan), tot = s.nPlan === 'Personalizado grupal' ? s.nFrec * 4 : 0; set({ nuevos: [...s.nuevos, { id, nuevo: true, nac: s.nNac || '', tel: (s.nTel || '').trim(), mail: (s.nMail || '').trim(), nombre: s.nNombre.trim(), plan: s.nPlan, frec: f ? s.nFrec : null, estado: 'activo', vence: '16 dic', q: tot, tot, sin: 0, e30: 0, cond: '', salud: false, fotos: false, evSem: true, prox: '2026-11-18' }], alumno: id, fTab: 'ficha', guiaVista: id, nuevoOn: false, nPaso: 0, nNombre: '', nNac: '', nTel: '', nMail: '', nPlan: 'Personalizado grupal', nFrec: 2 }); };
     const nav = [['dash', 'Inicio', 'dashboard'], ['ficha', 'Alumnos', 'group'], ['msj', 'Mensajes', 'chat'], ['eval', 'Evaluación', 'monitor_weight'], ['macros', 'Macros', 'calculate'], ['asist', 'Asistencia', 'how_to_reg'], ['planes', 'Planes', 'badge'], ['fin', 'Finanzas', 'payments']].map(([id, nombre, icono]) => { const a = sec === id; return { nombre, icono, n: msjTot, hayN: id === 'msj' && msjTot > 0, ir: () => set({ listaMin: undefined, sec: id }), color: a ? 'var(--txt)' : 'var(--mut)', peso: a ? 700 : 500, icoColor: a ? 'var(--acct)' : 'var(--mut)', relleno: a ? "'FILL' 1" : "'FILL' 0" }; });
 
     const AH = ['07:00', '09:00', '10:30', '18:00', '19:30'], AW = [1, 1.3, 0.9, 1.25, 0.8, 0.5, 0.4], AHW = [0.6, 1.3, 1, 0.8, 1.1], SEM = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'];
@@ -816,10 +864,14 @@ class Component extends DCLogic {
     ];
 
     const al = A.find((a) => a.id === s.alumno), e = this.EST[al.estado], cA = cons(al);
+    const GP = [['Datos básicos', 'badge'], ['Consentimientos', 'verified_user'], ['Evaluación inicial', 'monitor_weight'], ['Macros', 'calculate'], ['Primera rutina', 'fitness_center']];
+    const gEst = (a) => { const d = [true, !!cons(a).salud, !!(s.evHechas || {})[a.id], !!(s.macEnv || {})[a.id], !!(s.enviadas || {})[a.id]], n = d.filter(Boolean).length, cur = d.indexOf(false); return { d, n, cur, listo: cur < 0 }; };
+    const gVer = (a) => !!a && !!a.nuevo && !(s.guiaFin || {})[a.id];
+    const gTag = (a) => { if (!gVer(a)) return { guiaHay: false, guiaTxt: '' }; const g = gEst(a); return { guiaHay: !g.listo, guiaTxt: g.n + '/5' }; };
     const norm = (t) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''), coincide = (a) => norm(a.nombre).includes(norm(s.busca.trim()));
     const rutEst = (a) => { const n = (s.planes[a.id] || []).filter((r) => r.ej.length && r.ok).length, env = !!(s.enviadas || {})[a.id]; return { rutHay: env || n > 0, rutIc: env ? 'done_all' : 'check_circle', rutColor: env ? 'var(--sage)' : 'var(--acct)', rutTit: env ? 'Rutinas enviadas' : n + (n === 1 ? ' rutina lista' : ' rutinas listas') + ' sin enviar' }; };
     const enMac = sec === 'macros', selA = (a) => enMac ? a.id === s.evId : sec === 'ficha' && a.id === s.alumno && !s.nuevoOn;
-    const listaAlumnos = [...A].filter(coincide).sort((p, q) => p.nombre.localeCompare(q.nombre, 'es')).map((a) => ({ msjHay: sinLeer(a.id) > 0, peso: selA(a) ? 700 : 500, ini: this.ini(a.nombre).toUpperCase(), borde: a.id === s.alumno && !s.nuevoOn ? 'var(--line2)' : 'var(--line)', nombre: a.nombre, plan: a.plan + (a.frec ? ' · ' + a.frec + ' x semana' : ''), ir: enMac ? () => set({ evId: a.id, paso: 0, evOk: false }) : abrir(a.id), fondo: selA(a) ? 'var(--line)' : 'transparent', punto: this.EST[a.estado][4], aro: a.id === s.alumno && !s.nuevoOn ? '0 0 0 2px var(--card), 0 0 0 4px var(--txt)' : 'none', ...rutEst(a) }));
+    const listaAlumnos = [...A].filter(coincide).sort((p, q) => p.nombre.localeCompare(q.nombre, 'es')).map((a) => ({ msjHay: sinLeer(a.id) > 0, peso: selA(a) ? 700 : 500, ini: this.ini(a.nombre).toUpperCase(), borde: a.id === s.alumno && !s.nuevoOn ? 'var(--line2)' : 'var(--line)', nombre: a.nombre, plan: a.plan + (a.frec ? ' · ' + a.frec + ' x semana' : ''), ir: enMac ? () => set({ evId: a.id, paso: 0, evOk: false }) : abrir(a.id), fondo: selA(a) ? 'var(--line)' : 'transparent', punto: this.EST[a.estado][4], aro: a.id === s.alumno && !s.nuevoOn ? '0 0 0 2px var(--card), 0 0 0 4px var(--txt)' : 'none', ...rutEst(a), ...gTag(a) }));
     const edadDe = (iso) => { const p = iso.split('-').map(Number); return 2026 - p[0] - (p[1] > 11 || (p[1] === 11 && p[2] > 16) ? 1 : 0); };
     const pesoA = (a) => 62.4 + (a.id * 3.7) % 19, edadA = (a) => 24 + (a.id * 7) % 28;
     const fBloques = [
@@ -1036,6 +1088,34 @@ class Component extends DCLogic {
       R.finDeshacer = () => set({ preEd: {} }); R.finOk = !!s.finOk && !cambios.length; R.finOkTxt = (s.finOk === 1 ? '1 precio actualizado' : s.finOk + ' precios actualizados') + '. Se aplica desde la próxima renovación de cada alumno; los pagos ya hechos no cambian.';
       R.finPagos = pagan.slice().sort((x, y) => ({ porvencer: 0, vencido: 1, activo: 2 }[x.estado] - { porvencer: 0, vencido: 1, activo: 2 }[y.estado])).map((a, i, l) => ({ ini: this.ini(a.nombre).toUpperCase(), nombre: a.plan === '2x1' ? a.nombre + ' + ' + (A.find((b) => b.id === a.pareja) || {}).nombre.split(' ')[0] : a.nombre, plan: a.plan === '1 a 1' ? '1 a 1 · ' + Math.min(4, Math.max(1, a.frec || 2)) + ' x semana' : a.plan, monto: clpM(pagado(a)), hayRen: fPre[pk(a)] !== pagado(a) && a.estado !== 'vencido', ren: 'Renueva a ' + clpM(fPre[pk(a)]), renC: fPre[pk(a)] > pagado(a) ? 'var(--sage)' : 'var(--bad)', vence: (a.estado === 'vencido' ? 'Venció el ' : 'Vence el ') + a.vence,
         estado: { activo: 'Pagado', porvencer: 'Por renovar', vencido: 'Vencido' }[a.estado], chipF: this.EST[a.estado][0], chipC: this.EST[a.estado][1], chipI: this.EST[a.estado][2], linea: i === l.length - 1 ? '0' : '1px solid var(--line)' })); }
+    { const ir = (a, k) => () => { if (k === 2) set({ listaMin: undefined, sec: 'eval', evId: a.id, paso: 0, evOk: false, guiaVista: a.id }); else if (k === 3) set({ listaMin: undefined, sec: 'macros', evId: a.id, guiaVista: a.id }); else if (k === 4) { set({ listaMin: undefined, sec: 'ficha', alumno: a.id, nuevoOn: false, rIdx: 0, rOk: false, guiaVista: a.id }); setTimeout(() => { const el = document.getElementById('guiaRut'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80); } };
+      const sub = (a, g, k) => { const pn = a.nombre.split(' ')[0];
+        if (k === 0) return 'Nombre, contacto y plan';
+        if (k === 1) return g.d[1] ? 'Salud aceptado' + (cons(a).fotos ? ' · fotos sí' : ' · fotos no') : 'Esperando que ' + pn + ' acepte en su app';
+        if (k === 2) return g.d[2] ? 'Guardada' : g.d[1] ? 'Peso, medidas, salud y fotos' : 'Se abre cuando acepte salud';
+        if (k === 3) return g.d[3] ? 'Enviadas a su app' : 'Calorías, macros y agua';
+        return g.d[4] ? 'Ya está en su app' : 'Armarla y enviarla'; };
+      const gA = al && gVer(al) ? al : null, g = gA ? gEst(gA) : null, gPn = gA ? gA.nombre.split(' ')[0] : '';
+      R.guiaOn = !!gA && !s.nuevoOn; R.guiaPn = gPn; R.guiaListo = !!g && g.listo; R.guiaPend = !!g && !g.listo;
+      R.guiaCuenta = g ? g.n + ' de 5' : ''; R.guiaBarra = g ? (g.n / 5 * 100) + '%' : '0%';
+      R.guiaPasos = g ? GP.map(([tit, ic], k) => { const h = g.d[k], c = k === g.cur, blo = !h && !c; return { n: k + 1, tit, sub: sub(gA, g, k), ic: h ? 'check' : blo ? 'lock' : ic, circFondo: h ? 'var(--sage)' : c ? '#62C6CB' : 'var(--line)', circColor: h ? 'var(--card)' : c ? '#06181D' : 'var(--mut)', fondo: c ? 'var(--line)' : 'transparent', borde: c ? '#62C6CB' : 'transparent', titColor: blo ? 'var(--mut)' : 'var(--txt)', peso: c ? 700 : 600, op: blo ? 0.6 : 1, del: (k * 0.06) + 's' }; }) : [];
+      const cur = g ? g.cur : -1;
+      R.guiaEsCons = cur === 1; R.guiaHayBoton = cur >= 2;
+      R.guiaSigTxt = cur >= 0 ? 'Continuar: ' + GP[cur][0] : ''; R.guiaSig = gA && cur >= 2 ? ir(gA, cur) : () => {};
+      R.guiaConsTxt = gPn + ' tiene que aceptar el consentimiento de datos de salud en su app (Perfil → Consentimientos). Sin eso no se puede hacer la evaluación. El de fotos es opcional.';
+      R.guiaReenviar = () => gA && set({ guiaAviso: { ...(s.guiaAviso || {}), [gA.id]: new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' }) } });
+      R.guiaAvisoOn = !!gA && !!(s.guiaAviso || {})[gA.id]; R.guiaAvisoTxt = gA ? 'Aviso reenviado a la app de ' + gPn + ' a las ' + (s.guiaAviso || {})[gA.id] + '.' : '';
+      R.guiaSimular = () => gA && set({ nuevos: s.nuevos.map((x) => x.id === gA.id ? { ...x, salud: true, fotos: true } : x) });
+      R.guiaCerrar = () => gA && set({ guiaFin: { ...(s.guiaFin || {}), [gA.id]: true } });
+      R.guiaFinTxt = gPn + ' ya tiene todo en su app: evaluación, macros y su primera rutina.';
+      // pildora flotante para volver a la guía desde Evaluación, Macros o el armador
+      const gv = s.guiaVista != null ? A.find((a) => a.id === s.guiaVista) : null, gvE = gv && gVer(gv) ? gEst(gv) : null, enGuia = sec === 'ficha' && !s.nuevoOn && s.alumno === (gv && gv.id);
+      R.guiaPildora = !!gvE && !enGuia; R.guiaPilTxt = gv ? 'Dejar lista a ' + gv.nombre.split(' ')[0] + ' · ' + (gvE ? gvE.n : 0) + ' de 5' : ''; R.guiaPilSub = gvE ? (gvE.listo ? '¡Lista! Ver resumen' : 'Volver a la guía') : '';
+      R.guiaPilIr = () => gv && set({ listaMin: undefined, sec: 'ficha', alumno: gv.id, nuevoOn: false, fTab: 'ficha' });
+      // Inicio: alumnos por dejar listos
+      const pend = A.filter((a) => gVer(a) && !gEst(a).listo);
+      if (pend.length) R.listas = [{ titulo: 'Alumnos por dejar listos', filas: pend.map((a) => { const x = gEst(a); return { ini: this.ini(a.nombre), nombre: a.nombre, detalle: 'Paso ' + (x.cur + 1) + ' de 5 · ' + GP[x.cur][0], ir: () => set({ listaMin: undefined, sec: 'ficha', alumno: a.id, nuevoOn: false, fTab: 'ficha', guiaVista: a.id }), detColor: 'var(--acct)', detPeso: 600 }; }) }, ...R.listas];
+    }
     return R;
   }
 }
