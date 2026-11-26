@@ -320,13 +320,12 @@ input{font-family:Montserrat,sans-serif}
           <div ref="{{ rTitRef }}" style="flex:1;min-width:0;text-align:center;line-height:1.3"><strong style="display:block;font-size:20px">{{ rNavTit }}</strong><span style="color:var(--mut);font-size:14px">{{ rNavSub }}</span></div>
           <button onClick="{{ rSig }}" aria-label="Rutina siguiente" style="width:48px;height:48px;flex:none;border:1px solid var(--line2);border-radius:50%;background:transparent;color:{{ rSigColor }};cursor:pointer;font-family:'Material Symbols Rounded';font-size:26px" style-hover="background:var(--bg)">chevron_right</button>
         </div>
-        <div style="position:relative;display:flex;gap:6px">
-          <span style="position:absolute;top:-4px;bottom:-4px;left:{{ rAroLeft }};width:{{ rAroAncho }};box-sizing:border-box;border:2px solid var(--txt);border-radius:16px;pointer-events:none;transition:left 0.4s cubic-bezier(0.32,0.72,0,1)"></span>
+        <div style="position:relative;display:flex;gap:10px;padding:4px">
           <sc-for list="{{ rTabs }}" as="d" hint-placeholder-count="8">
-            <button onClick="{{ d.ir }}" onContextMenu="{{ d.menu }}" title="{{ d.sub }}" style="flex:1 1 0;min-width:0;height:44px;border:{{ d.borde }};background:{{ d.fondo }};color:{{ d.color }};border-radius:12px;transition:background 0.3s ease,color 0.3s ease;cursor:pointer;font:700 15px Montserrat,sans-serif">{{ d.n }}</button>
+            <button onClick="{{ d.ir }}" onContextMenu="{{ d.menu }}" title="{{ d.sub }}" style="flex:1 1 0;min-width:0;height:44px;box-sizing:border-box;border:{{ d.borde }};background:{{ d.fondo }};color:{{ d.color }};box-shadow:{{ d.aro }};border-radius:12px;transition:background 0.3s ease,color 0.3s ease,box-shadow 0.25s ease;cursor:pointer;font:700 15px Montserrat,sans-serif">{{ d.n }}</button>
           </sc-for>
         </div>
-        <div style="color:var(--mut);font-size:14px">Naranja = lista · verde = enviada · punteada = vacía. Clic derecho en un número para copiar o pegar la rutina completa.</div>
+        <div style="color:var(--mut);font-size:14px">Celeste = lista · verde = enviada · borde celeste = sin guardar · punteada = vacía. Clic derecho en un número para copiar o pegar la rutina completa.</div>
       </div>
         <div style="flex:{{ libFlex }};max-width:{{ libMaxW }};box-sizing:border-box;min-width:0;max-height:{{ libMaxH }};padding:{{ libPad }};border-right:{{ libBorR }};border-bottom:{{ libBorB }};display:flex;flex-direction:column;gap:10px">
       <div style="font-weight:700;font-size:18px">Biblioteca</div><div style="color:var(--mut);font-size:14px;padding-bottom:6px">Elige un tipo y toca + para agregar el ejercicio</div>
@@ -631,6 +630,76 @@ input{font-family:Montserrat,sans-serif}
 </div>
 </sc-if>
 
+<sc-if value="{{ secFin }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Finanzas" style="display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <div><h1 style="margin:0;font-weight:700;font-size:28px;line-height:1.15;color:var(--txt)">Finanzas</h1><span style="color:var(--mut);font-size:14px">Noviembre 2026 · los meses anteriores son datos de ejemplo</span></div>
+    <span style="display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:999px;background:{{ finCrecF }};color:{{ finCrecC }};font-weight:700"><span style="font-family:'Material Symbols Rounded';font-size:20px">monitoring</span>{{ finCrec }}</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+    <sc-for list="{{ finKpis }}" as="k" hint-placeholder-count="5">
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:16px;display:flex;flex-direction:column;gap:10px">
+        <span style="display:flex;align-items:center;gap:10px"><span style="width:38px;height:38px;border-radius:12px;background:{{ k.icF }};color:{{ k.icC }};display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:22px;font-variation-settings:'FILL' 1">{{ k.ic }}</span><span style="color:var(--mut);font-weight:600;font-size:14px">{{ k.t }}</span></span>
+        <strong style="font-family:Oswald,sans-serif;font-weight:600;font-size:30px;line-height:1;color:var(--txt)">{{ k.v }}</strong>
+        <span style="color:var(--mut);font-size:13px">{{ k.sub }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:30px;padding:20px;display:flex;flex-direction:column;gap:14px">
+      <strong style="font-size:18px">Ingresos por mes</strong>
+      <div style="flex:1;min-height:220px;display:flex;align-items:flex-end;gap:12px;padding-top:24px">
+        <sc-for list="{{ finMeses }}" as="m" hint-placeholder-count="6">
+          <div style="flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px">
+            <span style="font-size:12px;font-weight:{{ m.peso }};color:var(--mut);white-space:nowrap">{{ m.v }}</span>
+            <div style="width:100%;max-width:52px;height:{{ m.alto }};background:{{ m.fondo }};opacity:{{ m.op }};border-radius:12px 12px 6px 6px;transition:height 0.5s cubic-bezier(0.32,0.72,0,1)"></div>
+            <span style="font-size:13px;font-weight:{{ m.peso }};color:var(--txt)">{{ m.m }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:30px;padding:20px;display:flex;flex-direction:column;gap:14px">
+      <strong style="font-size:18px">De dónde viene la plata</strong>
+      <sc-for list="{{ finPlanes }}" as="g" hint-placeholder-count="6">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="display:flex;justify-content:space-between;gap:8px;font-size:14px"><span><strong>{{ g.nombre }}</strong> <span style="color:var(--mut)">· {{ g.n }}</span></span><span><strong>{{ g.total }}</strong> <span style="color:var(--mut)">{{ g.pct }}</span></span></span>
+          <div style="height:10px;border-radius:999px;background:var(--line);overflow:hidden"><div style="height:100%;width:{{ g.ancho }};background:{{ g.color }};border-radius:999px;transition:width 0.5s cubic-bezier(0.32,0.72,0,1)"></div></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:30px;padding:20px;display:flex;flex-direction:column;gap:6px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px">
+      <span><strong style="display:block;font-size:18px">Precios de los planes</strong><span style="color:var(--mut);font-size:14px">Escribe el precio nuevo y guarda. Se cobra desde la próxima renovación.</span></span>
+      <span style="display:flex;gap:8px">
+        <sc-if value="{{ finHayCambios }}" hint-placeholder-val="{{ false }}"><button onClick="{{ finDeshacer }}" style="min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--txt);font:600 15px Montserrat,sans-serif;cursor:pointer">Deshacer</button></sc-if>
+        <button onClick="{{ finGuardar }}" disabled="{{ finSinCambios }}" style="min-height:44px;padding:0 18px;border-radius:999px;border:0;background:{{ finGuardFondo }};color:{{ finGuardColor }};font:700 15px Montserrat,sans-serif;cursor:{{ finGuardCursor }};display:flex;align-items:center;gap:8px"><span style="font-family:'Material Symbols Rounded';font-size:20px">save</span>Guardar precios</button>
+      </span>
+    </div>
+    <sc-if value="{{ finHayCambios }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 14px;border-radius:16px;background:var(--warnbg);color:var(--txt);font-size:14px;font-weight:600">{{ finProy }}</div></sc-if>
+    <sc-if value="{{ finOk }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 14px;border-radius:16px;background:var(--okbg);color:var(--sage);font-size:14px;font-weight:600">{{ finOkTxt }}</div></sc-if>
+    <sc-for list="{{ finPrecios }}" as="r" hint-placeholder-count="8">
+      <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.7fr) 190px;gap:8px 14px;align-items:center;min-height:68px;border-bottom:{{ r.linea }}">
+        <span style="min-width:0"><strong style="display:block">{{ r.nombre }}</strong><span style="color:var(--mut);font-size:14px">{{ r.tipo }}</span></span>
+        <span style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;font-size:14px;color:var(--mut)">{{ r.alumnos }}<sc-if value="{{ r.hayDif }}" hint-placeholder-val="{{ false }}"><span style="padding:2px 10px;border-radius:999px;background:{{ r.difF }};color:{{ r.difC }};font-weight:700;font-size:13px">{{ r.dif }}</span></sc-if><sc-if value="{{ r.hayBase }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px">{{ r.base }}</span></sc-if></span>
+        <label style="display:flex;align-items:center;gap:4px;height:48px;box-sizing:border-box;padding:0 14px;border:{{ r.borde }};border-radius:16px;background:var(--bg)"><span style="color:var(--mut);font-weight:700">$</span><input type="text" inputMode="numeric" value="{{ r.val }}" onChange="{{ r.set }}" aria-label="Precio" style="flex:1;min-width:0;border:0;background:transparent;outline:none;font:700 18px Oswald,sans-serif;color:var(--txt);text-align:right"></label>
+      </div>
+    </sc-for>
+  </div>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:30px;padding:4px 20px">
+    <strong style="display:block;font-size:18px;padding:16px 0 6px">Pagos y renovaciones</strong>
+    <sc-for list="{{ finPagos }}" as="p" hint-placeholder-count="10">
+      <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) 110px 150px;gap:8px 14px;align-items:center;min-height:64px;border-bottom:{{ p.linea }}">
+        <span style="display:flex;align-items:center;gap:12px;min-width:0"><span style="width:40px;height:40px;flex:none;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;font-family:Oswald,sans-serif;font-weight:600;font-size:16px;color:var(--sage)">{{ p.ini }}</span><span style="min-width:0"><strong style="display:block;line-height:1.25">{{ p.nombre }}</strong><span style="color:var(--mut);font-size:14px">{{ p.vence }}</span></span></span>
+        <span style="color:var(--mut);font-size:14px">{{ p.plan }}</span>
+        <strong style="font-family:Oswald,sans-serif;font-weight:600;font-size:18px">{{ p.monto }}</strong>
+        <span style="display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 12px;border-radius:999px;background:{{ p.chipF }};color:{{ p.chipC }};font-weight:600;font-size:14px;justify-self:start"><span style="font-family:'Material Symbols Rounded';font-size:18px;font-variation-settings:'FILL' 1">{{ p.chipI }}</span>{{ p.estado }}</span>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
 </main>
 </div>
 </x-dc>
@@ -703,7 +772,7 @@ class Component extends DCLogic {
     const msjAbrir = (id) => () => { const n = chatDe(id).length; if (id === 1 && (s.sync.chatVS || 0) !== n) this.escribir({ chatVS: n }); set({ listaMin: undefined, sec: 'msj', msjAl: id, msjRe: null, msjTxt: '', vistoL: { ...(s.vistoL || {}), [id]: n } }); };
     const PLANES = ['Personalizado grupal', '1 a 1', '2x1', 'Open Gym', 'Open Gym + asesoría', 'Pase diario', 'Pase semanal', 'Pase 2 semanas'], conFrec = (p) => p === 'Personalizado grupal' || p === '1 a 1', nOk = s.nNombre.trim().length > 1;
     const nuevoGuardar = () => { if (!nOk) return; const id = A.length + 1, f = conFrec(s.nPlan), tot = s.nPlan === 'Personalizado grupal' ? s.nFrec * 4 : 0; set({ nuevos: [...s.nuevos, { id, nuevo: true, nac: s.nNac || '', tel: (s.nTel || '').trim(), mail: (s.nMail || '').trim(), nombre: s.nNombre.trim(), plan: s.nPlan, frec: f ? s.nFrec : null, estado: 'activo', vence: '16 dic', q: tot, tot, sin: 0, e30: 0, cond: '', salud: false, fotos: false, evSem: true, prox: '2026-11-18' }], alumno: id, nuevoOn: false, nPaso: 0, nNombre: '', nNac: '', nTel: '', nMail: '', nPlan: 'Personalizado grupal', nFrec: 2 }); };
-    const nav = [['dash', 'Inicio', 'dashboard'], ['ficha', 'Alumnos', 'group'], ['msj', 'Mensajes', 'chat'], ['eval', 'Evaluación', 'monitor_weight'], ['macros', 'Macros', 'calculate'], ['asist', 'Asistencia', 'how_to_reg'], ['planes', 'Planes', 'badge']].map(([id, nombre, icono]) => { const a = sec === id; return { nombre, icono, n: msjTot, hayN: id === 'msj' && msjTot > 0, ir: () => set({ listaMin: undefined, sec: id }), color: a ? 'var(--txt)' : 'var(--mut)', peso: a ? 700 : 500, icoColor: a ? 'var(--acct)' : 'var(--mut)', relleno: a ? "'FILL' 1" : "'FILL' 0" }; });
+    const nav = [['dash', 'Inicio', 'dashboard'], ['ficha', 'Alumnos', 'group'], ['msj', 'Mensajes', 'chat'], ['eval', 'Evaluación', 'monitor_weight'], ['macros', 'Macros', 'calculate'], ['asist', 'Asistencia', 'how_to_reg'], ['planes', 'Planes', 'badge'], ['fin', 'Finanzas', 'payments']].map(([id, nombre, icono]) => { const a = sec === id; return { nombre, icono, n: msjTot, hayN: id === 'msj' && msjTot > 0, ir: () => set({ listaMin: undefined, sec: id }), color: a ? 'var(--txt)' : 'var(--mut)', peso: a ? 700 : 500, icoColor: a ? 'var(--acct)' : 'var(--mut)', relleno: a ? "'FILL' 1" : "'FILL' 0" }; });
 
     const AH = ['07:00', '09:00', '10:30', '18:00', '19:30'], AW = [1, 1.3, 0.9, 1.25, 0.8, 0.5, 0.4], AHW = [0.6, 1.3, 1, 0.8, 1.1], SEM = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'];
     const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'], agM = s.agMes, agDim = new Date(2026, agM + 1, 0).getDate(), agOff = (new Date(2026, agM, 1).getDay() + 6) % 7, agF = Math.max(0.4, 1 - (10 - agM) * 0.08);
@@ -810,9 +879,9 @@ class Component extends DCLogic {
 
     const lMin = sec === 'macros' ? !!s.listaMinMac : (s.listaMin ?? sec !== 'ficha'), iW = s.islaAncha !== false, lb = '1px solid var(--line)';
     const R = {
-      navTop: (['dash', 'ficha', 'msj', 'eval', 'macros', 'asist', 'planes'].indexOf(sec) * 56 + 84) + 'px',
+      navTop: (['dash', 'ficha', 'msj', 'eval', 'macros', 'asist', 'planes', 'fin'].indexOf(sec) * 56 + 84) + 'px',
       islaRef: this.islaRef, libFlex: iW ? '1 1 240px' : '1 1 100%', libMaxW: iW ? '320px' : 'none', libMaxH: iW ? '920px' : '760px', libPad: iW ? '0 18px 0 0' : '0 0 18px', libBorR: iW ? lb : 'none', libBorB: iW ? 'none' : lb, libCols: iW ? 'minmax(0,1fr)' : 'repeat(auto-fill,minmax(210px,1fr))',
-      nav, secDash: sec === 'dash', secFicha: sec === 'ficha', secEval: sec === 'eval', secMacros: sec === 'macros', secAsist: sec === 'asist', secPlanes: sec === 'planes',
+      nav, secDash: sec === 'dash', secFicha: sec === 'ficha', secEval: sec === 'eval', secMacros: sec === 'macros', secAsist: sec === 'asist', secPlanes: sec === 'planes', secFin: sec === 'fin',
       agTitulo: 'Agenda de ' + MESES[agM], agMesTxt: MESES[agM].charAt(0).toUpperCase() + MESES[agM].slice(1) + ' 2026', agAnt: () => { if (agM > 2) set({ agMes: agM - 1, agDia: null }); }, agSig: () => { if (agM < 10) set({ agMes: agM + 1, agDia: agM + 1 === 10 ? 16 : null }); }, agAntOff: agM <= 2, agSigOff: agM >= 10, agAntOp: agM <= 2 ? 0.35 : 1, agSigOp: agM >= 10 ? 0.35 : 1,
       hoyHoras, hoyResumen: 'Lunes 16 · ' + hoyTot + ' personas en ' + AH.length + ' horarios',
       agSem: SEM, agDatos: [{ nombre: 'Día más ocupado', valor: this.DIAS[agSemProm.indexOf(agSemMax)], sub: agSemMax + ' reservas en promedio' }, { nombre: 'Horario más pedido', valor: AH[agHoraTot.indexOf(agHoraMax)], sub: agHoraMax + ' reservas en el mes' }, { nombre: 'Reservas del mes', valor: agTotal, sub: 'Día más lleno: ' + this.DIAS[agWd(agTop)].toLowerCase() + ' ' + agTop + ' (' + agTot(agTop) + ')' }],
@@ -843,7 +912,7 @@ class Component extends DCLogic {
       rResumen: rListas + ' de ' + rTotal, rPieTxt: rEnvN ? rPn + ' ha completado ' + rHN + ' de ' + rEnvN + (rEnvN === 1 ? ' enviada.' : ' enviadas.') : 'Los días los elige ' + rPn + ' en su app.', rBarra: rPlan.map((r) => ({ c: lst(r) ? '#62C6CB' : 'var(--line)' })),
       rTabs: rPlan.map((r, i) => { const on = i === rIdx, n = r.ej.length, ok = lst(r), env = ok && !!rEnv && rEnv.rut.some((e) => e.i === i && JSON.stringify(e.ej) === JSON.stringify(r.ej) && e.nombre === r.nombre);
         const hx = rHecha(i); if (hx && ok) return { n: i + 1, ic: hx.falt ? 'rule' : 'task_alt', hayIc: true, sub: rHTxt(hx), ir: () => set({ rIdx: i }), menu: (ev) => { ev.preventDefault(); set({ rMenu: { i, x: Math.min(ev.clientX, window.innerWidth - 240), y: Math.min(ev.clientY, window.innerHeight - 170) } }); }, aro: on ? '0 0 0 2px var(--card), 0 0 0 4px var(--txt)' : 'none', fondo: '#17616B', color: '#fff', borde: '1px solid #17616B' };
-        return { n: i + 1, ic: env ? 'done_all' : ok ? 'check_circle' : n ? 'edit' : '', hayIc: !!n, sub: env ? 'Enviada · ' + n + ' ej.' : ok ? 'Lista · ' + n + ' ej.' : n ? 'Sin guardar' : 'Vacía', ir: () => set({ rIdx: i }), menu: (ev) => { ev.preventDefault(); set({ rMenu: { i, x: Math.min(ev.clientX, window.innerWidth - 240), y: Math.min(ev.clientY, window.innerHeight - 170) } }); }, aro: on ? '0 0 0 2px var(--card), 0 0 0 4px var(--txt)' : 'none', ...(env ? { fondo: 'var(--sage)', color: 'var(--card)', borde: '1px solid var(--sage)' } : ok ? { fondo: '#62C6CB', color: '#06181D', borde: '1px solid #62C6CB' } : n ? { fondo: 'var(--card)', color: 'var(--sage)', borde: '2px solid #62C6CB' } : { fondo: 'var(--card)', color: 'var(--sage)', borde: '1px dashed var(--line2)' }) }; }),
+        return { n: i + 1, ic: env ? 'done_all' : ok ? 'check_circle' : n ? 'edit' : '', hayIc: !!n, sub: env ? 'Enviada · ' + n + ' ej.' : ok ? 'Lista · ' + n + ' ej.' : n ? 'Sin guardar' : 'Vacía', ir: () => set({ rIdx: i }), menu: (ev) => { ev.preventDefault(); set({ rMenu: { i, x: Math.min(ev.clientX, window.innerWidth - 240), y: Math.min(ev.clientY, window.innerHeight - 170) } }); }, aro: on ? '0 0 0 2px var(--card), 0 0 0 4px var(--txt)' : 'none', ...(env ? { fondo: 'var(--sage)', color: 'var(--card)', borde: '1.5px solid var(--sage)' } : ok ? { fondo: '#62C6CB', color: '#06181D', borde: '1.5px solid #62C6CB' } : n ? { fondo: 'var(--card)', color: 'var(--sage)', borde: '1.5px solid #62C6CB' } : { fondo: 'var(--card)', color: 'var(--sage)', borde: '1.5px dashed var(--line2)' }) }; }),
       rNum: rIdx + 1, rNombre: rCur.nombre, rSetNombre: (ev) => setRut(rIdx, { ...rCur, nombre: ev.target.value }),
       rFilas, vidOn: !!s.vid, vidHay: !!(s.vid && this.vidDe(s.vid.nombre)), vidNo: !(s.vid && this.vidDe(s.vid.nombre)), vidSrc: s.vid ? this.vidDe(s.vid.nombre) || '' : '', vidFoto: s.vid ? 'url(' + this.fotoEj(s.vid.nombre) + ')' : 'none', vidNombre: s.vid ? s.vid.nombre : '', vidSub: s.vid && this.vidDe(s.vid.nombre) ? 'Video guía' : 'Video guía pendiente · se sube desde el panel', vidX: s.vid ? Math.max(16, Math.min(s.vid.x + 20, (typeof innerWidth === 'number' ? innerWidth : 1280) - 336)) + 'px' : '0', vidY: s.vid ? Math.max(16, Math.min(s.vid.y - 140, (typeof innerHeight === 'number' ? innerHeight : 800) - 300)) + 'px' : '0', rOver: (ev) => ev.preventDefault(), rDrop: (ev) => { ev.preventDefault(); const n = this.arr || ev.dataTransfer.getData('text/plain'); if (n) addEj(n); this.arr = null; },
       rCopSin: !lista.length, rCopColor: lista.length ? 'var(--txt)' : 'var(--mut)', rCopTxt: s.clip && s.clip.de === rA.id + '-' + rIdx ? 'Copiada' : 'Copiar', rCopiar: () => { if (lista.length) set({ clip: { de: rA.id + '-' + rIdx, nombre: rCur.nombre, ej: lista.map((e) => ({ ...e })) } }); },
@@ -901,6 +970,35 @@ class Component extends DCLogic {
     R.rNavTit = 'Rutina ' + (rIdx + 1) + ' de ' + rTotal; R.rNavSub = (rCur.nombre ? rCur.nombre + ' · ' : '') + rSel.sub + (rSel.dia != null ? ' · ' + rSel.dia + ' nov' : ' · sin fecha'); R.rAnt = () => { if (rIdx > 0) set({ rIdx: rIdx - 1 }); }; R.rSig = () => { if (rIdx < rTotal - 1) set({ rIdx: rIdx + 1 }); }; R.rAntColor = rIdx > 0 ? 'var(--txt)' : 'var(--line2)'; R.rSigColor = rIdx < rTotal - 1 ? 'var(--txt)' : 'var(--line2)';
     R.rSelTit = 'Rutina ' + (rIdx + 1) + (rCur.nombre ? ' · ' + rCur.nombre : ''); R.rSelTxt = rSel.sub + (rSel.dia != null && !rHecha(rIdx) ? ' · agendada para el ' + rSel.dia + ' nov' : rSel.dia == null ? ' · sin fecha' : '');
     const cAb = !(s.calMin ?? true); Object.assign(R, { rCalAb: cAb, rCalAlto: cAb ? '1fr' : '0fr', rCalOp: cAb ? 1 : 0, rCalMt: cAb ? '0px' : '-12px', rCalGiro: cAb ? 'rotate(180deg)' : 'none', rCalAlt: () => set({ calMin: cAb }) });
+    { const PRE0 = { 'Personalizado grupal': 72000, '1 a 1': 200000, '2x1': 250000, 'Open Gym': 38000, 'Open Gym + asesoría': 50000, 'Pase diario': 8000, 'Pase semanal': 20000, 'Pase 2 semanas': 30000 };
+      const fPre = { ...PRE0, ...(s.precios || {}) }, fEd = s.preEd || {}, clp = (n) => '$' + Math.round(n).toLocaleString('es-CL'), COL = ['#17616B', '#62C6CB', '#4FA3AB', '#A86A00', '#C4473A', '#2E8A94', '#7FB7BE', '#9AA9AD'];
+      const pagan = A.filter((a) => !(a.plan === '2x1' && a.pareja && a.pareja < a.id)), suma = (l) => l.reduce((t, a) => t + (fPre[a.plan] || 0), 0);
+      const vig = pagan.filter((a) => a.estado !== 'vencido'), act = pagan.filter((a) => a.estado === 'activo'), pv = pagan.filter((a) => a.estado === 'porvencer'), venc = pagan.filter((a) => a.estado === 'vencido');
+      const mes = suma(vig), mens = vig.filter((a) => !a.plan.startsWith('Pase'));
+      R.finKpis = [
+        { t: 'Ingreso del mes', v: clp(mes), sub: vig.length + ' pagos vigentes', ic: 'trending_up', icC: '#17616B', icF: 'rgba(23,97,107,0.12)' },
+        { t: 'Cobrado', v: clp(suma(act)), sub: act.length + ' al día', ic: 'check_circle', icC: 'var(--sage)', icF: 'var(--okbg)' },
+        { t: 'Por renovar', v: clp(suma(pv)), sub: pv.length + ' vencen pronto', ic: 'schedule', icC: 'var(--aviso)', icF: 'var(--warnbg)' },
+        { t: 'Perdido', v: clp(suma(venc)), sub: venc.length + (venc.length === 1 ? ' plan vencido' : ' planes vencidos'), ic: 'trending_down', icC: 'var(--bad)', icF: 'var(--badbg)' },
+        { t: 'Ticket promedio', v: clp(mens.length ? suma(mens) / mens.length : 0), sub: 'por plan mensual', ic: 'receipt_long', icC: '#62C6CB', icF: 'rgba(98,198,203,0.14)' } ];
+      const hist = [['Jun', 0.58], ['Jul', 0.66], ['Ago', 0.71], ['Sep', 0.79], ['Oct', 0.88], ['Nov', 1]].map(([m, f]) => [m, Math.round(mes * f / 1000) * 1000]), hMax = Math.max(1, ...hist.map((h) => h[1]));
+      R.finMeses = hist.map(([m, v], i) => ({ m, v: clp(v), alto: Math.max(4, v / hMax * 100).toFixed(1) + '%', fondo: i === hist.length - 1 ? '#17616B' : '#62C6CB', op: i === hist.length - 1 ? 1 : 0.55, peso: i === hist.length - 1 ? 700 : 500 }));
+      const ant = hist[hist.length - 2][1], crec = ant ? Math.round((mes - ant) / ant * 100) : 0;
+      R.finCrec = (crec >= 0 ? '+' : '') + crec + '% vs octubre'; R.finCrecC = crec >= 0 ? 'var(--sage)' : 'var(--bad)'; R.finCrecF = crec >= 0 ? 'var(--okbg)' : 'var(--badbg)';
+      const grp = {}; vig.forEach((a) => { grp[a.plan] = (grp[a.plan] || 0) + 1; }); const gMax = Math.max(1, ...Object.keys(grp).map((k) => grp[k] * fPre[k]));
+      R.finPlanes = Object.keys(fPre).filter((k) => grp[k]).sort((x, y) => grp[y] * fPre[y] - grp[x] * fPre[x]).map((k, i) => ({ nombre: k, n: grp[k] + (grp[k] === 1 ? ' pago' : ' pagos'), total: clp(grp[k] * fPre[k]), pct: mes ? Math.round(grp[k] * fPre[k] / mes * 100) + '%' : '0%', ancho: (grp[k] * fPre[k] / gMax * 100).toFixed(1) + '%', color: COL[i % COL.length] }));
+      const cambios = Object.keys(fEd).filter((k) => fEd[k] !== '' && Number(fEd[k]) !== fPre[k]);
+      R.finPrecios = Object.keys(fPre).map((k, i) => { const ed = fEd[k] != null ? fEd[k] : String(fPre[k]), num = Number(ed || 0), dif = num - fPre[k], base = num - PRE0[k];
+        return { nombre: k, tipo: k.startsWith('Pase') ? 'Pase · pago único' : k === '2x1' ? 'Mensual · 2 personas' : 'Mensual', val: ed === '' ? '' : Number(ed).toLocaleString('es-CL'), set: (ev) => set({ preEd: { ...fEd, [k]: ev.target.value.replace(/\D/g, '').slice(0, 7) } }), linea: i === Object.keys(fPre).length - 1 ? '0' : '1px solid var(--line)',
+          hayDif: dif !== 0 && ed !== '', dif: (dif > 0 ? '+' : '−') + clp(Math.abs(dif)).slice(0), difC: dif > 0 ? 'var(--sage)' : 'var(--bad)', difF: dif > 0 ? 'var(--okbg)' : 'var(--badbg)',
+          hayBase: dif === 0 && base !== 0, base: 'Antes ' + clp(PRE0[k]), borde: dif !== 0 && ed !== '' ? '1.5px solid #62C6CB' : '1px solid var(--line2)', alumnos: (grp[k] || 0) + (grp[k] === 1 ? ' alumno vigente' : ' alumnos vigentes') }; });
+      const proy = vig.reduce((t, a) => t + (fEd[a.plan] != null && fEd[a.plan] !== '' ? Number(fEd[a.plan]) : fPre[a.plan]), 0);
+      R.finHayCambios = cambios.length > 0; R.finSinCambios = !cambios.length; R.finProy = 'Con estos precios el ingreso mensual pasa de ' + clp(mes) + ' a ' + clp(proy) + ' (' + (proy - mes >= 0 ? '+' : '−') + clp(Math.abs(proy - mes)) + ').';
+      R.finGuardFondo = cambios.length ? '#62C6CB' : 'var(--line)'; R.finGuardColor = cambios.length ? '#06181D' : 'var(--mut)'; R.finGuardCursor = cambios.length ? 'pointer' : 'default';
+      R.finGuardar = () => { if (!cambios.length) return; const nu = { ...(s.precios || {}) }; cambios.forEach((k) => { nu[k] = Number(fEd[k]); }); set({ precios: nu, preEd: {}, finOk: cambios.length }); };
+      R.finDeshacer = () => set({ preEd: {} }); R.finOk = !!s.finOk && !cambios.length; R.finOkTxt = (s.finOk === 1 ? '1 precio actualizado' : s.finOk + ' precios actualizados') + '. Se aplica desde la próxima renovación de cada alumno; los pagos ya hechos no cambian.';
+      R.finPagos = pagan.slice().sort((x, y) => ({ porvencer: 0, vencido: 1, activo: 2 }[x.estado] - { porvencer: 0, vencido: 1, activo: 2 }[y.estado])).map((a, i, l) => ({ ini: this.ini(a.nombre).toUpperCase(), nombre: a.plan === '2x1' ? a.nombre + ' + ' + (A.find((b) => b.id === a.pareja) || {}).nombre.split(' ')[0] : a.nombre, plan: a.plan, monto: clp(fPre[a.plan]), vence: (a.estado === 'vencido' ? 'Venció el ' : 'Vence el ') + a.vence,
+        estado: { activo: 'Pagado', porvencer: 'Por renovar', vencido: 'Vencido' }[a.estado], chipF: this.EST[a.estado][0], chipC: this.EST[a.estado][1], chipI: this.EST[a.estado][2], linea: i === l.length - 1 ? '0' : '1px solid var(--line)' })); }
     return R;
   }
 }
