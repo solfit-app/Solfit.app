@@ -670,7 +670,7 @@ input{font-family:Montserrat,sans-serif}
   </div>
   <div style="background:var(--card);border:1px solid var(--line);border-radius:30px;padding:20px;display:flex;flex-direction:column;gap:6px">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px">
-      <span><strong style="display:block;font-size:18px">Precios de los planes</strong><span style="color:var(--mut);font-size:14px">Escribe el precio nuevo y guarda. Se cobra desde la próxima renovación.</span></span>
+      <span><strong style="display:block;font-size:18px">Precios de los planes</strong><span style="color:var(--mut);font-size:14px">Escribe el precio neto (sin IVA) y guarda. Se cobra desde la próxima renovación.</span></span>
       <span style="display:flex;gap:8px">
         <sc-if value="{{ finHayCambios }}" hint-placeholder-val="{{ false }}"><button onClick="{{ finDeshacer }}" style="min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--txt);font:600 15px Montserrat,sans-serif;cursor:pointer">Deshacer</button></sc-if>
         <button onClick="{{ finGuardar }}" disabled="{{ finSinCambios }}" style="min-height:44px;padding:0 18px;border-radius:999px;border:0;background:{{ finGuardFondo }};color:{{ finGuardColor }};font:700 15px Montserrat,sans-serif;cursor:{{ finGuardCursor }};display:flex;align-items:center;gap:8px"><span style="font-family:'Material Symbols Rounded';font-size:20px">save</span>Guardar precios</button>
@@ -679,10 +679,11 @@ input{font-family:Montserrat,sans-serif}
     <sc-if value="{{ finHayCambios }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 14px;border-radius:16px;background:var(--warnbg);color:var(--txt);font-size:14px;font-weight:600">{{ finProy }}</div></sc-if>
     <sc-if value="{{ finOk }}" hint-placeholder-val="{{ false }}"><div style="padding:10px 14px;border-radius:16px;background:var(--okbg);color:var(--sage);font-size:14px;font-weight:600">{{ finOkTxt }}</div></sc-if>
     <sc-for list="{{ finPrecios }}" as="r" hint-placeholder-count="8">
-      <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.7fr) 190px;gap:8px 14px;align-items:center;min-height:68px;border-bottom:{{ r.linea }}">
+      <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.7fr) 190px 150px;gap:8px 14px;align-items:center;min-height:68px;border-bottom:{{ r.linea }}">
         <span style="min-width:0"><strong style="display:block">{{ r.nombre }}</strong><span style="color:var(--mut);font-size:14px">{{ r.tipo }}</span></span>
         <span style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;font-size:14px;color:var(--mut)">{{ r.alumnos }}<sc-if value="{{ r.hayDif }}" hint-placeholder-val="{{ false }}"><span style="padding:2px 10px;border-radius:999px;background:{{ r.difF }};color:{{ r.difC }};font-weight:700;font-size:13px">{{ r.dif }}</span></sc-if><sc-if value="{{ r.hayBase }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px">{{ r.base }}</span></sc-if></span>
         <label style="display:flex;align-items:center;gap:4px;height:48px;box-sizing:border-box;padding:0 14px;border:{{ r.borde }};border-radius:16px;background:var(--bg)"><span style="color:var(--mut);font-weight:700">$</span><input type="text" inputMode="numeric" value="{{ r.val }}" onChange="{{ r.set }}" aria-label="Precio" style="flex:1;min-width:0;border:0;background:transparent;outline:none;font:700 18px Oswald,sans-serif;color:var(--txt);text-align:right"></label>
+        <span style="display:flex;flex-direction:column;align-items:flex-end;text-align:right"><span style="font-size:12px;color:var(--mut);font-weight:600">Total con IVA</span><strong style="font-family:Oswald,sans-serif;font-weight:600;font-size:18px;color:#17616B">{{ r.conIva }}</strong><span style="font-size:12px;color:var(--mut)">{{ r.iva }}</span></span>
       </div>
     </sc-for>
   </div>
@@ -991,7 +992,7 @@ class Component extends DCLogic {
       R.finPrecios = Object.keys(fPre).map((k, i) => { const ed = fEd[k] != null ? fEd[k] : String(fPre[k]), num = Number(ed || 0), dif = num - fPre[k], base = num - PRE0[k];
         return { nombre: k, tipo: k.startsWith('Pase') ? 'Pase · pago único' : k === '2x1' ? 'Mensual · 2 personas' : 'Mensual', val: ed === '' ? '' : Number(ed).toLocaleString('es-CL'), set: (ev) => set({ preEd: { ...fEd, [k]: ev.target.value.replace(/\D/g, '').slice(0, 7) } }), linea: i === Object.keys(fPre).length - 1 ? '0' : '1px solid var(--line)',
           hayDif: dif !== 0 && ed !== '', dif: (dif > 0 ? '+' : '−') + clp(Math.abs(dif)).slice(0), difC: dif > 0 ? 'var(--sage)' : 'var(--bad)', difF: dif > 0 ? 'var(--okbg)' : 'var(--badbg)',
-          hayBase: dif === 0 && base !== 0, base: 'Antes ' + clp(PRE0[k]), borde: dif !== 0 && ed !== '' ? '1.5px solid #62C6CB' : '1px solid var(--line2)', alumnos: (grp[k] || 0) + (grp[k] === 1 ? ' alumno vigente' : ' alumnos vigentes') }; });
+          hayBase: dif === 0 && base !== 0, base: 'Antes ' + clp(PRE0[k]), borde: dif !== 0 && ed !== '' ? '1.5px solid #62C6CB' : '1px solid var(--line2)', alumnos: (grp[k] || 0) + (grp[k] === 1 ? ' alumno vigente' : ' alumnos vigentes'), conIva: ed === '' ? '—' : clp(Math.round(num * 1.19)), iva: ed === '' ? 'IVA 19%' : 'IVA 19%: ' + clp(Math.round(num * 0.19)) }; });
       const proy = vig.reduce((t, a) => t + (fEd[a.plan] != null && fEd[a.plan] !== '' ? Number(fEd[a.plan]) : fPre[a.plan]), 0);
       R.finHayCambios = cambios.length > 0; R.finSinCambios = !cambios.length; R.finProy = 'Con estos precios el ingreso mensual pasa de ' + clp(mes) + ' a ' + clp(proy) + ' (' + (proy - mes >= 0 ? '+' : '−') + clp(Math.abs(proy - mes)) + ').';
       R.finGuardFondo = cambios.length ? '#62C6CB' : 'var(--line)'; R.finGuardColor = cambios.length ? '#06181D' : 'var(--mut)'; R.finGuardCursor = cambios.length ? 'pointer' : 'default';
