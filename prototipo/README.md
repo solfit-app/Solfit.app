@@ -52,7 +52,7 @@ El detalle de reglas de negocio, fórmulas y estados está en **`NOTAS_PROYECTO.
 - Curva de animación habitual: `cubic-bezier(0.32, 0.72, 0, 1)`, 0,42–0,45 s. Respetar "reducir movimiento".
 
 ## State Management
-En el prototipo, App y Panel se sincronizan con una sola clave de `localStorage`, **`solfit_sync`** (solo la alumna Camila Rojas es real; el resto son datos de ejemplo de `demo()` en el Panel). En producción esto debe ser un backend con cuentas reales. Campos del objeto:
+En el prototipo, App y Panel se sincronizan con una sola clave de `localStorage`, **`solfit_sync`** (Camila Rojas es un personaje inventado y la única alumna conectada entre App y Panel; el resto son datos de ejemplo de `demo()` en el Panel. Ningún nombre ni dato de salud del prototipo es de una persona real). En producción esto debe ser un backend con cuentas reales. Campos del objeto:
 
 - `frec`, `rutinasMes`, `plan` {día: índice}, `hechas` {índice: {dia, falt, tot, no}}
 - `macros` {kcal, p, g, c, n, agua}, `comidasHoy` [{p, g, c, foto?, man?} | null]
